@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/common/constants/icon_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
+import 'package:flutter_smart_wallet/presentation/journey/register/register_constants.dart';
 import 'package:flutter_smart_wallet/presentation/journey/verify_otp/controller/verify_otp_controller.dart';
 import 'package:flutter_smart_wallet/presentation/journey/verify_otp/verify_otp_constatns.dart';
 import 'package:flutter_smart_wallet/presentation/journey/verify_otp/widgets/count_time_widget.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/appbar_widget/appbar_widget.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/button_widget/icon_button_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_smart_wallet/themes/theme_text.dart';
@@ -16,6 +18,17 @@ class VerifyOtpScreen extends GetView<VerifyOtpController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBarWidget(
+        leading: AppBarButton(
+          onTap: () => Get.back(),
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: AppColor.black,
+            size: RegisterConstants.sizeBoxHeight18,
+          ),
+        ),
+      ),
       body: SafeArea(
           child: Padding(
         padding: EdgeInsets.only(

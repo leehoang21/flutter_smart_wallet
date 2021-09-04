@@ -5,6 +5,7 @@ import 'package:flutter_smart_wallet/common/constants/route_list.dart';
 import 'package:flutter_smart_wallet/presentation/journey/register/controller/register_controller.dart';
 import 'package:flutter_smart_wallet/presentation/journey/register/register_constants.dart';
 import 'package:flutter_smart_wallet/presentation/journey/register/widget/reigister_form.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/appbar_widget/appbar_widget.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/button_widget/icon_button_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_smart_wallet/themes/theme_text.dart';
@@ -19,6 +20,16 @@ class RegisterScreen extends GetView<RegisterController> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      appBar: AppBarWidget(
+        leading: AppBarButton(
+          onTap: () => Get.back(),
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: AppColor.black,
+            size: RegisterConstants.sizeBoxHeight18,
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(
