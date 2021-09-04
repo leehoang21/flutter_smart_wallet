@@ -3,6 +3,7 @@ import 'package:flutter_smart_wallet/common/constants/icon_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
 import 'package:flutter_smart_wallet/presentation/journey/verify_otp/controller/verify_otp_controller.dart';
 import 'package:flutter_smart_wallet/presentation/journey/verify_otp/verify_otp_constatns.dart';
+import 'package:flutter_smart_wallet/presentation/journey/verify_otp/widgets/count_time_widget.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/button_widget/icon_button_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_smart_wallet/themes/theme_text.dart';
@@ -62,21 +63,14 @@ class VerifyOtpScreen extends GetView<VerifyOtpController> {
             SizedBox(
               height: VerifyOtpConstants.sizedBoxHeight25,
             ),
-            Container(
-              alignment: Alignment.center,
-              child: Text(
-                '00:22',
-                style: ThemeText.caption.copyWith(
-                    fontWeight: FontWeight.bold, color: AppColor.hintColor),
-                textAlign: TextAlign.center,
-              ),
-            ),
+            Container(alignment: Alignment.center, child: CountTimeWidget()),
             Container(
               alignment: Alignment.center,
               child: RichText(
                   text: TextSpan(
                       text: VerifyOtpConstants.didntReceiveTheCode,
-                      style: ThemeText.caption.copyWith(color: AppColor.hintColor),
+                      style:
+                          ThemeText.caption.copyWith(color: AppColor.hintColor),
                       children: [
                     TextSpan(
                         text: VerifyOtpConstants.resend,
