@@ -19,6 +19,7 @@ class LoginScreen extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: AppColor.white,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(
@@ -58,7 +59,7 @@ class LoginScreen extends GetView<LoginController> {
                   children: [
                     Text(
                       LoginConstants.signIn,
-                      style: ThemeText.headline4
+                      style: ThemeText.headline6
                           .copyWith(fontWeight: FontWeight.bold),
                     ),
                     IconButtonWidget(
@@ -80,7 +81,7 @@ class LoginScreen extends GetView<LoginController> {
                     LoginConstants.signUp,
                     style: ThemeText.caption.copyWith(
                         decoration: TextDecoration.underline,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w500,
                         color: AppColor.black),
                   ),
                 ),

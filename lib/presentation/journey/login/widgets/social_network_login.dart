@@ -32,7 +32,6 @@ class SocialNetWorkLogin extends StatelessWidget {
           buttonColor: AppColor.white,
           iconSource: IconConstants.appIcon,
           borderColor: AppColor.fieldColor,
-          iconWidth: LoginConstants.appleIconHeight,
         ),
         IconButtonWidget(
           onPressed: facebookLogin,

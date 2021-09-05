@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/button_widget/button_constants.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/touchable_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_smart_wallet/common/extensions/size_extension.dart';
 
 class IconButtonWidget extends StatelessWidget {
   final Function() onPressed;
@@ -11,7 +11,6 @@ class IconButtonWidget extends StatelessWidget {
   final Color? buttonColor;
   final Color? borderColor;
   final double? size;
-  final double? iconWidth;
   final double? iconHeight;
 
   const IconButtonWidget(
@@ -22,15 +21,14 @@ class IconButtonWidget extends StatelessWidget {
       this.buttonColor,
       this.borderColor,
       this.size,
-      this.iconHeight,
-      this.iconWidth})
+      this.iconHeight})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
+    return TouchableWidget(
         onPressed: onPressed,
-        icon: Container(
+        child: Container(
           width: size ?? ButtonConstants.iconButtonSize,
           height: size ?? ButtonConstants.iconButtonSize,
           alignment: Alignment.center,
@@ -41,10 +39,9 @@ class IconButtonWidget extends StatelessWidget {
               color: buttonColor ?? AppColor.buttonColor),
           child: SvgPicture.asset(
             iconSource,
-            width: iconWidth ?? ButtonConstants.iconSize,
             height: iconHeight ?? ButtonConstants.iconSize,
             color: iconColor,
           ),
-        ));
+        ),);
   }
 }

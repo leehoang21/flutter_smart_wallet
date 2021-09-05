@@ -51,55 +51,49 @@ class TextFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          color: color ?? AppColor.hintColor,
-          borderRadius: BorderRadius.all(Radius.circular(10))),
-      alignment: Alignment.center,
-      height: height ?? 36.h,
-      child: Center(
-        child: TextFormField(
-          initialValue: initValue,
-          onChanged: onChanged,
-          onEditingComplete: onEditingComplete,
-          textAlign: textAlign ?? TextAlign.start,
-          textCapitalization: textCapitalization ?? TextCapitalization.none,
-          obscureText: obscureText ?? false,
-          style: textStyle,
-          onSaved: onSaved,
-          autovalidateMode: autovalidateMode,
-          inputFormatters: inputFormatter,
-          keyboardType: keyboardType,
-          scrollPadding: EdgeInsets.symmetric(
-            vertical: 9.h
-          ),
-          decoration: InputDecoration(
-            labelText: labelText,
-            labelStyle: textStyle,
-            hintText: hintText,
-            hintStyle: textStyle,
-            prefixIcon: prefixIcon,
-            suffixIcon: suffixIcon,
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColor.hintColor),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColor.hintColor),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            errorBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColor.hintColor),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            focusedErrorBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColor.hintColor),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            disabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColor.hintColor),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            border: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColor.hintColor),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-          ),
-        ),
+    return TextFormField(
+      initialValue: initValue,
+      onChanged: onChanged,
+      onEditingComplete: onEditingComplete,
+      textAlign: textAlign ?? TextAlign.start,
+      textCapitalization: textCapitalization ?? TextCapitalization.none,
+      obscureText: obscureText ?? false,
+      style: textStyle,
+      onSaved: onSaved,
+      autovalidateMode: autovalidateMode,
+      inputFormatters: inputFormatter,
+      keyboardType: keyboardType,
+      scrollPadding: EdgeInsets.symmetric(
+          vertical: 9.h
+      ),
+      cursorColor: AppColor.hintColor,
+      decoration: InputDecoration(
+        labelText: labelText,
+        labelStyle: textStyle,
+        hintText: hintText,
+        hintStyle: textStyle,
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        fillColor: AppColor.fieldColor,
+        filled: true,
+        enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.transparent),
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.transparent),
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.transparent),
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.transparent),
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        disabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.transparent),
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        border: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.transparent),
+            borderRadius: BorderRadius.all(Radius.circular(10))),
       ),
     );
   }
