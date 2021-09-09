@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/common/constants/icon_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/route_list.dart';
+import 'package:flutter_smart_wallet/common/utils/validator.dart';
 import 'package:flutter_smart_wallet/presentation/journey/login/controller/login_controller.dart';
 import 'package:flutter_smart_wallet/presentation/journey/login/login_constants.dart';
 import 'package:flutter_smart_wallet/presentation/journey/login/widgets/social_network_login.dart';
@@ -21,72 +22,75 @@ class LoginScreen extends GetView<LoginController> {
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColor.white,
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.only(
-              top: LoginConstants.paddingTop,
-              right: LayoutConstants.paddingHorizontalApp,
-              left: LayoutConstants.paddingVerticalApp),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  LoginConstants.welcome,
-                  style:
-                      ThemeText.headline4.copyWith(fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  LoginConstants.back,
-                  style:
-                      ThemeText.headline4.copyWith(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: LoginConstants.sizeBoxHeight75,
-                ),
-                TextFieldWidget(
-                  controller: _emailPhoneController,
-                  hintText: LoginConstants.emailOrPhone,
-                  onChanged: _onChanged,
-                  onSaved: _onSaved,
-                  onEditingComplete: _onEditingComplete,
-                ),
-                SizedBox(
-                  height: LoginConstants.sizeBoxHeight75,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      LoginConstants.signIn,
-                      style: ThemeText.headline6
-                          .copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    IconButtonWidget(
-                        onPressed: _login, iconSource: IconConstants.nextIcon)
-                  ],
-                ),
-                SizedBox(
-                  height: LoginConstants.sizeBoxHeight75,
-                ),
-                SocialNetWorkLogin(
-                    googleLogin: _loginWithGoogle,
-                    appleAccountLogin: _loginWithAppleAccount,
-                    facebookLogin: _loginWithFacebook),
-                SizedBox(
-                  height: LoginConstants.sizeBoxHeight139,
-                ), InkWell(
-                  onTap: _register,
-                  child: Text(
-                    LoginConstants.signUp,
-                    style: ThemeText.caption.copyWith(
-                        decoration: TextDecoration.underline,
-                        fontWeight: FontWeight.w500,
-                        color: AppColor.black),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(
+                top: LoginConstants.paddingTop,
+                right: LayoutConstants.paddingHorizontalApp,
+                left: LayoutConstants.paddingVerticalApp),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    LoginConstants.welcome,
+                    style:
+                        ThemeText.headline4.copyWith(fontWeight: FontWeight.bold),
                   ),
-                ),
+                  Text(
+                    LoginConstants.back,
+                    style:
+                        ThemeText.headline4.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: LoginConstants.sizeBoxHeight75,
+                  ),
+                  TextFieldWidget(
+                    controller: _emailPhoneController,
+                    hintText: LoginConstants.emailOrPhone,
+                    onChanged: _onChanged,
+                    onSaved: _onSaved,
+                    validate: (value) => AppValidator.validatePhoneNumber(value),
+                    onEditingComplete: _onEditingComplete,
+                  ),
+                  SizedBox(
+                    height: LoginConstants.sizeBoxHeight75,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        LoginConstants.signIn,
+                        style: ThemeText.headline6
+                            .copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      IconButtonWidget(
+                          onPressed: _login, iconSource: IconConstants.nextIcon)
+                    ],
+                  ),
+                  SizedBox(
+                    height: LoginConstants.sizeBoxHeight75,
+                  ),
+                  SocialNetWorkLogin(
+                      googleLogin: _loginWithGoogle,
+                      appleAccountLogin: _loginWithAppleAccount,
+                      facebookLogin: _loginWithFacebook),
+                  SizedBox(
+                    height: LoginConstants.sizeBoxHeight139,
+                  ), InkWell(
+                    onTap: _register,
+                    child: Text(
+                      LoginConstants.signUp,
+                      style: ThemeText.caption.copyWith(
+                          decoration: TextDecoration.underline,
+                          fontWeight: FontWeight.w500,
+                          color: AppColor.black),
+                    ),
+                  ),
 
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -100,7 +104,11 @@ class LoginScreen extends GetView<LoginController> {
 
   void _onEditingComplete() {}
 
-  void _login() {}
+  void _login() {
+    if (_formKey.currentState!.validate()){
+      Get.toNamed(RouteList.verifyOtpScreen);
+    }
+  }
 
   void _loginWithGoogle() {}
 

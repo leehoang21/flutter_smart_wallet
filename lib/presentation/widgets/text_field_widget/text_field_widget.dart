@@ -15,7 +15,7 @@ class TextFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode? focusNode;
   final Function(String)? onChanged;
-  final Function(String)? validate;
+  final String? Function(String?)? validate;
   final Function(String?)? onSaved;
   final Function()? onEditingComplete;
   final AutovalidateMode? autovalidateMode;
@@ -60,6 +60,7 @@ class TextFieldWidget extends StatelessWidget {
       obscureText: obscureText ?? false,
       style: textStyle,
       onSaved: onSaved,
+      validator: validate,
       autovalidateMode: autovalidateMode,
       inputFormatters: inputFormatter,
       keyboardType: keyboardType,

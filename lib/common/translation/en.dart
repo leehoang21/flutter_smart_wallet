@@ -16,4 +16,11 @@ const Map<String, String> en = {
   'didnt_receive_the_code': "Didn’t receive the code? ",
   'resend': "Resend",
   'confirm' : "Confirm",
+  'invalid_phone_number' : "Invalid phone number",
+  'invalid_email' : "Invalid email",
+  'required_phone_number' : "Phone number is required",
+  'required_name' : "Name is required",
+  'required_email' : "Email is required",
+  "network_request_failed": "Please check your connection again",
+  "otp_is_incorrect": "OTP code is incorrect",
 };
