@@ -30,4 +30,8 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
         codeSent: codeSent,
         codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
   }
+
+  @override
+  Future<UserCredential> singInWithPhoneAuth(PhoneAuthCredential credential) =>
+      authenRemote.signInWithPhoneAuth(credential);
 }

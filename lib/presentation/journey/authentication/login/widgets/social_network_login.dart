@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/common/constants/icon_constants.dart';
-import 'package:flutter_smart_wallet/presentation/journey/login/login_constants.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/button_widget/icon_button_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 

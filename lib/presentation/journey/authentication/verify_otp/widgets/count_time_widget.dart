@@ -1,11 +1,16 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter_smart_wallet/presentation/journey/verify_otp/verify_otp_constatns.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_smart_wallet/themes/theme_text.dart';
 import 'package:flutter_smart_wallet/common/extensions/num_extension.dart';
+import '../verify_otp_constatns.dart';
 
 class CountTimeWidget extends StatefulWidget {
+  final Function() onResend;
+
+  const CountTimeWidget({Key? key, required this.onResend}) : super(key: key);
+
   @override
   _CountTimeWidgetState createState() => _CountTimeWidgetState();
 }
@@ -17,13 +22,13 @@ class _CountTimeWidgetState extends State<CountTimeWidget> {
   void _startCount() {
     _timer = Timer.periodic(
         const Duration(seconds: 1),
-            (timer) => setState(() {
-          if (_start < 1) {
-            _timer!.cancel();
-          } else {
-            _start -= 1;
-          }
-        }));
+        (timer) => setState(() {
+              if (_start < 1) {
+                _timer!.cancel();
+              } else {
+                _start -= 1;
+              }
+            }));
   }
 
   @override
@@ -49,22 +54,38 @@ class _CountTimeWidgetState extends State<CountTimeWidget> {
             Text(
               VerifyOtpConstants.resend,
               style: ThemeText.caption.copyWith(
-                fontWeight: FontWeight.bold,
-                color: AppColor.hintColor
-              ),
+                  fontWeight: FontWeight.bold, color: AppColor.hintColor),
             ),
             Text(
               ' ${(_start ~/ 60).toStandardized}'
-                  ':'
-                  '${(_start % 60).toStandardized}',
+              ':'
+              '${(_start % 60).toStandardized}',
               style: ThemeText.caption.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColor.hintColor
-              ),
+                  fontWeight: FontWeight.bold, color: AppColor.hintColor),
             )
           ],
         ),
+        InkWell(
+          onTap: _start == 0 ? _resendOtp : null,
+          child: Container(
+            alignment: Alignment.center,
+            child: RichText(
+                text: TextSpan(
+                    text: VerifyOtpConstants.didntReceiveTheCode,
+                    style: ThemeText.caption.copyWith(color: AppColor.hintColor),
+                    children: [
+                  TextSpan(
+                      text: VerifyOtpConstants.resend,
+                      style: ThemeText.caption,)
+                ])),
+          ),
+        ),
       ],
     );
+  }
+  void _resendOtp(){
+    widget.onResend();
+    _start = 300;
+    _startCount();
   }
 }

@@ -1,4 +1,5 @@
 class DefaultEnvironment {
+  static const String smartWallet = 'smart-wallet';
   static const String environment = 'develop';
   static const String customer = 'customer';
   static const String category = 'category';

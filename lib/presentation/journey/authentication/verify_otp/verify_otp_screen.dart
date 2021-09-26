@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_smart_wallet/common/constants/argument_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/icon_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
-import 'package:flutter_smart_wallet/presentation/journey/register/register_constants.dart';
-import 'package:flutter_smart_wallet/presentation/journey/verify_otp/controller/verify_otp_controller.dart';
-import 'package:flutter_smart_wallet/presentation/journey/verify_otp/verify_otp_constatns.dart';
-import 'package:flutter_smart_wallet/presentation/journey/verify_otp/widgets/count_time_widget.dart';
+import 'package:flutter_smart_wallet/common/constants/route_list.dart';
+import 'package:flutter_smart_wallet/presentation/journey/authentication/verify_otp/verify_otp_constatns.dart';
+import 'package:flutter_smart_wallet/presentation/journey/authentication/verify_otp/widgets/count_time_widget.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/appbar_widget/appbar_widget.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/button_widget/icon_button_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
@@ -12,8 +12,55 @@ import 'package:flutter_smart_wallet/themes/theme_text.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class VerifyOtpScreen extends GetView<VerifyOtpController> {
+import 'controller/verify_otp_controller.dart';
+
+class VerifyOtpScreen extends StatefulWidget {
+  final String verificationId;
+  final String phoneNumber;
+  final int resendToken;
+
+  VerifyOtpScreen(
+      {Key? key,
+      required this.verificationId,
+      required this.phoneNumber,
+      required this.resendToken})
+      : super(key: key);
+
+  @override
+  _VerifyOtpScreenState createState() => _VerifyOtpScreenState();
+}
+
+class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   final _otpController = TextEditingController();
+  String? _verificationId;
+  String? _phoneNumber;
+  int? _resendToken;
+  final resendValue = ValueNotifier(false);
+  final _verifyOtpController = Get.find<VerifyOtpController>();
+
+  @override
+  void initState() {
+    _verificationId = widget.verificationId;
+    _phoneNumber = widget.phoneNumber;
+    _resendToken = widget.resendToken;
+    _verifyOtpController.nextScreen.listen((value) {
+      if (value.isNotEmpty){
+        if (value == RouteList.mainScreen){
+          Get.offNamedUntil(RouteList.mainScreen, (route) => false);
+        }
+        if (value == RouteList.registerScreen){
+          Get.offNamedUntil(RouteList.registerScreen, (route) => false,arguments: {
+            ArgumentConstants.phoneNumber : _phoneNumber
+          });
+        }
+      }
+    });
+    _verifyOtpController.verificationId.listen((value) {
+      _verificationId = _verifyOtpController.verificationId.value;
+      _resendToken = _verifyOtpController.resendToken.value;
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +72,7 @@ class VerifyOtpScreen extends GetView<VerifyOtpController> {
           child: Icon(
             Icons.arrow_back_ios,
             color: AppColor.black,
-            size: RegisterConstants.sizeBoxHeight18,
+            size: VerifyOtpConstants.sizedBoxHeight18,
           ),
         ),
       ),
@@ -76,20 +123,9 @@ class VerifyOtpScreen extends GetView<VerifyOtpController> {
             SizedBox(
               height: VerifyOtpConstants.sizedBoxHeight25,
             ),
-            Container(alignment: Alignment.center, child: CountTimeWidget()),
-            Container(
-              alignment: Alignment.center,
-              child: RichText(
-                  text: TextSpan(
-                      text: VerifyOtpConstants.didntReceiveTheCode,
-                      style:
-                          ThemeText.caption.copyWith(color: AppColor.hintColor),
-                      children: [
-                    TextSpan(
-                        text: VerifyOtpConstants.resend,
-                        style: ThemeText.caption)
-                  ])),
-            ),
+            Container(alignment: Alignment.center, child: CountTimeWidget(
+              onResend: _resendOtp,
+            )),
             SizedBox(
               height: VerifyOtpConstants.sizedBoxHeight28,
             ),
@@ -113,7 +149,16 @@ class VerifyOtpScreen extends GetView<VerifyOtpController> {
     );
   }
 
-  void _onChangeOtp(String value) {}
+  void _onChangeOtp(String value) {
+    if (value.length == 6) {
+      _verifyOtpController.verifyOtp(_verificationId!, value);
+    }
+  }
 
-  void _confirm() {}
+  void _confirm() {
+    _verifyOtpController.verifyOtp(_verificationId!, _otpController.text);
+  }
+  void _resendOtp(){
+    _verifyOtpController.resendOtp(_phoneNumber!, _resendToken!);
+  }
 }

@@ -29,4 +29,6 @@ class AuthenticationUsecase {
         verificationId: verificationId, otpCode: otpCode);
   }
 
+  Future<UserCredential> signInWithPhoneAuth(PhoneAuthCredential credential) =>
+      authenRepository.singInWithPhoneAuth(credential);
 }

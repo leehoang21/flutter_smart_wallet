@@ -1,17 +1,14 @@
-import 'dart:developer';
-
 import 'package:get/get.dart';
 
 class AppValidator {
   static String _validatePhone = r'0\d{8,}';
   static RegExp _expPhoneNumber = RegExp(_validatePhone);
   static String _validateEmail =
-      r'^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
   static RegExp _expEmail = RegExp(_validateEmail);
 
 
   static String? validatePhoneNumber(String? value) {
-    log('deubg');
     if (value == null || value.isEmpty) {
       return 'required_phone_number'.tr;
     }

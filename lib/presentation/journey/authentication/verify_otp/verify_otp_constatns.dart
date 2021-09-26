@@ -11,6 +11,7 @@ class VerifyOtpConstants {
 
   static final double confirmFontSize = 23.sp;
   static final double paddingTop = 57.h;
+  static final double sizedBoxHeight18 = 18.h;
   static final double sizedBoxHeight25 = 25.h;
   static final double sizedBoxHeight28 = 28.h;
   static final double sizedBoxHeight38 = 38.h;

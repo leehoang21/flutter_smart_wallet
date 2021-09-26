@@ -52,6 +52,7 @@ class TextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       initialValue: initValue,
       onChanged: onChanged,
       onEditingComplete: onEditingComplete,

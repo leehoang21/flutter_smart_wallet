@@ -11,4 +11,5 @@ abstract class AuthenticationRepository {
 
   Future<PhoneAuthCredential> verifyOtp(
       {required String verificationId, required String otpCode});
+  Future<UserCredential> singInWithPhoneAuth(PhoneAuthCredential credential);
 }

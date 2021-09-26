@@ -24,4 +24,7 @@ class AuthenticationDataSource {
     return PhoneAuthProvider.credential(
         verificationId: verificationId, smsCode: smsCode);
   }
+  Future<UserCredential> signInWithPhoneAuth(PhoneAuthCredential credential)async {
+    return fireBaseAuth.signInWithCredential(credential);
+  }
 }
