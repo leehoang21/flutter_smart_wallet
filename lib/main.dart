@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_smart_wallet/common/constants/route_list.dart';
@@ -9,8 +10,9 @@ import 'package:get/get.dart';
 
 import 'common/bindings/app_binding.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(GetMaterialApp(
     initialBinding: AppBinding(),
     initialRoute: RouteList.splashScreen,

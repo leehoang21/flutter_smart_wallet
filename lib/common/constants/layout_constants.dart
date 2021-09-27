@@ -12,4 +12,6 @@ class LayoutConstants {
   /// Padding Vertical
   static final double paddingVerticalApp = 18.h;
   static final double paddingVertical8 = 8.h;
+  static final double buttonSize = 44.w;
+  static final double buttonIconSize = 18.w;
 }

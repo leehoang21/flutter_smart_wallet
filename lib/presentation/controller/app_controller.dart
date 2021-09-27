@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter_smart_wallet/common/configs/firebase_config.dart';
+import 'package:flutter_smart_wallet/common/configs/hive_config/hive_config.dart';
 import 'package:flutter_smart_wallet/common/constants/strings/string_constants.dart';
 import 'package:flutter_smart_wallet/common/enums/loader_enum.dart';
 import 'package:flutter_smart_wallet/common/enums/snackbar_enum.dart';
@@ -36,5 +38,6 @@ class AppController extends GetxController {
   void onReady() {
     super.onReady();
     Get.find<FirebaseConfig>().init();
+    Get.find<HiveConfig>().init();
   }
 }
