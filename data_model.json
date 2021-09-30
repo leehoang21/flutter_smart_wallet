@@ -9,7 +9,7 @@
 						"name": "EXPENSE",
 						"create_at": 123456789000,
 						"last_update": 123456789000,
-					},
+					}
 				],
 				"category_list": [
 					{
@@ -17,8 +17,11 @@
 						"type": "EXPENSE",
 						"create_at": 123456789000,
 						"last_update": 123456789000,
+						"sub_categories": [
+							"COFFEE"
+						]
 					}
-				],
+				]
 			},
 			"profile": {
 				"account_name": "Test name",
