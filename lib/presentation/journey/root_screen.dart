@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
 import 'package:flutter_smart_wallet/common/enums/loader_enum.dart';
-import 'package:flutter_smart_wallet/common/utils/screen_utils/flutter_screenutil.dart';
 import 'package:flutter_smart_wallet/presentation/controller/app_controller.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/loader_widget.dart';
 import 'package:get/get.dart';

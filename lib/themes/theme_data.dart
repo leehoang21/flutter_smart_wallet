@@ -18,5 +18,6 @@ ThemeData appTheme() {
       appBarTheme:
           const AppBarTheme(color: AppColor.backgroundColor, elevation: 0.0),
       toggleableActiveColor: AppColor.primaryColor,
-      cursorColor: AppColor.primaryColor);
+      textSelectionTheme:
+          TextSelectionThemeData(cursorColor: AppColor.primaryColor));
 }

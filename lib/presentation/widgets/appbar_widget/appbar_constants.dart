@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_smart_wallet/common/extensions/size_extension.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 class AppbarConstants {
   static final double buttonSize = 44.w;
   static final double buttonIconSize = 18.w;

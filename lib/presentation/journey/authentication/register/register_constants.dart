@@ -1,5 +1,6 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:flutter_smart_wallet/common/extensions/size_extension.dart';
+
 class RegisterConstants {
   static final String signIn = 'sign_in'.tr;
   static final String signUp = 'sign_up'.tr;

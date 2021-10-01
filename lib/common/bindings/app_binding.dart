@@ -10,6 +10,7 @@ import 'package:flutter_smart_wallet/domain/repositories/user_repository.dart';
 import 'package:flutter_smart_wallet/domain/use_cases/authentication_usecase.dart';
 import 'package:flutter_smart_wallet/domain/use_cases/user_usecase.dart';
 import 'package:flutter_smart_wallet/presentation/controller/app_controller.dart';
+import 'package:flutter_smart_wallet/presentation/journey/profile/profile_controller.dart';
 import 'package:get/get.dart';
 
 class AppBinding extends Bindings {
@@ -18,6 +19,7 @@ class AppBinding extends Bindings {
     Get.put(FirebaseConfig());
     Get.put(HiveConfig());
     Get.put(AppController());
+    Get.put(ProfileController());
     Get.put<AuthenticationDataSource>(AuthenticationDataSource());
     Get.put<AuthenticationRepository>(
         AuthenticationRepositoryImpl(Get.find<AuthenticationDataSource>()));

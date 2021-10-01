@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:flutter_smart_wallet/common/extensions/size_extension.dart';
 import 'theme_color.dart';
 
 class ThemeIcon {

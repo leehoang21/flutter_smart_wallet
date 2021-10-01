@@ -6,7 +6,7 @@ const Map<String, String> en = {
   'sign_in': "Sign in",
   'sign_up': "Sign up",
   'sign_up_and': "Sign up and",
-  'starting' : 'starting',
+  'starting': 'starting',
   'name': "Name",
   'email_address': "Email address",
   'phone': "Phone",
@@ -23,4 +23,10 @@ const Map<String, String> en = {
   'required_email' : "Email is required",
   "network_request_failed": "Please check your connection again",
   "otp_is_incorrect": "OTP code is incorrect",
+  'my_page': "My page",
+  'categories': 'Categories',
+  'language': 'Language',
+  'rate_me': 'Rate me',
+  'about_me': 'About me',
+  'logout': 'Logout'
 };

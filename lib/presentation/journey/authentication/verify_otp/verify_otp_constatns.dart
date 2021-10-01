@@ -1,5 +1,6 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:flutter_smart_wallet/common/extensions/size_extension.dart';
+
 class VerifyOtpConstants {
   static final String verifyAccount = 'verify_account'.tr;
   static final String verifyContent = 'we_have_send_you_a_verification_code_on_your_mobile_number'.tr;
