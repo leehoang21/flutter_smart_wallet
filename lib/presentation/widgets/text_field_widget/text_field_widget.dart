@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
-import 'package:flutter_smart_wallet/common/extensions/size_extension.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final String? labelText;

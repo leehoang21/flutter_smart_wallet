@@ -23,4 +23,10 @@ const Map<String, String> vi = {
   'required_email': "Vui lòng nhập email",
   "network_request_failed": "Vui lòng kiểm tra lại kết nối của bạn",
   "otp_is_incorrect": "Mã OTP không chính xác",
+  'my_page': "My page",
+  'categories': 'Danh mục',
+  'language': 'Ngôn ngữ',
+  'rate_me': 'Đánh giá',
+  'about_me': 'Về chúng tôi',
+  'logout': 'Đăng xuất'
 };

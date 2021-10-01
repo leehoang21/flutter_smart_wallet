@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
-import 'package:flutter_smart_wallet/common/extensions/size_extension.dart';
 
 class ThemeText {
   static TextStyle headline1 = TextStyle(
@@ -79,5 +79,17 @@ class ThemeText {
     fontSize: 10.sp,
     color: AppColor.textColor,
     fontWeight: FontWeight.normal,
+  );
+
+  //
+  static TextStyle style14Medium = TextStyle(
+    fontSize: 14.sp,
+    color: AppColor.textColor,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle style18Bold = TextStyle(
+    fontSize: 18.sp,
+    color: AppColor.textColor,
+    fontWeight: FontWeight.w600,
   );
 }

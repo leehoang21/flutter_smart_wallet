@@ -20,4 +20,5 @@ class AppColor {
   static const Color amber = Colors.amber;
   static const Color tuna = Color(0xff3C3C43);
   static const Color iron = Color(0xffE5E5E7);
+  static const Color secondaryColor = Color(0xff767680);
 }
