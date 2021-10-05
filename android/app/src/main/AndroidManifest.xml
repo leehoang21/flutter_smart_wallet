@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="vn.com.kma.hatuan314.flutter_smart_wallet">
    <application
-        android:label="flutter_smart_wallet"
+        android:label="E-Spend"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
