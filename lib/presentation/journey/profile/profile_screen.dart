@@ -4,6 +4,7 @@ import 'package:flutter_smart_wallet/common/constants/icon_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
 import 'package:flutter_smart_wallet/presentation/journey/profile/profile_controller.dart';
 import 'package:flutter_smart_wallet/presentation/journey/profile/profile_screen_constants.dart';
+import 'package:flutter_smart_wallet/presentation/journey/profile/widgets/avatar_widget.dart';
 import 'package:flutter_smart_wallet/presentation/journey/profile/widgets/menu_item_widget.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/appbar_widget/appbar_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
@@ -83,16 +84,7 @@ class ProfileScreen extends GetView<ProfileController> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(
-          decoration: BoxDecoration(
-              border: Border.all(color: AppColor.blue),
-              borderRadius:
-                  BorderRadius.circular(ProfileScreenConstants.largeIconSize)),
-          child: Icon(
-            Icons.person,
-            size: ProfileScreenConstants.largeIconSize,
-          ),
-        ),
+        AvatarWidget(),
         SizedBox(
           width: LayoutConstants.paddingHorizontalApp,
         ),

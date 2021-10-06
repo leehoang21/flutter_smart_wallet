@@ -41,10 +41,10 @@ class MenuItem extends StatelessWidget {
             title,
             style: ThemeText.style14Medium,
           ),
-          trailing: SvgPicture.asset(
-            trailingIconPath,
-            height: LayoutConstants.iconMediumSize,
-            width: LayoutConstants.iconMediumSize,
+          trailing: Icon(
+            Icons.keyboard_arrow_right,
+            size: LayoutConstants.iconMediumSize,
+            color: AppColor.black,
           ),
           contentPadding: EdgeInsets.symmetric(
               horizontal: LayoutConstants.paddingHorizontalSmall),

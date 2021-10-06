@@ -22,6 +22,8 @@ class LayoutConstants {
   ///Icon
   static final double iconSize = 16.w;
   static final double iconMediumSize = 24.w;
+  static final double avatarSize = 80.w;
+  static final double floatingButtonSize = 56.w;
 
   ///Border
   static final double borderSmall = 10.w;
