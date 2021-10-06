@@ -14,6 +14,6 @@ class IconConstants {
   static const String languageIcon = '$_path/icon_language.svg';
   static const String logoutIcon = '$_path/icon_logout.svg';
   static const String notificationIcon = '$_path/icon_notification.svg';
-  static const String selectIcon = '$_path/icon_select.svg';
+  static const String selectIcon = '$_path/ic_select.svg';
   static const String rateIcon = '$_path/icon_star.svg';
 }

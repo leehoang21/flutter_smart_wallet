@@ -90,6 +90,6 @@ class ThemeText {
   static TextStyle style18Bold = TextStyle(
     fontSize: 18.sp,
     color: AppColor.textColor,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.bold,
   );
 }
