@@ -11,4 +11,5 @@ class LoginConstants {
   static final double paddingTop = 101.h;
   static final double sizeBoxHeight75 = 75.h;
   static final double sizeBoxHeight139 = 139.h;
+  static final double socialIconButtonSize = 21.42.w;
 }

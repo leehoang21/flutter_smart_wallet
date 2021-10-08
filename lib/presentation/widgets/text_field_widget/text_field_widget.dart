@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/text_field_widget/text_field_constants.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 
 class TextFieldWidget extends StatelessWidget {
@@ -65,11 +67,13 @@ class TextFieldWidget extends StatelessWidget {
       autovalidateMode: autovalidateMode,
       inputFormatters: inputFormatter,
       keyboardType: keyboardType,
-      scrollPadding: EdgeInsets.symmetric(
-          vertical: 9.h
-      ),
+      scrollPadding: EdgeInsets.symmetric(vertical: 9.h),
       cursorColor: AppColor.hintColor,
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: TextFieldConstants.contentPaddingHorizontal,
+          vertical: TextFieldConstants.contentPaddingVertical,
+        ),
         labelText: labelText,
         labelStyle: textStyle,
         hintText: hintText,
@@ -80,22 +84,22 @@ class TextFieldWidget extends StatelessWidget {
         filled: true,
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: AppColor.transparent),
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+            borderRadius: BorderRadius.all(Radius.circular(LayoutConstants.borderSmall))),
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: AppColor.transparent),
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+            borderRadius: BorderRadius.all(Radius.circular(LayoutConstants.borderSmall))),
         errorBorder: OutlineInputBorder(
             borderSide: BorderSide(color: AppColor.transparent),
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+            borderRadius: BorderRadius.all(Radius.circular(LayoutConstants.borderSmall))),
         focusedErrorBorder: OutlineInputBorder(
             borderSide: BorderSide(color: AppColor.transparent),
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+            borderRadius: BorderRadius.all(Radius.circular(LayoutConstants.borderSmall))),
         disabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: AppColor.transparent),
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+            borderRadius: BorderRadius.all(Radius.circular(LayoutConstants.borderSmall))),
         border: OutlineInputBorder(
             borderSide: BorderSide(color: AppColor.transparent),
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+            borderRadius: BorderRadius.all(Radius.circular(LayoutConstants.borderSmall))),
       ),
     );
   }
