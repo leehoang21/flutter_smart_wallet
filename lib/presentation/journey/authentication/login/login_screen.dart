@@ -104,16 +104,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: LoginConstants.sizeBoxHeight139,
                   ),
-                  InkWell(
-                    onTap: _register,
-                    child: Text(
-                      LoginConstants.signUp,
-                      style: ThemeText.caption.copyWith(
-                          decoration: TextDecoration.underline,
-                          fontWeight: FontWeight.w500,
-                          color: AppColor.black),
-                    ),
-                  ),
+                  // InkWell(
+                  //   onTap: _register,
+                  //   child: Text(
+                  //     LoginConstants.signUp,
+                  //     style: ThemeText.caption.copyWith(
+                  //         decoration: TextDecoration.underline,
+                  //         fontWeight: FontWeight.w500,
+                  //         color: AppColor.black),
+                  //   ),
+                  // ),
                 ],
               ),
             ),

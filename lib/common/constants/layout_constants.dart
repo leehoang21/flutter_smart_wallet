@@ -26,5 +26,5 @@ class LayoutConstants {
   static final double floatingButtonSize = 56.w;
 
   ///Border
-  static final double borderSmall = 10.w;
+  static final double borderSmall = 10;
 }
