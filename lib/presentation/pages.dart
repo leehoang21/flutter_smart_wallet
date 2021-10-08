@@ -31,8 +31,8 @@ class AppPages {
       GetPage(
           name: RouteList.registerScreen,
           page: () => RegisterScreen(
-            phone:  Get.arguments[ArgumentConstants.phoneNumber],
-          ),
+                phone: Get.arguments[ArgumentConstants.phoneNumber],
+              ),
           binding: RegisterBinding()),
       GetPage(
           name: RouteList.verifyOtpScreen,
