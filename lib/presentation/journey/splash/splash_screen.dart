@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/common/constants/image_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
-import 'package:flutter_smart_wallet/common/constants/route_list.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_smart_wallet/themes/theme_text.dart';
-import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -16,9 +16,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 3), () {
-      Get.offAllNamed(RouteList.loginScreen);
-    });
     super.initState();
   }
 
@@ -32,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox.shrink(),
+          const SizedBox.shrink(),
           Image.asset(
             ImageConstants.logoSplashImg,
             width: _logoWidth,
