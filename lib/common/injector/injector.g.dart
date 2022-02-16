@@ -21,7 +21,8 @@ class _$Injector extends Injector {
   void _configureBloc() {
     final KiwiContainer container = KiwiContainer();
     container
-      ..registerFactory((c) => LanguageBloc())
-      ..registerSingleton((c) => LoadingBloc());
+      ..registerSingleton((c) => LanguageBloc())
+      ..registerSingleton((c) => LoadingBloc())
+      ..registerSingleton((c) => SnackbarBloc());
   }
 }

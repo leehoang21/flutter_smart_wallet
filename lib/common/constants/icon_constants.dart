@@ -46,4 +46,6 @@ class IconConstants {
   static const String wage = '$_path/ic_wage.svg';
   static const String water = '$_path/ic_water.svg';
   static const String wedding = '$_path/ic_wedding.svg';
+  static const String successIcon = '$_path/success.svg';
+  static const String snackBarFailedIcon = '$_path/snackbar_failed.svg';
 }

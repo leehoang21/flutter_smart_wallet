@@ -1,11 +1,11 @@
-class CategoryEntity {
+class CategoryModel {
   String? name;
   String? type;
   int? createAt;
   int? lastUpdate;
   List<String>? subCategories;
 
-  CategoryEntity({
+  CategoryModel({
     this.name,
     this.type,
     this.createAt,
