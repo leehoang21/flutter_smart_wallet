@@ -1,3 +1,1 @@
-class UserUseCase {
-
-}
+class UserUseCase {}
