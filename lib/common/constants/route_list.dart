@@ -1,10 +1,10 @@
 class RouteList {
-  static final String splashScreen = '/';
-  static final String loginScreen = '/login_screen';
-  static final String mainScreen = '/main_screen';
-  static final String profile = '/profile'; // Profile page
+  static const String splashScreen = '/';
+  static const String loginScreen = '/login_screen';
+  static const String mainScreen = '/main_screen';
+  static const String profile = '/profile'; // Profile page
 
   /// Registration
-  static final String registerScreen = '/register_screen';
-  static final String verifyOtpScreen = '/verify_otp_screen';
+  static const String registerScreen = '/register_screen';
+  static const String verifyOtpScreen = '/verify_otp_screen';
 }

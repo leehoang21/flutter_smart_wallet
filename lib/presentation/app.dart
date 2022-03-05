@@ -11,7 +11,7 @@ import 'package:flutter_smart_wallet/presentation/bloc/loading_bloc/loading_bloc
 import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_state.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_type.dart';
-import 'package:flutter_smart_wallet/presentation/journey/splash/splash_screen.dart';
+import 'package:flutter_smart_wallet/presentation/routes.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/loading_widget/loading_container_widget.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/snackbar_widget/snackbar_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_data.dart';
@@ -60,9 +60,7 @@ class App extends StatelessWidget {
               Locale(LanguageConstants.en),
               Locale(LanguageConstants.vi)
             ],
-            routes: {
-              RouteList.splashScreen: (_) => const SplashScreen(),
-            },
+            onGenerateRoute: Routes.generateRoute,
             theme: appTheme(),
             builder: (context, widget) {
               return LoadingContainerWidget(
