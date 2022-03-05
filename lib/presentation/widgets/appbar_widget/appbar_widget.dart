@@ -25,7 +25,7 @@ class AppBarButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: AppbarConstants.buttonSize,
       width: AppbarConstants.buttonSize,
       child: InkWell(
@@ -51,7 +51,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSize {
   final Widget? centerWidget;
   final TextStyle? titleStyle;
 
-  AppBarWidget({
+  const AppBarWidget({
     Key? key,
     this.leading,
     this.title,
@@ -78,10 +78,9 @@ class AppBarWidget extends StatelessWidget implements PreferredSize {
             child: centerWidget ??
                 Text(
                   title ?? '',
-                  style: titleStyle ??  ThemeText.subtitle1.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: AppColor.black
-                  ),
+                  style: titleStyle ??
+                      ThemeText.subtitle1.copyWith(
+                          fontWeight: FontWeight.bold, color: AppColor.black),
                   textAlign: TextAlign.left,
                 ),
           ),
@@ -90,7 +89,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSize {
               : SizedBox(
                   width: AppbarConstants.buttonSize,
                   height: AppbarConstants.buttonSize,
-                )
+                ),
         ],
       ),
     );

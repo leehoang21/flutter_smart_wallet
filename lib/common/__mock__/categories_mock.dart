@@ -1,153 +1,153 @@
-import 'package:flutter_smart_wallet/domain/enitities/category_entity.dart';
+import 'package:flutter_smart_wallet/model/category_model.dart';
 
 class MockData {
-  static List<CategoryEntity> categoriesData = [
-    CategoryEntity(
+  static List<CategoryModel> categoriesData = [
+    CategoryModel(
       name: 'EATING',
       type: 'EXPENSES',
       subCategories: ['COFFEE', 'DRINKING'],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'FRIEND_AND_LOVER',
       type: 'EXPENSES',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'SHOPPING',
       type: 'EXPENSES',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'DONATE',
       type: 'EXPENSES',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'MOVE',
       type: 'EXPENSES',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'BILLS_AND_UTILITIES',
       type: 'EXPENSES',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'INVESTMENT',
       type: 'EXPENSES',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'OTHER',
       type: 'EXPENSES',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'TRAVELING',
       type: 'EXPENSES',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'FAMILY',
       type: 'EXPENSES',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
-    ),CategoryEntity(
+    ),CategoryModel(
       name: 'EDUCATION',
       type: 'EXPENSES',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
-    ),CategoryEntity(
+    ),CategoryModel(
       name: 'BUSINESS',
       type: 'EXPENSES',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'SELL_THINGS',
       type: 'REVENUE',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'WAGE',
       type: 'REVENUE',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'BONUS',
       type: 'REVENUE',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'LIVING_EXPENSE',
       type: 'REVENUE',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'AWARDED',
       type: 'REVENUE',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'OTHER',
       type: 'REVENUE',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'DEBT_COLLECTION',
       type: 'DEBTS_AND_LOAN',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'BORROW',
       type: 'DEBTS_AND_LOAN',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'LOAN',
       type: 'DEBTS_AND_LOAN',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
-    CategoryEntity(
+    CategoryModel(
       name: 'PAY',
       type: 'DEBTS_AND_LOAN',
       subCategories: [],

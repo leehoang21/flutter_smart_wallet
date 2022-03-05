@@ -16,7 +16,7 @@ class TopSnackBarRoute<T> extends OverlayRoute<T> {
     DismissDirection.horizontal,
     DismissDirection.up
   ];
-  final CommonSnackBar topSnackBar;
+  final TopSnackBar topSnackBar;
   final Builder _builder;
   Alignment? _initialAlignment;
   Alignment? _endAlignment;
@@ -279,7 +279,7 @@ class TopSnackBarRoute<T> extends OverlayRoute<T> {
 }
 
 TopSnackBarRoute showSnackBar<T>(
-    {required BuildContext context, required CommonSnackBar topSnackBar}) {
+    {required BuildContext context, required TopSnackBar topSnackBar}) {
   return TopSnackBarRoute<T>(
       topSnackBar: topSnackBar,
       theme: Theme.of(context),

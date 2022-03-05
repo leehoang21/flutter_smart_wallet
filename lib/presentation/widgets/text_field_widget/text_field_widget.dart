@@ -83,23 +83,41 @@ class TextFieldWidget extends StatelessWidget {
         fillColor: AppColor.fieldColor,
         filled: true,
         enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.transparent),
-            borderRadius: BorderRadius.all(Radius.circular(LayoutConstants.borderSmall))),
+          borderSide: BorderSide(color: AppColor.transparent),
+          borderRadius: BorderRadius.all(
+            Radius.circular(LayoutConstants.borderSmall),
+          ),
+        ),
         focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.transparent),
-            borderRadius: BorderRadius.all(Radius.circular(LayoutConstants.borderSmall))),
+          borderSide: BorderSide(color: AppColor.transparent),
+          borderRadius: BorderRadius.all(
+            Radius.circular(LayoutConstants.borderSmall),
+          ),
+        ),
         errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.transparent),
-            borderRadius: BorderRadius.all(Radius.circular(LayoutConstants.borderSmall))),
+          borderSide: BorderSide(color: AppColor.transparent),
+          borderRadius: BorderRadius.all(
+            Radius.circular(LayoutConstants.borderSmall),
+          ),
+        ),
         focusedErrorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.transparent),
-            borderRadius: BorderRadius.all(Radius.circular(LayoutConstants.borderSmall))),
+          borderSide: BorderSide(color: AppColor.transparent),
+          borderRadius: BorderRadius.all(
+            Radius.circular(LayoutConstants.borderSmall),
+          ),
+        ),
         disabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.transparent),
-            borderRadius: BorderRadius.all(Radius.circular(LayoutConstants.borderSmall))),
+          borderSide: BorderSide(color: AppColor.transparent),
+          borderRadius: BorderRadius.all(
+            Radius.circular(LayoutConstants.borderSmall),
+          ),
+        ),
         border: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.transparent),
-            borderRadius: BorderRadius.all(Radius.circular(LayoutConstants.borderSmall))),
+          borderSide: BorderSide(color: AppColor.transparent),
+          borderRadius: BorderRadius.all(
+            Radius.circular(LayoutConstants.borderSmall),
+          ),
+        ),
       ),
     );
   }

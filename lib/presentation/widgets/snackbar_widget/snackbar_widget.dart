@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_smart_wallet/common/enums/snackbar_enum.dart';
+import 'package:flutter_smart_wallet/common/constants/icon_constants.dart';
+import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_type.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
-import 'package:get/get_navigation/src/snackbar/snack.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import 'constants.dart';
 import 'snackbar_route.dart';
 
@@ -14,18 +12,28 @@ typedef TopSnackBarStatusCallBack = void Function(TopSnackBarStatus status);
 const String topSnackBarRouteName = '/topSnackBarRoute';
 
 // ignore: must_be_immutable
-class CommonSnackBar<T extends Object> extends GetBar {
+class TopSnackBar<T extends Object> extends StatefulWidget {
+  final BuildContext? context;
   final String? title;
-  final SnackbarEnum type;
+  final SnackBarType type;
   TopSnackBarStatusCallBack? onStatusChanged;
 
-  CommonSnackBar(
-      {Key? key,this.title, this.type = SnackbarEnum.error})
-      : super(key: key, duration: Duration(seconds: 3), snackPosition: SnackPosition.TOP) {
+  TopSnackBar(
+      {Key? key, this.context, this.title, this.type = SnackBarType.error})
+      : super(key: key) {
     onStatusChanged = onStatusChanged;
   }
 
+  int duration = 3;
+
   TopSnackBarRoute<dynamic>? _topSnackBarRoute;
+
+  Future<T?> show(BuildContext context) async {
+    _topSnackBarRoute = showSnackBar<T>(context: context, topSnackBar: this);
+
+    return Navigator.of(context, rootNavigator: false)
+        .push(_topSnackBarRoute as Route<T>);
+  }
 
   Future<T?> showWithNavigator(
       NavigatorState navigator, BuildContext context) async {
@@ -55,7 +63,7 @@ class CommonSnackBar<T extends Object> extends GetBar {
   }
 }
 
-class _TopSnackBarState<K extends Object> extends State<CommonSnackBar>
+class _TopSnackBarState<K extends Object> extends State<TopSnackBar>
     with TickerProviderStateMixin {
   FocusScopeNode? _focusScopeNode;
   FocusAttachment? _focusAttachment;
@@ -80,15 +88,23 @@ class _TopSnackBarState<K extends Object> extends State<CommonSnackBar>
   }
 
   Widget _buildIcon() {
-    if (widget.type == SnackbarEnum.success) {
+    if (widget.type == SnackBarType.success) {
       return Container(
         key: const Key('success_container_icon_key'),
-        child: Icon(Icons.check_circle, color: AppColor.green,),
+        child: SvgPicture.asset(
+          IconConstants.successIcon,
+          width: 32,
+          height: 32,
+        ),
       );
     } else {
       return Container(
         key: const Key('close_container_icon_key'),
-        child: Icon(Icons.cancel, color: AppColor.red,),
+        child: SvgPicture.asset(
+          IconConstants.snackBarFailedIcon,
+          width: 32,
+          height: 32,
+        ),
       );
     }
   }
@@ -122,7 +138,7 @@ class _TopSnackBarState<K extends Object> extends State<CommonSnackBar>
     borderRadius: BorderRadius.circular(25.0),
     boxShadow: [
       BoxShadow(
-        color: Colors.black26,
+        color: AppColor.grey,
         blurRadius: 10.0,
         offset: const Offset(0.5, 0.5),
       )
