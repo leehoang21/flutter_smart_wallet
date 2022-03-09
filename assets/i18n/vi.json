@@ -1,3 +1,7 @@
 {
-  "home" : "Home"
+  "home" : "Home",
+  "transactions" : "Giao dịch",
+  "statistics" : "Thống kê",
+  "my_page": "Tôi",
+  "goal": "Mục tiêu"
 }

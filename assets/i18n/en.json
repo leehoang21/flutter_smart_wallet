@@ -1,4 +1,8 @@
 {
   "home": "Home",
-  "Verify_Account": "Verify Account"
+  "Verify_Account": "Verify Account",
+  "statistics": "Statistics",
+  "transactions": "Transactions",
+  "my_page": "My page",
+  "goal": "Goal"
 }
