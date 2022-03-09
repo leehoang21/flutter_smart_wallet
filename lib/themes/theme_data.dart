@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_smart_wallet/themes/theme_icon.dart';
@@ -19,20 +20,13 @@ ThemeData appTheme() {
         const AppBarTheme(color: AppColor.backgroundColor, elevation: 0.0),
     toggleableActiveColor: AppColor.primaryColor,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      selectedIconTheme: IconThemeData(
-        color: AppColor.black,
-        size: 30,
-      ),
-      unselectedIconTheme: IconThemeData(color: AppColor.grey),
       type: BottomNavigationBarType.fixed,
-      unselectedLabelStyle: TextStyle(
-        color: AppColor.grey,
-      ),
-      selectedLabelStyle: TextStyle(
-        color: AppColor.black,
-      ),
+      selectedIconTheme: IconThemeData(color: AppColor.ebonyClay),
+      unselectedIconTheme: IconThemeData(color: AppColor.grey),
+      unselectedLabelStyle: TextStyle(color: AppColor.grey),
+      selectedLabelStyle: TextStyle(color: AppColor.ebonyClay),
       unselectedItemColor: AppColor.grey,
-      selectedItemColor: AppColor.black,
+      selectedItemColor: AppColor.ebonyClay,
     ),
     textSelectionTheme:
         TextSelectionThemeData(cursorColor: AppColor.primaryColor),

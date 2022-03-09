@@ -26,6 +26,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final localizationDelegate = LocalizedApp.of(context).delegate;
     return ScreenUtilInit(
+      designSize: Size(375, 812),
       builder: () => MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -54,7 +55,7 @@ class App extends StatelessWidget {
               localizationDelegate,
             ],
             title: StringConstants.appTitle,
-            initialRoute: RouteList.splashScreen,
+            initialRoute: RouteList.mainScreen,
             locale: localizationDelegate.currentLocale,
             supportedLocales: const [
               Locale(LanguageConstants.en),
