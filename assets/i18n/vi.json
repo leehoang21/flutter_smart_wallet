@@ -1,3 +1,8 @@
 {
-  "home" : "Home"
+  "home": "Home",
+  "transaction.create.add_transaction": "Thêm giao dịch",
+  "transaction.create.note": "Ghi chú",
+  "transaction.create.category": "Danh mục",
+  "transaction.create.update": "Cập nhật",
+  "transaction.create.invoice_photos": "Ảnh hóa đơn"
 }

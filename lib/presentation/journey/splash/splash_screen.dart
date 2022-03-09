@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/common/constants/image_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
+import 'package:flutter_smart_wallet/common/constants/route_list.dart';
 import 'package:flutter_smart_wallet/presentation/journey/splash/bloc/splash_bloc.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_smart_wallet/themes/theme_text.dart';
@@ -18,6 +19,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     _splashBloc.initiaal();
+    Future.delayed(Duration(seconds: 3), () {
+      Navigator.pushNamed(context, RouteList.createTransaction);
+    });
     super.initState();
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/common/constants/route_list.dart';
 import 'package:flutter_smart_wallet/presentation/journey/splash/splash_screen.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/create/create_transaction_screen.dart';
 
 class Routes {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
@@ -8,6 +9,10 @@ class Routes {
       case RouteList.splashScreen:
         return MaterialPageRoute(
           builder: (_) => SplashScreen(),
+        );
+      case RouteList.createTransaction:
+        return MaterialPageRoute(
+          builder: (_) => CreateTransactionScreen(),
         );
       default:
         return _emptyRoute(settings);

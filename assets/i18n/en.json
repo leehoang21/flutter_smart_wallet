@@ -1,4 +1,9 @@
 {
   "home": "Home",
-  "Verify_Account": "Verify Account"
+  "Verify_Account": "Verify Account",
+  "transaction.create.add_transaction": "Add Transaction",
+  "transaction.create.note": "Note",
+  "transaction.create.category": "Category",
+  "transaction.create.update": "Update",
+  "transaction.create.invoice_photos": "Invoice photos"
 }

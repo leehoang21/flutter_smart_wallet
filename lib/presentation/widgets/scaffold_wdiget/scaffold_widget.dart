@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/appbar_widget/appbar_widget.dart';
+import 'package:flutter_smart_wallet/themes/theme_color.dart';
 
 class ScaffoldWidget extends StatelessWidget {
   final AppBarWidget? appbar;
@@ -20,13 +21,24 @@ class ScaffoldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbar,
-      backgroundColor: backgroundColor,
+      backgroundColor: AppColor.ebonyClay,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(
-                  horizontal: LayoutConstants.paddingHorizontalApp)
-              .copyWith(bottom: LayoutConstants.paddingVerticalApp),
-          child: body,
+          padding: EdgeInsets.only(top: LayoutConstants.paddingTop24),
+          child: Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(
+                    horizontal: LayoutConstants.paddingHorizontalApp)
+                .copyWith(bottom: LayoutConstants.paddingVerticalApp),
+            decoration: BoxDecoration(
+              color: AppColor.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            child: body,
+          ),
         ),
       ),
       bottomNavigationBar: bottomNavigationBar,
