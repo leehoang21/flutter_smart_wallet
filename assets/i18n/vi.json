@@ -1,3 +1,7 @@
 {
-  "home" : "Home"
+  "home" : "Home",
+  "transaction_bank_list_screen_choose_a_bank": "Chọn một ngân hàng",
+  "transaction_bank_list_screen_search_bank": "Tìm kiếm",
+  "transaction_bank_list_screen_no_result": "Không có kết quả",
+  "transaction_bank_list_screen_error_message": "Có lỗi xảy ra. Vui lòng thử lại sau"
 }

@@ -7,4 +7,7 @@ class RouteList {
   /// Registration
   static const String registerScreen = '/register_screen';
   static const String verifyOtpScreen = '/verify_otp_screen';
+
+  /// Transaction
+  static const String bankListScreen = '/bank_list_screen';
 }

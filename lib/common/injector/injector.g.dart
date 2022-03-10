@@ -23,6 +23,7 @@ class _$Injector extends Injector {
     container
       ..registerSingleton((c) => LanguageBloc())
       ..registerSingleton((c) => LoadingBloc())
-      ..registerSingleton((c) => SnackbarBloc());
+      ..registerSingleton((c) => SnackbarBloc())
+      ..registerSingleton((c) => BankSearchCubit());
   }
 }
