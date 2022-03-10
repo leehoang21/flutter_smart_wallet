@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_wallet/model/bank_info_model.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/screens/bank_list_screen/bank_list_screen_constants.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/screens/bank_list_screen/bloc/bank_search_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/appbar_widget/appbar_widget.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/loading_widget/loader_widget.dart';
@@ -20,7 +21,7 @@ class BankListScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBarWidget(title: "Choose a bank"),
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(BankListScreenConstant.viewPadding),
           child: Column(
             children: [
               _BuildSearchBar(),
@@ -53,7 +54,7 @@ class _BuildBankList extends StatelessWidget {
                   subtitle: Text(bank.name!),
                   leading: Image.network(
                     bank.logo!,
-                    width: 80.sp,
+                    width: BankListScreenConstant.logoImmageWidth,
                   ),
                   onTap: () {
                     // TODO: handle adding bank info
