@@ -4,5 +4,9 @@
   "statistic": "Statistic",
   "transactions": "Transactions",
   "my_page": "My page",
-  "goal": "Goal"
+  "goal": "Goal",
+  "transaction_bank_list_screen_choose_a_bank": "Choose a bank",
+  "transaction_bank_list_screen_search_bank": "Search Bank",
+  "transaction_bank_list_screen_no_result": "No result found",
+  "transaction_bank_list_screen_error_message" : "An error occurred. Please try again later"
 }
