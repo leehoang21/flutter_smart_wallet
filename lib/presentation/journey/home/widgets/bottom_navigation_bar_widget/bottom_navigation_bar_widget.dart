@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_smart_wallet/presentation/widgets/bottom_navigation_bar_widget/bottom_navigation_bar_constants.dart';
+import 'package:flutter_smart_wallet/presentation/journey/home/widgets/bottom_navigation_bar_widget/bottom_navigation_bar_constants.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -24,21 +23,21 @@ class BottomNavigationBarWidget extends StatelessWidget {
       items: iconsData.asMap().entries.map((entry) {
         return BottomNavigationBarItem(
           icon: Padding(
-            padding: BottomNavigationBarConstant.itemPadding,
+            padding: BottomNavigationBarConstants.itemPadding,
             child: SvgPicture.asset(
               entry.value["iconPath"],
-              width: 24.sp,
+              width: BottomNavigationBarConstants.iconWidth,
               color: entry.key == currentIndex
                   ? AppColor.ebonyClay
                   : AppColor.grey,
-              height: 18,
+              height: BottomNavigationBarConstants.iconHeight,
             ),
           ),
           label: entry.value["label"],
         );
       }).toList(),
-      selectedFontSize: BottomNavigationBarConstant.labelFontSize,
-      unselectedFontSize: BottomNavigationBarConstant.labelFontSize,
+      selectedFontSize: BottomNavigationBarConstants.labelFontSize,
+      unselectedFontSize: BottomNavigationBarConstants.labelFontSize,
     );
   }
 }

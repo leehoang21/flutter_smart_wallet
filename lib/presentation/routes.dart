@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/common/constants/route_list.dart';
-import 'package:flutter_smart_wallet/presentation/journey/home/home_screen.dart';
+import 'package:flutter_smart_wallet/presentation/journey/home/main_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/splash/splash_screen.dart';
 
 class Routes {
@@ -11,7 +11,7 @@ class Routes {
           builder: (_) => SplashScreen(),
         );
       case RouteList.mainScreen:
-        return MaterialPageRoute(builder: (_) => HomeScreen());
+        return MaterialPageRoute(builder: (_) => MainScreen());
       default:
         return _emptyRoute(settings);
     }
