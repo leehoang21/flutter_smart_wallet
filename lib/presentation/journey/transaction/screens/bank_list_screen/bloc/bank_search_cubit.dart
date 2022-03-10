@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_wallet/model/bank_info_model.dart';
@@ -41,8 +39,7 @@ class BankSearchCubit extends Cubit<BankSearchState> {
     VnBankUseCase().getBankInfoList().then((value) {
       _bankList = value;
       emit(BankSearchLoaded(_bankList));
-    }).onError((VnBankUseCaseFaulure error, stackTrace) {
-      log(error.toString());
+    }).onError((VnBankUseCaseError error, stackTrace) {
       emit(BankSearchError(error.message));
     });
   }

@@ -6,7 +6,7 @@ class VnBankUseCase {
     try {
       final response = await VnBankRepository().getVnBankList();
       if (response.code != 1000) {
-        throw VnBankUseCaseFaulure(response.message);
+        throw VnBankUseCaseError(response.message);
       }
       final data = response.data as Map<String, dynamic>;
 
@@ -18,14 +18,14 @@ class VnBankUseCase {
       results.sort((a, b) => a.code!.compareTo(b.code!));
       return results;
     } on Exception catch (e) {
-      throw VnBankUseCaseFaulure();
+      throw VnBankUseCaseError();
     }
   }
 }
 
-class VnBankUseCaseFaulure implements Exception {
+class VnBankUseCaseError implements Exception {
   final String message;
 
-  VnBankUseCaseFaulure([String? message])
+  VnBankUseCaseError([String? message])
       : this.message = message ?? "An error occured";
 }
