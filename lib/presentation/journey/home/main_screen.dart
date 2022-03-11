@@ -40,10 +40,10 @@ class _BuildBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TabMangerCubit, TabMangerState>(
+    return BlocBuilder<TabMangerCubit, int>(
       builder: (context, state) {
         return BottomNavigationBarWidget(
-          currentIndex: state.currentPage,
+          currentIndex: state,
           onTap: context.read<TabMangerCubit>().changePage,
           iconsData: MainConstants.bottomIconsData,
         );
@@ -59,11 +59,11 @@ class _BuildBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TabMangerCubit, TabMangerState>(
+    return BlocBuilder<TabMangerCubit, int>(
       builder: (context, state) {
         return AnimatedSwitcher(
           duration: MainConstants.screenAnimatingDuration,
-          child: MainConstants.screens[state.currentPage],
+          child: MainConstants.screens[state],
         );
       },
     );
