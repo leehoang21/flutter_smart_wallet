@@ -1,9 +1,9 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_wallet/common/constants/icon_constants.dart';
-import 'package:flutter_smart_wallet/presentation/journey/home/screens/goal_screen/goal_screen.dart';
-import 'package:flutter_smart_wallet/presentation/journey/home/screens/my_page_screen/my_page_screen.dart';
-import 'package:flutter_smart_wallet/presentation/journey/home/screens/statistic_screen/statistic_screen.dart';
-import 'package:flutter_smart_wallet/presentation/journey/home/screens/transaction_screen/transaction_screen.dart';
+import 'package:flutter_smart_wallet/presentation/journey/account/account_screen.dart';
+import 'package:flutter_smart_wallet/presentation/journey/goal/goal_screen.dart';
+import 'package:flutter_smart_wallet/presentation/journey/home/home_screen.dart';
+import 'package:flutter_smart_wallet/presentation/journey/statistics/statistic_screen.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 class MainConstants {
@@ -32,9 +32,9 @@ class MainConstants {
   ];
 
   static final screens = [
-    TransactionScreen(),
+    HomeScreen(),
     StatisticScreen(),
     GoalScreen(),
-    MyPageScreen(),
+    AccountScreen(),
   ];
 }
