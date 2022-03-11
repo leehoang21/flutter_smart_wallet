@@ -1,4 +1,5 @@
 class DefaultEnvironment {
+  static const String bankHost = 'https://api.vietqr.io';
   static const String smartWallet = 'smart-wallet';
   static const String environment = 'develop';
   static const String customer = 'customer';

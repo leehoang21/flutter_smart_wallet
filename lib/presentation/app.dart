@@ -55,7 +55,7 @@ class App extends StatelessWidget {
               localizationDelegate,
             ],
             title: StringConstants.appTitle,
-            initialRoute: RouteList.mainScreen,
+            initialRoute: RouteList.splashScreen,
             locale: localizationDelegate.currentLocale,
             supportedLocales: const [
               Locale(LanguageConstants.en),
