@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_smart_wallet/presentation/journey/home/widgets/bottom_navigation_bar_widget/bottom_navigation_bar_constants.dart';
+import 'package:flutter_smart_wallet/presentation/journey/main/widget/bottom_navigation_bar_constants.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_svg/svg.dart';
 
