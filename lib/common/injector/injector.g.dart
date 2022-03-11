@@ -24,6 +24,6 @@ class _$Injector extends Injector {
       ..registerSingleton((c) => LanguageBloc())
       ..registerSingleton((c) => LoadingBloc())
       ..registerSingleton((c) => SnackbarBloc())
-      ..registerSingleton((c) => BankSearchCubit());
+      ..registerSingleton((c) => BankSearchCubit(c<VnBankUseCase>()));
   }
 }
