@@ -35,8 +35,10 @@ class BankSearchError extends BankSearchState {
 class BankSearchCubit extends Cubit<BankSearchState> {
   late List<BankInfoModel> _bankList;
 
-  BankSearchCubit() : super(BankSearchLoading()) {
-    VnBankUseCase().getBankInfoList().then((value) {
+  final VnBankUseCase _vnBankUseCase;
+
+  BankSearchCubit(this._vnBankUseCase) : super(BankSearchLoading()) {
+    _vnBankUseCase.getBankInfoList().then((value) {
       _bankList = value;
       emit(BankSearchLoaded(_bankList));
     }).onError((VnBankUseCaseError error, stackTrace) {
