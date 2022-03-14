@@ -1,7 +1,5 @@
-import 'dart:io';
-
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter_smart_wallet/presentation/journey/main/bloc/tab_manager_cubit.dart';
+import 'package:flutter_smart_wallet/presentation/journey/main/bloc/tab_manger_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
