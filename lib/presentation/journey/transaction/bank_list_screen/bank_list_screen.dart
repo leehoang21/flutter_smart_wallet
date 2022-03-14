@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_smart_wallet/presentation/journey/transaction/screens/bank_list_screen/bank_list_screen_constants.dart';
-import 'package:flutter_smart_wallet/presentation/journey/transaction/screens/bank_list_screen/bloc/bank_search_cubit.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/bank_list_screen/bank_list_screen_constants.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/bank_list_screen/bloc/bank_search_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/appbar_widget/appbar_widget.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/loading_widget/loader_widget.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/text_field_widget/text_field_widget.dart';
@@ -51,7 +51,7 @@ class BankListScreen extends StatelessWidget {
                             width: BankListScreenConstants.logoImmageWidth,
                           ),
                           onTap: () {
-                            // TODO: handle adding bank info
+                            // TODO(hung): handle adding bank info
                           },
                         );
                       },

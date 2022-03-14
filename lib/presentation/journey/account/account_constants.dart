@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
-class MyPageScreenConstants {
+class AccountConstants {
   static final key = ValueKey<String>("my_page_screen");
 }
