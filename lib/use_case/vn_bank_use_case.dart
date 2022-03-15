@@ -21,7 +21,7 @@ class VnBankUseCase {
       });
       results.sort((a, b) => a.code!.compareTo(b.code!));
       return results;
-    } on Exception catch (e) {
+    } on Exception {
       throw VnBankUseCaseError();
     }
   }

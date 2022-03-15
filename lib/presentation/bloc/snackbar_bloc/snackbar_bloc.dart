@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_event.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_state.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class SnackbarBloc extends Bloc<SnackbarEvent, SnackbarState> {
   SnackbarBloc() : super(InitialSnackbarState());
 

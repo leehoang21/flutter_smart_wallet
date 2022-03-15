@@ -1,5 +1,5 @@
-import 'package:flutter_translate/flutter_translate.dart';
+import 'package:flutter/cupertino.dart';
 
 class HomeConstants {
-  static final String homeTitle = translate('Verify_Account');
+  static const Key key = ValueKey('home_scren');
 }

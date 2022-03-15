@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_smart_wallet/presentation/journey/home/home_constants.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key ?? HomeConstants.key);
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Center(
+      child: Text('Home'),
+    );
   }
 }

@@ -26,16 +26,17 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final localizationDelegate = LocalizedApp.of(context).delegate;
     return ScreenUtilInit(
+      designSize: Size(375, 812),
       builder: () => MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (_) => Injector.resolve<LanguageBloc>(),
+            create: (_) => injector.get<LanguageBloc>(),
           ),
           BlocProvider(
-            create: (_) => Injector.resolve<LoadingBloc>(),
+            create: (_) => injector.get<LoadingBloc>(),
           ),
           BlocProvider(
-            create: (_) => Injector.resolve<SnackbarBloc>(),
+            create: (_) => injector.get<SnackbarBloc>(),
           )
         ],
         child: GestureDetector(
