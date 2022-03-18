@@ -10,4 +10,5 @@ class RouteList {
 
   /// Transaction
   static const String bankListScreen = '/bank_list_screen';
+  static const String categoryScreen = '/category_screen';
 }
