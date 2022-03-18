@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_smart_wallet/themes/theme_icon.dart';
@@ -27,7 +28,17 @@ ThemeData appTheme() {
       unselectedItemColor: AppColor.grey,
       selectedItemColor: AppColor.ebonyClay,
     ),
-    textSelectionTheme:
-        TextSelectionThemeData(cursorColor: AppColor.primaryColor),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: AppColor.ebonyClay,
+      foregroundColor: Colors.white,
+    ),
+    tabBarTheme: TabBarTheme(
+      labelStyle: TextStyle(fontSize: 16.sp, color: AppColor.ebonyClay),
+      unselectedLabelStyle:
+          TextStyle(fontSize: 16.sp, color: AppColor.secondaryColor),
+    ),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: AppColor.primaryColor,
+    ),
   );
 }
