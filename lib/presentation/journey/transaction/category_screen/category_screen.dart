@@ -7,23 +7,20 @@ import 'package:flutter_smart_wallet/presentation/journey/transaction/category_s
 import 'package:flutter_smart_wallet/presentation/widgets/appbar_widget/appbar_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_smart_wallet/common/extensions/string_extension.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
-class CategoryScreen extends StatefulWidget {
-  const CategoryScreen({Key? key}) : super(key: key);
+class CategoryScreen extends StatelessWidget {
+  void select(BuildContext context, String category) {
+    context.read<CategorySelectCubit>().changeSelectCategory(category);
+  }
 
-  @override
-  State<CategoryScreen> createState() => _CategoryScreenState();
-}
-
-class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: CategoryScreenConstants.tabs.length,
       child: Scaffold(
         appBar: AppBarWidget(
-          title: 'Categories',
+          title: translate("transaction_category_screen_categories"),
           leading: GestureDetector(
             child: SvgPicture.asset(
               "assets/icons/help.svg",
@@ -43,7 +40,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 isScrollable: true,
                 tabs: CategoryScreenConstants.tabs.map((title) {
                   return Tab(
-                    text: title.replaceAll("_", " ").toTitleCase,
+                    text: translate(
+                        "transaction_category_screen_${title.toLowerCase()}"),
                   );
                 }).toList(),
                 indicatorColor: AppColor.ebonyClay,
@@ -70,9 +68,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                   categoryModel: category,
                                   isSubCategory: false,
                                   isSelected: category.name! == state,
-                                  onTap: context
-                                      .read<CategorySelectCubit>()
-                                      .changeSelectCategory,
+                                  onTap: (category) =>
+                                      select(context, category),
                                 );
                               }
                               final subCategories = category.subCategories!;
@@ -80,16 +77,19 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   CategoryTile(
-                                      categoryModel: category,
-                                      isSubCategory: false),
+                                    categoryModel: category,
+                                    isSubCategory: false,
+                                    isSelected: category.name! == state,
+                                    onTap: (category) =>
+                                        select(context, category),
+                                  ),
                                   ...subCategories
                                       .map(
                                         (subCategory) => CategoryTile(
                                           categoryModel: subCategory,
                                           isSubCategory: true,
-                                          onTap: context
-                                              .read<CategorySelectCubit>()
-                                              .changeSelectCategory,
+                                          onTap: (category) =>
+                                              select(context, category),
                                           isSelected:
                                               subCategory.name! == state,
                                         ),
