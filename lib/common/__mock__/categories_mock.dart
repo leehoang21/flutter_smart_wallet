@@ -5,154 +5,195 @@ class MockData {
     CategoryModel(
       name: 'EATING',
       type: 'EXPENSES',
-      subCategories: ['COFFEE', 'DRINKING'],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
+      subCategories: [
+        CategoryModel(
+          name: 'COFFEE',
+        ),
+        CategoryModel(
+          name: 'DRINKING',
+        ),
+        CategoryModel(
+          name: 'RESTAURANT',
+        ),
+      ],
     ),
     CategoryModel(
       name: 'FRIEND_AND_LOVER',
       type: 'EXPENSES',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
-    ),
-    CategoryModel(
-      name: 'SHOPPING',
-      type: 'EXPENSES',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
-    ),
-    CategoryModel(
-      name: 'DONATE',
-      type: 'EXPENSES',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
     ),
     CategoryModel(
       name: 'MOVE',
       type: 'EXPENSES',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
-    ),
-    CategoryModel(
-      name: 'BILLS_AND_UTILITIES',
-      type: 'EXPENSES',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
-    ),
-    CategoryModel(
-      name: 'INVESTMENT',
-      type: 'EXPENSES',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
-    ),
-    CategoryModel(
-      name: 'OTHER',
-      type: 'EXPENSES',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
-    ),
-    CategoryModel(
-      name: 'TRAVELING',
-      type: 'EXPENSES',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
+      subCategories: [
+        CategoryModel(
+          name: 'MAINTENANCE',
+        ),
+        CategoryModel(
+          name: 'PARKING',
+        ),
+        CategoryModel(
+          name: 'TAXI',
+        ),
+        CategoryModel(
+          name: 'OIL',
+        ),
+      ],
     ),
     CategoryModel(
       name: 'FAMILY',
       type: 'EXPENSES',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
-    ),CategoryModel(
+      subCategories: [
+        CategoryModel(
+          name: 'CHILDREN',
+          type: 'EXPENSES',
+        ),
+        CategoryModel(
+          name: 'HOME_REPAIR',
+          type: 'EXPENSES',
+        ),
+        CategoryModel(
+          name: 'HOME_SERVICE',
+          type: 'EXPENSES',
+        ),
+        CategoryModel(
+          name: 'PETS',
+          type: 'EXPENSES',
+        ),
+      ],
+    ),
+    CategoryModel(
+      name: 'TRAVELING',
+      type: 'EXPENSES',
+    ),
+    CategoryModel(
+      name: 'SHOPPING',
+      type: 'EXPENSES',
+      subCategories: [
+        CategoryModel(
+          name: 'SHOES',
+        ),
+        CategoryModel(
+          name: 'ACCESSORY',
+        ),
+        CategoryModel(
+          name: 'ELECTRONIC_DEVICE',
+        ),
+      ],
+    ),
+    CategoryModel(
+      name: 'DONATE',
+      type: 'EXPENSES',
+      subCategories: [
+        CategoryModel(
+          name: 'WEDDING',
+        ),
+        CategoryModel(
+          name: 'FUNERAL',
+        ),
+        CategoryModel(
+          name: 'CHARITY',
+        ),
+      ],
+    ),
+    CategoryModel(
+      name: 'BILLS_AND_UTILITIES',
+      type: 'EXPENSES',
+      subCategories: [
+        CategoryModel(
+          name: 'ELECTRIC_BILL',
+        ),
+        CategoryModel(
+          name: 'RENT_HOUSE',
+        ),
+        CategoryModel(
+          name: 'TV_BILL',
+        ),
+        CategoryModel(
+          name: 'GAS_BILL',
+        ),
+        CategoryModel(
+          name: 'WATER_BILL',
+        ),
+      ],
+    ),
+    CategoryModel(
+      name: 'INVESTMENT',
+      type: 'EXPENSES',
+    ),
+    CategoryModel(
+      name: 'OTHER',
+      type: 'EXPENSES',
+    ),
+    CategoryModel(
       name: 'EDUCATION',
       type: 'EXPENSES',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
-    ),CategoryModel(
+      subCategories: [
+        CategoryModel(
+          name: 'BOOK',
+        ),
+        CategoryModel(
+          name: 'COURSE',
+        ),
+      ],
+    ),
+    CategoryModel(
+      name: 'HEALTH',
+      type: 'EXPENSES',
+      subCategories: [
+        CategoryModel(
+          name: 'PERSONAL_HYGIENE',
+        ),
+        CategoryModel(
+          name: 'HEALTHCARE',
+        ),
+        CategoryModel(
+          name: 'MEDICINE',
+        ),
+      ],
+    ),
+    CategoryModel(
       name: 'BUSINESS',
       type: 'EXPENSES',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
     ),
     CategoryModel(
       name: 'SELL_THINGS',
       type: 'REVENUE',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
     ),
     CategoryModel(
       name: 'WAGE',
       type: 'REVENUE',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
     ),
     CategoryModel(
       name: 'BONUS',
       type: 'REVENUE',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
     ),
     CategoryModel(
       name: 'LIVING_EXPENSE',
       type: 'REVENUE',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
     ),
     CategoryModel(
       name: 'AWARDED',
       type: 'REVENUE',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
     ),
     CategoryModel(
       name: 'OTHER',
       type: 'REVENUE',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
     ),
     CategoryModel(
       name: 'DEBT_COLLECTION',
       type: 'DEBTS_AND_LOAN',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
     ),
     CategoryModel(
       name: 'BORROW',
       type: 'DEBTS_AND_LOAN',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
     ),
     CategoryModel(
       name: 'LOAN',
       type: 'DEBTS_AND_LOAN',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
     ),
     CategoryModel(
       name: 'PAY',
       type: 'DEBTS_AND_LOAN',
-      subCategories: [],
-      createAt: 1633019574625,
-      lastUpdate: 1633019574625,
     ),
   ];
 }
