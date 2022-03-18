@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 class CategoryScreenConstants {
@@ -6,4 +8,12 @@ class CategoryScreenConstants {
 
   static final String expensesTile =
       translate("transaction_category_screen_expenses");
+
+  static final categoryListViewPadding = EdgeInsets.symmetric(horizontal: 18.w);
+
+  static final tabs = ["EXPENSES", "REVENUE", "DEBTS_AND_LOAN"];
+
+  static final tabBarHeight = 44.h;
+
+  static final appBarLeadingIconSize = 44.sp;
 }
