@@ -70,7 +70,7 @@ class MockData {
       type: 'EXPENSES',
       subCategories: [
         CategoryModel(
-          name: 'SHOES',
+          name: 'CLOTHES',
         ),
         CategoryModel(
           name: 'ACCESSORY',
@@ -160,7 +160,7 @@ class MockData {
       type: 'REVENUE',
     ),
     CategoryModel(
-      name: 'WAGE',
+      name: 'SALARY',
       type: 'REVENUE',
     ),
     CategoryModel(
