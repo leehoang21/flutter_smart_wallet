@@ -1,11 +1,11 @@
 import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_smart_wallet/presentation/journey/pick_image/widget/alert_dialog_error.dart';
-import 'package:flutter_smart_wallet/presentation/journey/pick_image/cubit/pick_image_cubit.dart';
-import 'package:flutter_smart_wallet/presentation/journey/pick_image/pick_image_screen_constant.dart';
-import 'package:flutter_smart_wallet/presentation/journey/pick_image/widget/crop_image.dart';
-import 'package:flutter_smart_wallet/presentation/journey/pick_image/widget/title_action.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/pick_image/cubit/pick_image_cubit.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/pick_image/pick_image_screen_constant.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/pick_image/widget/alert_dialog_error.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/pick_image/widget/crop_image.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/pick_image/widget/title_action.dart';
 
 class PickImageScreen extends StatelessWidget {
   const PickImageScreen({
@@ -23,7 +23,7 @@ class PickImageScreen extends StatelessWidget {
     return CupertinoActionSheet(
       cancelButton: CupertinoActionSheetAction(
         onPressed: () {
-          Navigator.pop(context);
+          Navigator.pop(context, null);
         },
         child: TitleAction(
           text: PickImageScreenConstant.cancel,
@@ -59,12 +59,13 @@ class PickImageScreen extends StatelessWidget {
           imagePathStorage,
         );
     if (context.read<PickImageCubit>().state is PickImageError) {
-      showCupertinoDialog(
+      await showCupertinoDialog(
         context: context,
         builder: (_) => AlertDialogError(
           ctx: context,
         ),
       );
+      Navigator.pop(context, null);
     } else {
       Navigator.pop(
         context,
@@ -90,12 +91,13 @@ class PickImageScreen extends StatelessWidget {
         );
       }
     } else {
-      showCupertinoDialog(
+      await showCupertinoDialog(
         context: context,
         builder: (_) => AlertDialogError(
           ctx: context,
         ),
       );
+      Navigator.pop(context, null);
     }
   }
 }

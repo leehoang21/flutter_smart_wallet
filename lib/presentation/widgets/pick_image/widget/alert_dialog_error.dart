@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_smart_wallet/presentation/journey/pick_image/cubit/pick_image_cubit.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/pick_image/cubit/pick_image_cubit.dart';
 
 class AlertDialogError extends StatelessWidget {
   const AlertDialogError({

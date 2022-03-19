@@ -1,25 +1,27 @@
 import 'dart:typed_data';
+import 'package:equatable/equatable.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_smart_wallet/common/utils/compress.dart';
 import 'package:flutter_smart_wallet/common/utils/internet_checker.dart';
 import 'package:flutter_smart_wallet/repository/local/pick_image_local_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/up_and_down_storage_remote_repository.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 class PickImageUseCase {
-  final UpDownStorageRemoteRepository _remoteRepository;
-
-  final PickImageLocalRepository _localRepository;
+  final UpDownStorageRemoteRepository remoteRepository;
+  final Compress compress;
+  final PickImageLocalRepository localRepository;
   final String imagePathStorage;
 
   PickImageUseCase({
     required this.imagePathStorage,
-    UpDownStorageRemoteRepository? remoteRepository,
-    PickImageLocalRepository? localRepository,
-  })  : _remoteRepository = remoteRepository ?? UpDownStorageRemoteRepository(),
-        _localRepository = localRepository ?? PickImageLocalRepository();
+    required this.compress,
+    required this.localRepository,
+    required this.remoteRepository,
+  });
 
   Future<Uint8List> pickImageFromGallery() async {
-    Uint8List? imageToUpload = await _localRepository.pickImageFromGallery();
+    Uint8List? imageToUpload = await localRepository.pickImageFromGallery();
     if (imageToUpload != null) {
       return imageToUpload;
     } else {
@@ -28,50 +30,47 @@ class PickImageUseCase {
   }
 
   Future<Uint8List> captureImage() async {
-    Uint8List? imageToUpload = await _localRepository.captureImage();
+    Uint8List? imageToUpload = await localRepository.captureImage();
     if (imageToUpload != null) {
       return imageToUpload;
     } else {
-      throw PickImageException(
-        'No image selected',
-      );
+      throw PickImageException('No image selected');
     }
   }
 
   Future<String> upAndDownImage({
     required Uint8List imageToUpload,
   }) async {
-    imageToUpload = await Compress.compressWithList(imageToUpload, 90);
+    imageToUpload = await compress.compressWithList(imageToUpload, 90);
 
-    bool _hasConnection = await InternetChecker.hasConnection();
-    if (_hasConnection) {
-      TaskSnapshot _task = await _remoteRepository.putUnit8List(
+    bool hasConnection = await remoteRepository.hasconnection();
+
+    if (hasConnection) {
+      bool isSuccess = await remoteRepository.putUnit8List(
         data: imageToUpload,
         pathStorage: imagePathStorage,
       );
 
-      bool isSuccess = _task.state == TaskState.success;
       if (isSuccess) {
-        return await _remoteRepository.downloadUrlTaskSnapshot(
-          storageSnapshot: _task,
+        return remoteRepository.downloadUrl(
+          pathStorage: imagePathStorage,
         );
       } else {
-        throw PickImageException(
-          'Error to upload',
-        );
+        throw PickImageException('Error to upload');
       }
     } else {
-      throw PickImageException(
-        'No internet connection',
-      );
+      throw PickImageException('No internet connection');
     }
   }
 }
 
-class PickImageException implements Exception {
+class PickImageException extends Equatable implements Exception {
   final String message;
 
   PickImageException([
-    this.message = 'An unknown exception occurred',
-  ]);
+    String? message,
+  ]) : message = message ?? 'An unknown exception occurred';
+
+  @override
+  List<Object?> get props => [message];
 }

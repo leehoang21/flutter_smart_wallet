@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 
 class Compress {
-  static Future<Uint8List> compressWithFile(File file, int quality) async {
+  Future<Uint8List> compressWithFile(File file, int quality) async {
     final String filePath = file.absolute.path;
     final Uint8List? result = await FlutterImageCompress.compressWithFile(
       filePath,
@@ -16,7 +16,7 @@ class Compress {
     }
   }
 
-  static Future<File?> compressAndGetFile(File file, int quality) async {
+  Future<File?> compressAndGetFile(File file, int quality) async {
     final String filePath = file.absolute.path;
 
     final int lastIndex = filePath.lastIndexOf(
@@ -37,7 +37,7 @@ class Compress {
     }
   }
 
-  static Future<Uint8List> compressWithList(
+  Future<Uint8List> compressWithList(
       Uint8List imageToUpload, int quality) async {
     imageToUpload = await FlutterImageCompress.compressWithList(
       imageToUpload,

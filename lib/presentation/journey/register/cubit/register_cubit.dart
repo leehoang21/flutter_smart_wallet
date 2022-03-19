@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_smart_wallet/common/utils/validator.dart';
-import 'package:flutter_smart_wallet/model/user_infomation_model.dart';
+import 'package:flutter_smart_wallet/model/user_model.dart';
 
 part 'register_state.dart';
 
@@ -16,7 +16,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   }) : super(
           RegisterState(
             id: user.uid,
-            userInfomationModel: UserInfomationModel(
+            userModel: UserModel(
               phoneNumber: user.phoneNumber,
             ),
           ),
@@ -25,7 +25,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   void addUrl(String? url) {
     emit(
       state.copyWith(
-        userInfomationModel: state.userInfomationModel.copyWith(
+        userModel: state.userModel.copyWith(
           avatar: url,
         ),
       ),
@@ -39,7 +39,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     if (!AppValidator().isNullEmpty(email)) {}
     emit(
       state.copyWith(
-        userInfomationModel: state.userInfomationModel.copyWith(
+        userModel: state.userModel.copyWith(
           email: email,
           userName: userName,
         ),

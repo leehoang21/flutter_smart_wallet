@@ -34,11 +34,7 @@ class RegisterScreen extends StatelessWidget {
                 context.read<RegisterCubit>().addUrl(_url);
               },
               child: AppImageWidget(
-                path: context
-                        .watch<RegisterCubit>()
-                        .state
-                        .userInfomationModel
-                        .avatar ??
+                path: context.watch<RegisterCubit>().state.userModel.avatar ??
                     ImageConstants.defaultAvatarImg,
               ),
             ),

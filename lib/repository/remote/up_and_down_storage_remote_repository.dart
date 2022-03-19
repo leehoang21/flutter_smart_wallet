@@ -1,47 +1,47 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_smart_wallet/common/utils/internet_checker.dart';
 
 class UpDownStorageRemoteRepository {
-  final FirebaseStorage firebaseStorage;
+  final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
 
-  UpDownStorageRemoteRepository({FirebaseStorage? firebaseStorage})
-      : firebaseStorage = firebaseStorage ?? FirebaseStorage.instance;
-
-  Future<TaskSnapshot> putUnit8List({
+  Future<bool> putUnit8List({
     required Uint8List data,
     required String pathStorage,
   }) async {
-    final Reference firebaseStorageRef = FirebaseStorage.instance.ref(
+    final Reference firebaseStorageRef = _firebaseStorage.ref(
       pathStorage,
     );
 
-    return await firebaseStorageRef.putData(data);
+    TaskSnapshot _taskSnapshot = await firebaseStorageRef.putData(data);
+    if (_taskSnapshot.state == TaskState.success) {
+      return true;
+    }
+    return false;
   }
 
-  Future<TaskSnapshot> putFile({
+  Future<bool> putFile({
     required File data,
     required String pathStorage,
   }) async {
-    final Reference firebaseStorageRef = FirebaseStorage.instance.ref(
+    final Reference firebaseStorageRef = _firebaseStorage.ref(
       pathStorage,
     );
-    return await firebaseStorageRef.putFile(data);
-  }
-
-  Future<String> downloadUrlTaskSnapshot({
-    required TaskSnapshot storageSnapshot,
-  }) async {
-    return await storageSnapshot.ref.getDownloadURL();
+    TaskSnapshot _taskSnapshot = await firebaseStorageRef.putFile(data);
+    if (_taskSnapshot.state == TaskState.success) {
+      return true;
+    }
+    return false;
   }
 
   Future<String> downloadUrl({
     required String pathStorage,
   }) async {
-    return await FirebaseStorage.instance
-        .ref(
-          pathStorage,
-        )
-        .getDownloadURL();
+    return await _firebaseStorage.ref(pathStorage).getDownloadURL();
+  }
+
+  Future<bool> hasconnection() async {
+    return await InternetChecker.hasConnection();
   }
 }
