@@ -7,7 +7,6 @@ class HiveConfig {
 
   Future<void> init() async {
     await Hive.initFlutter();
-    Hive.registerAdapter(UserModelAdapter());
     await openBox();
   }
 
