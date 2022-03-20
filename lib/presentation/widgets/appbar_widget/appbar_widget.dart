@@ -50,6 +50,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSize {
   final String? title;
   final Widget? centerWidget;
   final TextStyle? titleStyle;
+  final Color? color;
 
   const AppBarWidget({
     Key? key,
@@ -58,12 +59,14 @@ class AppBarWidget extends StatelessWidget implements PreferredSize {
     this.action,
     this.centerWidget,
     this.titleStyle,
+    this.color
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final _top = MediaQuery.of(context).padding.top;
     return Container(
+      color: color,
       height: AppbarConstants.buttonSize,
       margin: EdgeInsets.only(top: _top),
       child: Row(

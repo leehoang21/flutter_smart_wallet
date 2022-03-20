@@ -46,6 +46,7 @@ class WalletListCubit extends Cubit<WalletListState> {
   }
 
   Future<void> getWalletList() async{
+    emit(WalletListLoading());
   try{
     final walletList =  await walletUseCase.fetchWalletListFirebase("");
     emit(WalletListLoaded(walletList));

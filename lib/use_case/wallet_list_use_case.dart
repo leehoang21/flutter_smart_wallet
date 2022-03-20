@@ -7,7 +7,6 @@ import 'package:injectable/injectable.dart';
 class WalletUseCase {
   final WalletRepository walletRepository;
 
-
   WalletUseCase(this.walletRepository);
 
   Future<List<WalletModel>> fetchWalletListFirebase(String userId) async {
@@ -16,14 +15,23 @@ class WalletUseCase {
       final result = await walletRepository.fetchWalletListFirebase(userId);
       if (result != null) {
         result.forEach((key, value) {
-          walletList.add(
-            WalletModel.fromJson(value)
-          );
+          walletList.add(WalletModel.fromJson(value));
         });
       }
     } catch (e) {
       debugPrint(e.toString());
     }
     return walletList;
+  }
+
+  Future<bool> addAndUpdateWalletListFirebase(
+      String userId, WalletModel walletModel) async {
+    try {
+      final result = await walletRepository.addAndUpdateWalletListFirebase(
+          userId, {"${walletModel.createAt}": walletModel.toJson()});
+      return result;
+    } catch (e) {
+      return false;
+    }
   }
 }

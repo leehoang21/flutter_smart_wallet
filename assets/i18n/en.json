@@ -15,5 +15,6 @@
   "cash": "Cash",
   "bank_account": "Bank Account",
   "confirm": "Confirm",
-  "create": "Create"
+  "create": "Create",
+  "add_wallet": "Add Wallet"
 }

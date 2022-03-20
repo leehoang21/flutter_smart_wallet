@@ -17,6 +17,7 @@ class TextFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode? focusNode;
   final Function(String)? onChanged;
+  final Function()? onTap;
   final String? Function(String?)? validate;
   final Function(String?)? onSaved;
   final Function()? onEditingComplete;
@@ -48,7 +49,8 @@ class TextFieldWidget extends StatelessWidget {
       this.textAlign,
       this.textCapitalization,
       this.keyboardType,
-      this.obscureText})
+      this.obscureText,
+      this.onTap})
       : super(key: key);
 
   @override
@@ -57,6 +59,7 @@ class TextFieldWidget extends StatelessWidget {
       controller: controller,
       initialValue: initValue,
       onChanged: onChanged,
+      onTap: onTap,
       onEditingComplete: onEditingComplete,
       textAlign: textAlign ?? TextAlign.start,
       textCapitalization: textCapitalization ?? TextCapitalization.none,
