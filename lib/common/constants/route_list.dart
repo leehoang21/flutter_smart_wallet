@@ -10,4 +10,8 @@ class RouteList {
 
   /// Transaction
   static const String bankListScreen = '/bank_list_screen';
+
+  ///Wallet
+  static const String createWalletScreen = '/create_wallet_screen';
+  static const String walletListScreen = '/wallet_list_screen';
 }
