@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_smart_wallet/presentation/journey/main/bloc/tab_manager_cubit.dart';
+import 'package:flutter_smart_wallet/presentation/journey/main/bloc/tab_manger_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/main/main_constants.dart';
 import 'package:flutter_smart_wallet/presentation/journey/main/widget/bottom_navigation_bar_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
@@ -40,10 +40,10 @@ class _BuildBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TabMangerCubit, TabMangerState>(
+    return BlocBuilder<TabMangerCubit, int>(
       builder: (context, state) {
         return BottomNavigationBarWidget(
-          currentIndex: state.currentPage,
+          currentIndex: state,
           onTap: context.read<TabMangerCubit>().changePage,
           iconsData: MainConstants.bottomIconsData,
         );
@@ -59,11 +59,11 @@ class _BuildBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TabMangerCubit, TabMangerState>(
+    return BlocBuilder<TabMangerCubit, int>(
       builder: (context, state) {
         return AnimatedSwitcher(
           duration: MainConstants.screenAnimatingDuration,
-          child: MainConstants.screens[state.currentPage],
+          child: MainConstants.screens[state],
         );
       },
     );
