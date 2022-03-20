@@ -2,7 +2,9 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter_smart_wallet/common/utils/compress.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class PickImageLocalRepository {
   ImagePicker imagePicker = ImagePicker();
 
