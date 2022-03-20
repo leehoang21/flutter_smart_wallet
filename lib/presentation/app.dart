@@ -48,6 +48,7 @@ class App extends StatelessWidget {
             }
           },
           child: MaterialApp(
+            navigatorKey: _navigator,
             localizationsDelegates: [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
