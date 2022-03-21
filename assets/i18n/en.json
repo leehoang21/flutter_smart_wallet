@@ -8,5 +8,13 @@
   "transaction_bank_list_screen_choose_a_bank": "Choose a bank",
   "transaction_bank_list_screen_search_bank": "Search Bank",
   "transaction_bank_list_screen_no_result": "No result found",
-  "transaction_bank_list_screen_error_message" : "An error occurred. Please try again later"
+  "error_message" : "An error occurred. Please try again later",
+  "wallets": "Wallets",
+  "wallet_type": "Type of wallet",
+  "wallet_info": "Information of wallet",
+  "cash": "Cash",
+  "bank_account": "Bank Account",
+  "confirm": "Confirm",
+  "create": "Create",
+  "add_wallet": "Add Wallet"
 }
