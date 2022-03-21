@@ -5,6 +5,8 @@ import 'package:flutter_smart_wallet/common/injector/injector.dart';
 import 'package:flutter_smart_wallet/presentation/journey/main/main_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/splash/splash_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/bank_list_screen/bank_list_screen.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/add_photo_bloc/add_photo_bloc.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create_transaction_bloc/create_transaction_bloc.dart';
 import 'journey/transaction/bank_list_screen/bloc/bank_search_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/create_transaction_screen.dart';
 
@@ -17,7 +19,17 @@ class Routes {
         );
       case RouteList.createTransaction:
         return MaterialPageRoute(
-          builder: (_) => CreateTransactionScreen(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (_) => injector.get<AddPhotoBloc>(),
+              ),
+              BlocProvider(
+                create: (_) => injector.get<CreateTransactionBloc>(),
+              )
+            ],
+            child: CreateTransactionScreen(),
+          ),
         );
       case RouteList.mainScreen:
         return MaterialPageRoute(builder: (_) => MainScreen());

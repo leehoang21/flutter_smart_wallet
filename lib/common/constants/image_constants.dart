@@ -9,4 +9,5 @@ class ImageConstants {
   static const String category = _path + 'category.png';
   static const String colorCamera = _path + 'color_camera.png';
   static const String note = _path + 'note.png';
+  static const String wallet = _path + 'wallet.png';
 }

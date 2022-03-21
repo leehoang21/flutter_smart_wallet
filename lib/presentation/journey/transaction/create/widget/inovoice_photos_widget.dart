@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/common/constants/image_constants.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/create_transaction_constants.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/create/widget/add_photo_button.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_smart_wallet/themes/theme_text.dart';
 
@@ -28,9 +29,13 @@ class InvoicePhotosWidget extends StatelessWidget {
           height: CreateTransactionConstants.sizedBoxHeight8,
         ),
         Row(
-          children: [],
+          children: [
+            AddPhotoButton(addPhoto: _addPhoto),
+          ],
         )
       ],
     );
   }
+
+  void _addPhoto() {}
 }

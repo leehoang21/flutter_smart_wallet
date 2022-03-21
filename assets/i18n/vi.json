@@ -1,9 +1,11 @@
 {
-  "home" : "Home",
-  "transactions" : "Giao dịch",
-  "Statistic" : "Thống kê",
+  "home": "Home",
+  "transactions": "Giao dịch",
+  "Statistic": "Thống kê",
   "my_page": "Cá nhân",
   "goal": "Mục tiêu",
+  "date_time.today": "Hôm nay",
+  "date_time.yesterday": "Hôm qua",
   "transaction_bank_list_screen_choose_a_bank": "Chọn một ngân hàng",
   "transaction_bank_list_screen_search_bank": "Tìm kiếm",
   "transaction_bank_list_screen_no_result": "Không có kết quả",
@@ -12,5 +14,6 @@
   "transaction.create.note": "Ghi chú",
   "transaction.create.category": "Danh mục",
   "transaction.create.update": "Cập nhật",
-  "transaction.create.invoice_photos": "Ảnh hóa đơn"
+  "transaction.create.invoice_photos": "Ảnh hóa đơn",
+  "transaction.create": "Tạo"
 }

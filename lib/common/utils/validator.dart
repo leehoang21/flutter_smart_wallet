@@ -1,3 +1,4 @@
+import 'package:flutter_smart_wallet/model/category_model.dart';
 
 class AppValidator {
   static String _validatePhone = r'0\d{8,}';
@@ -7,4 +8,11 @@ class AppValidator {
   static RegExp _expEmail = RegExp(_validateEmail);
 
   bool isNullEmpty(Object o) => "" == o;
+  static bool validateCreataTransactionButton(
+          String? amount, CategoryModel? category, DateTime? spendTime) =>
+      amount != null &&
+      amount.length <= 12 &&
+      int.parse(amount) != 0 &&
+      category != null &&
+      spendTime != null;
 }

@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     _splashBloc.initiaal();
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushNamed(context, RouteList.createTransaction);
+      Navigator.pushNamed(context, RouteList.mainScreen);
     });
     super.initState();
   }

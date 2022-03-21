@@ -5,7 +5,22 @@ class MockData {
     CategoryModel(
       name: 'EATING',
       type: 'EXPENSES',
-      subCategories: ['COFFEE', 'DRINKING'],
+      subCategories: [
+        CategoryModel(
+          name: 'COFFEE',
+          type: 'EXPENSES',
+          subCategories: [],
+          createAt: 1633019574625,
+          lastUpdate: 1633019574625,
+        ),
+        CategoryModel(
+          name: 'DRINKING',
+          type: 'EXPENSES',
+          subCategories: [],
+          createAt: 1633019574625,
+          lastUpdate: 1633019574625,
+        ),
+      ],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
     ),
@@ -71,13 +86,15 @@ class MockData {
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
-    ),CategoryModel(
+    ),
+    CategoryModel(
       name: 'EDUCATION',
       type: 'EXPENSES',
       subCategories: [],
       createAt: 1633019574625,
       lastUpdate: 1633019574625,
-    ),CategoryModel(
+    ),
+    CategoryModel(
       name: 'BUSINESS',
       type: 'EXPENSES',
       subCategories: [],

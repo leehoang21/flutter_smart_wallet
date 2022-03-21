@@ -2,7 +2,8 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_smart_wallet/common/utils/internet_checker.dart';
-
+import 'package:injectable/injectable.dart';
+@injectable
 class UpDownStorageRemoteRepository {
   final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
 
