@@ -6,7 +6,7 @@ import 'package:flutter_smart_wallet/presentation/app.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 Future<void> main() async {
-  configDependency();
+  Injector.configDependency();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   final delegate = await LocalizationDelegate.create(

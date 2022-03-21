@@ -2,10 +2,8 @@ import 'dart:ui';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_wallet/common/constants/language_constants.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/language_bloc/language_state.dart';
-import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-@singleton
 class LanguageBloc extends Cubit<LanguageState> {
   LanguageBloc() : super(LanguageState.initial());
 

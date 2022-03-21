@@ -21,7 +21,7 @@ class Routes {
       case RouteList.bankListScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => injector.get<BankSearchCubit>(),
+            create: (context) => Injector.getIt.get<BankSearchCubit>(),
             child: BankListScreen(),
           ),
         );
