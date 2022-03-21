@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_smart_wallet/model/wallet_model.dart';
 import 'package:flutter_smart_wallet/repository/remote/wallet_repository.dart';
-import 'package:injectable/injectable.dart';
 
-@injectable
+
+
 class WalletUseCase {
   final WalletRepository walletRepository;
 

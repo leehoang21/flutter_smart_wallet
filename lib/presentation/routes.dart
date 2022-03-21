@@ -28,7 +28,7 @@ class Routes {
       case RouteList.walletListScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => injector.get<WalletListCubit>(),
+            create: (context) => Injector.getIt<WalletListCubit>(),
             child: WalletListScreen(),
           ),
         );

@@ -5,8 +5,7 @@ import 'package:flutter_smart_wallet/common/configs/default_environment.dart';
 import 'package:flutter_smart_wallet/common/configs/dio_config/base_response.dart';
 import 'package:flutter_smart_wallet/common/configs/dio_config/dio_api_client.dart';
 import 'package:flutter_smart_wallet/common/configs/firebase_config.dart';
-import 'package:flutter_smart_wallet/model/wallet_model.dart';
-import 'package:injectable/injectable.dart';
+
 
 abstract class WalletRepository{
   final FirebaseConfig firebaseConfig;
@@ -20,7 +19,7 @@ abstract class WalletRepository{
       String userId, Map<String,Object?> data);
 }
 
-@Injectable(as: WalletRepository)
+
 class WalletRepositoryImpl extends WalletRepository{
   WalletRepositoryImpl(FirebaseConfig firebaseConfig) : super(firebaseConfig);
 

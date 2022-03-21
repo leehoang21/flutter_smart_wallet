@@ -8,7 +8,7 @@ class LoaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: const BoxConstraints.expand(),
-      color: AppColor.black.withOpacity(0.6),
+    //  color: AppColor.black.withOpacity(0.6),
       child: const Center(
         child: CircularProgressIndicator(),
       ),

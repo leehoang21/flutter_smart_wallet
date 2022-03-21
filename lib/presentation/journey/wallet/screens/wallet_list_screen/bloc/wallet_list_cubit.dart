@@ -5,7 +5,7 @@ import 'package:flutter_smart_wallet/model/wallet_model.dart';
 import 'package:flutter_smart_wallet/repository/remote/wallet_repository.dart';
 import 'package:flutter_smart_wallet/use_case/vn_bank_usse_case.dart';
 import 'package:flutter_smart_wallet/use_case/wallet_list_use_case.dart';
-import 'package:injectable/injectable.dart';
+
 
 class WalletListState extends Equatable {
   const WalletListState();
@@ -36,7 +36,7 @@ class WalletListError extends WalletListState {
   List<Object?> get props => [error];
 }
 
-@injectable
+
 class WalletListCubit extends Cubit<WalletListState> {
   final WalletUseCase walletUseCase;
 
