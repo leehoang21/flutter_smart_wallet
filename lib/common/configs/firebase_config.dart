@@ -7,17 +7,11 @@ import 'package:flutter_smart_wallet/common/configs/default_environment.dart';
 class FirebaseConfig {
   late FirebaseApp app;
   late DocumentReference userDoc;
-  late DocumentReference walletDoc;
 
   init() async {
     app = await Firebase.initializeApp();
     userDoc = FirebaseFirestore.instance
         .collection(DefaultEnvironment.smartWallet)
         .doc(DefaultEnvironment.environment);
-    walletDoc = FirebaseFirestore.instance
-        .collection(DefaultEnvironment.smartWallet)
-        .doc(DefaultEnvironment.environment)
-    .collection('customer')
-    .doc('wallets');
   }
 }

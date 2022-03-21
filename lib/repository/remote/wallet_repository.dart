@@ -25,9 +25,7 @@ class WalletRepositoryImpl extends WalletRepository{
 
 
   Future<Map> fetchWalletListFirebase(String userId) async {
-    final response = await FirebaseFirestore.instance
-        .collection(DefaultEnvironment.smartWallet)
-        .doc(DefaultEnvironment.environment)
+    final response = await firebaseConfig.userDoc
         .collection('customer')
         .doc('profile')
         .collection('wallet').get();
