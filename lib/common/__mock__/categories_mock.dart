@@ -8,11 +8,14 @@ class MockData {
       subCategories: [
         CategoryModel(
           name: 'COFFEE',
+          type: 'EXPENSES',
         ),
         CategoryModel(
+          type: 'EXPENSES',
           name: 'DRINKING',
         ),
         CategoryModel(
+          type: 'EXPENSES',
           name: 'RESTAURANT',
         ),
       ],
@@ -26,15 +29,19 @@ class MockData {
       type: 'EXPENSES',
       subCategories: [
         CategoryModel(
+          type: 'EXPENSES',
           name: 'MAINTENANCE',
         ),
         CategoryModel(
+          type: 'EXPENSES',
           name: 'PARKING',
         ),
         CategoryModel(
+          type: 'EXPENSES',
           name: 'TAXI',
         ),
         CategoryModel(
+          type: 'EXPENSES',
           name: 'OIL',
         ),
       ],
@@ -70,12 +77,15 @@ class MockData {
       type: 'EXPENSES',
       subCategories: [
         CategoryModel(
+          type: 'EXPENSES',
           name: 'CLOTHES',
         ),
         CategoryModel(
+          type: 'EXPENSES',
           name: 'ACCESSORY',
         ),
         CategoryModel(
+          type: 'EXPENSES',
           name: 'ELECTRONIC_DEVICE',
         ),
       ],
@@ -85,12 +95,15 @@ class MockData {
       type: 'EXPENSES',
       subCategories: [
         CategoryModel(
+          type: 'EXPENSES',
           name: 'WEDDING',
         ),
         CategoryModel(
+          type: 'EXPENSES',
           name: 'FUNERAL',
         ),
         CategoryModel(
+          type: 'EXPENSES',
           name: 'CHARITY',
         ),
       ],
@@ -100,18 +113,23 @@ class MockData {
       type: 'EXPENSES',
       subCategories: [
         CategoryModel(
+          type: 'EXPENSES',
           name: 'ELECTRIC_BILL',
         ),
         CategoryModel(
+          type: 'EXPENSES',
           name: 'RENT_HOUSE',
         ),
         CategoryModel(
+          type: 'EXPENSES',
           name: 'TV_BILL',
         ),
         CategoryModel(
+          type: 'EXPENSES',
           name: 'GAS_BILL',
         ),
         CategoryModel(
+          type: 'EXPENSES',
           name: 'WATER_BILL',
         ),
       ],
@@ -129,9 +147,11 @@ class MockData {
       type: 'EXPENSES',
       subCategories: [
         CategoryModel(
+          type: 'EXPENSES',
           name: 'BOOK',
         ),
         CategoryModel(
+          type: 'EXPENSES',
           name: 'COURSE',
         ),
       ],
@@ -141,12 +161,15 @@ class MockData {
       type: 'EXPENSES',
       subCategories: [
         CategoryModel(
+          type: 'EXPENSES',
           name: 'PERSONAL_HYGIENE',
         ),
         CategoryModel(
+          type: 'EXPENSES',
           name: 'HEALTHCARE',
         ),
         CategoryModel(
+          type: 'EXPENSES',
           name: 'MEDICINE',
         ),
       ],
