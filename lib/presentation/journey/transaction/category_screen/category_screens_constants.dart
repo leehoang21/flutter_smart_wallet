@@ -12,8 +12,4 @@ class CategoryScreenConstants {
   static final categoryListViewPadding = EdgeInsets.symmetric(horizontal: 18.w);
 
   static final tabs = ["EXPENSES", "REVENUE", "DEBTS_AND_LOAN"];
-
-  static final tabBarHeight = 44.h;
-
-  static final appBarLeadingIconSize = 44.sp;
 }

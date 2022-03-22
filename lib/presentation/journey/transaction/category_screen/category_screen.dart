@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_wallet/common/__mock__/categories_mock.dart';
+import 'package:flutter_smart_wallet/common/constants/app_dimens.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/category_screen/bloc/category_select_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/category_screen/category_screens_constants.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/category_screen/widgets/category_tile.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/appbar_widget/appbar_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 class CategoryScreen extends StatelessWidget {
@@ -21,21 +21,17 @@ class CategoryScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBarWidget(
           title: translate("transaction_category_screen_categories"),
-          leading: GestureDetector(
-            child: SvgPicture.asset(
-              "assets/icons/help.svg",
-              color: AppColor.ebonyClay,
-              width: CategoryScreenConstants.appBarLeadingIconSize,
-            ),
-            onTap: () {
-              // TODO: show help dialog
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_new_rounded),
+            onPressed: () {
+              Navigator.pop(context);
             },
           ),
         ),
         body: Column(
           children: [
             SizedBox(
-              height: CategoryScreenConstants.tabBarHeight,
+              height: AppDimens.height_44,
               child: TabBar(
                 isScrollable: true,
                 tabs: CategoryScreenConstants.tabs.map((title) {
@@ -58,8 +54,9 @@ class CategoryScreen extends StatelessWidget {
                               .where((element) => element.type! == title)
                               .toList();
                           return ListView.builder(
-                            padding:
-                                CategoryScreenConstants.categoryListViewPadding,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: AppDimens.width_18,
+                            ),
                             itemBuilder: (context, index) {
                               final category = categories[index];
                               if (category.subCategories == null ||
