@@ -1,11 +1,8 @@
 import 'dart:typed_data';
 import 'package:equatable/equatable.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_smart_wallet/common/utils/compress.dart';
-import 'package:flutter_smart_wallet/common/utils/internet_checker.dart';
 import 'package:flutter_smart_wallet/repository/local/pick_image_local_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/up_and_down_storage_remote_repository.dart';
-import 'package:flutter_translate/flutter_translate.dart';
 
 class PickImageUseCase {
   final UpDownStorageRemoteRepository remoteRepository;

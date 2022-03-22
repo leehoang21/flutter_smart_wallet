@@ -11,5 +11,5 @@ class BankListScreenConstants {
   static final noResultText =
       translate("transaction_bank_list_screen_no_result");
   static final errorMessage =
-      translate("transaction_bank_list_screen_error_message");
+      translate("error_message");
 }

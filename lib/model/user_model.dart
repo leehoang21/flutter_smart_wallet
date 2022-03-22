@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_smart_wallet/common/configs/hive_config/hive_type_id.dart';
 import 'package:hive/hive.dart';
-part 'user_model.g.dart';
+
 
 @HiveType(typeId: HiveTypeId.userType)
 class UserModel {
