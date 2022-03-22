@@ -7,5 +7,7 @@ class IconConstants {
   static const String bottomBarGoalIcon = "$_path/bottom_bar_goal.svg";
   static const String bottomBarStatisticIcon =
       "$_path/bottom_bar_statistic.svg";
+  static const String help = "assets/icons/help.svg";
   static const String bottomBarMyPageIcon = "$_path/bottom_bar_my_page.svg";
+  static const String check = "assets/icons/check.svg";
 }
