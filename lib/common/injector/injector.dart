@@ -1,14 +1,20 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_smart_wallet/common/configs/firebase_config.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/language_bloc/language_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/loading_bloc/loading_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/journey/main/bloc/tab_manger_cubit.dart';
+import 'package:flutter_smart_wallet/presentation/journey/register/cubit/register_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/bank_list_screen/bloc/bank_search_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/wallet_list_screen/bloc/wallet_list_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/pick_image/cubit/pick_image_cubit.dart';
+import 'package:flutter_smart_wallet/repository/local/pick_image_local_repository.dart';
+import 'package:flutter_smart_wallet/repository/remote/register_repository.dart';
+import 'package:flutter_smart_wallet/repository/remote/up_and_down_storage_remote_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/vn_bank_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/wallet_repository.dart';
 import 'package:flutter_smart_wallet/use_case/pick_image_use_case.dart';
+import 'package:flutter_smart_wallet/use_case/register_use_case.dart';
 import 'package:flutter_smart_wallet/use_case/vn_bank_usse_case.dart';
 import 'package:flutter_smart_wallet/use_case/wallet_list_use_case.dart';
 import 'package:get_it/get_it.dart';
@@ -45,15 +51,29 @@ class Injector {
     getIt.registerFactory<WalletListCubit>(
       () => WalletListCubit(getIt.get<WalletUseCase>()),
     );
+    getIt.registerFactory(
+      () => RegisterCubit(
+        firebaseAuth: getIt.get<FirebaseAuth>(),
+        registerUseCase: getIt.get<RegisterUseCase>(),
+      ),
+    );
   }
 
   static void _configureUseCase() {
-    // getIt.registerFactory(() => PickImageUseCase(imagePathStorage: imagePathStorage, compress: compress, localRepository: localRepository, remoteRepository: remoteRepository))
+    getIt.registerFactory(
+      () => PickImageUseCase(
+        localRepository: getIt.get<PickImageLocalRepository>(),
+        remoteRepository: getIt.get<UpDownStorageRemoteRepository>(),
+      ),
+    );
     getIt.registerFactory(
       () => VnBankUseCase(),
     );
     getIt.registerFactory<WalletUseCase>(
       () => WalletUseCase(getIt.get<WalletRepository>()),
+    );
+    getIt.registerFactory(
+      () => RegisterUseCase(getIt.get<RegisterRepository>()),
     );
   }
 
@@ -64,9 +84,21 @@ class Injector {
     getIt.registerFactory<WalletRepository>(
       () => WalletRepositoryImpl(getIt.get<FirebaseConfig>()),
     );
+    getIt.registerFactory(
+      () => PickImageLocalRepository(),
+    );
+    getIt.registerFactory(
+      () => UpDownStorageRemoteRepository(),
+    );
+    getIt.registerFactory(
+      () => RegisterRepository(),
+    );
   }
 
   static void _configCommon() {
     getIt.registerLazySingleton<FirebaseConfig>(() => FirebaseConfig());
+    getIt.registerLazySingleton<FirebaseAuth>(
+      () => FirebaseAuth.instance,
+    );
   }
 }

@@ -6,13 +6,9 @@ import 'package:flutter_smart_wallet/repository/remote/up_and_down_storage_remot
 
 class PickImageUseCase {
   final UpDownStorageRemoteRepository remoteRepository;
-  final Compress compress;
   final PickImageLocalRepository localRepository;
-  final String imagePathStorage;
 
   PickImageUseCase({
-    required this.imagePathStorage,
-    required this.compress,
     required this.localRepository,
     required this.remoteRepository,
   });
@@ -37,8 +33,9 @@ class PickImageUseCase {
 
   Future<String> upAndDownImage({
     required Uint8List imageToUpload,
+    required String imagePathStorage,
   }) async {
-    imageToUpload = await compress.compressWithList(imageToUpload, 90);
+    imageToUpload = await Compress.compressWithList(imageToUpload, 90);
 
     bool hasConnection = await remoteRepository.hasconnection();
 
@@ -64,9 +61,7 @@ class PickImageUseCase {
 class PickImageException extends Equatable implements Exception {
   final String message;
 
-  PickImageException([
-    String? message,
-  ]) : message = message ?? 'An unknown exception occurred';
+  PickImageException([this.message = 'An unknown exception occurred']);
 
   @override
   List<Object?> get props => [message];

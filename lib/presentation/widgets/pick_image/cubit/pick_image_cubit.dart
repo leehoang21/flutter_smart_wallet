@@ -36,6 +36,7 @@ class PickImageCubit extends Cubit<PickImageState> {
     if (_image != null) {
       try {
         String _url = await _pickImageUseCase.upAndDownImage(
+          imagePathStorage: imagePathStorage,
           imageToUpload: _image,
         );
         emit(DownloadSuccess(url: _url));
