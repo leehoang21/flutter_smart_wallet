@@ -51,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Everyone like money, right?',
+                'Everyone likes money, right?',
                 style:
                     ThemeText.caption.copyWith(color: AppColor.secondaryColor),
               ),

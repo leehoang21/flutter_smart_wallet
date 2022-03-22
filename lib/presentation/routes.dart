@@ -5,7 +5,9 @@ import 'package:flutter_smart_wallet/common/injector/injector.dart';
 import 'package:flutter_smart_wallet/presentation/journey/main/main_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/splash/splash_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/bank_list_screen/bank_list_screen.dart';
+import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/wallet_list_screen/wallet_list_screen.dart';
 import 'journey/transaction/bank_list_screen/bloc/bank_search_cubit.dart';
+import 'journey/wallet/screens/wallet_list_screen/bloc/wallet_list_cubit.dart';
 
 class Routes {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
@@ -19,8 +21,15 @@ class Routes {
       case RouteList.bankListScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => injector.get<BankSearchCubit>(),
+            create: (context) => Injector.getIt.get<BankSearchCubit>(),
             child: BankListScreen(),
+          ),
+        );
+      case RouteList.walletListScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => Injector.getIt<WalletListCubit>(),
+            child: WalletListScreen(),
           ),
         );
       default:
