@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_smart_wallet/common/constants/app_dimens.dart';
+import 'package:flutter_smart_wallet/common/constants/icon_constants.dart';
 import 'package:flutter_smart_wallet/model/category_model.dart';
-import 'package:flutter_smart_wallet/presentation/journey/transaction/category_screen/widgets/category_tile_constants.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/app_image_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 class CategoryTile extends StatelessWidget {
@@ -23,43 +23,44 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imagePath =
-        "assets/images/2.0x/categories/${categoryModel.name!.toLowerCase()}.png";
+        "assets/images/2.0x/${categoryModel.name!.toLowerCase()}.png";
     return InkWell(
       onTap: () {
         onTap(categoryModel.name!);
       },
       child: Container(
-        height: CategoryTileConstants.tileHeight,
+        height: AppDimens.height_44,
         child: Row(
           children: [
             if (isSubCategory)
-              SizedBox(width: CategoryTileConstants.subTileIndent),
+              SizedBox(
+                width: AppDimens.space_18,
+              ),
             SizedBox.square(
-              dimension: isSubCategory
-                  ? CategoryTileConstants.subTileIconSize
-                  : CategoryTileConstants.tileIconSize,
-              child: Image.asset(
-                imagePath,
+              dimension:
+                  isSubCategory ? AppDimens.space_26 : AppDimens.space_36,
+              child: AppImageWidget(
+                path: imagePath,
                 fit: BoxFit.cover,
               ),
             ),
             SizedBox(
-              width: 8.sp,
+              width: AppDimens.width_8,
             ),
             Text(
               translate(
                   "transaction_category_screen_${categoryModel.name!.toLowerCase()}"),
               style: TextStyle(
-                  fontSize: CategoryTileConstants.tileFontSize,
+                  fontSize: AppDimens.space_14,
                   fontWeight: FontWeight.bold,
                   color: AppColor.ebonyClay),
             ),
             Spacer(),
             if (isSelected)
               SizedBox.square(
-                dimension: CategoryTileConstants.checkIconSize,
-                child: SvgPicture.asset(
-                  CategoryTileConstants.checkIconPath,
+                dimension: AppDimens.width_18,
+                child: AppImageWidget(
+                  path: IconConstants.check,
                 ),
               )
           ],
