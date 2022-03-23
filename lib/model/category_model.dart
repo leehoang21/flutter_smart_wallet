@@ -1,7 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'category_model.g.dart';
-
 @JsonSerializable()
 class CategoryModel {
   String? name;
@@ -18,8 +16,21 @@ class CategoryModel {
     this.subCategories,
   });
 
-  Map<String, dynamic> toJson() => _$CategoryModelToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'name': this.name,
+        'type': this.type,
+        'createAt': this.createAt,
+        'lastUpdate': this.lastUpdate,
+        'subCategories': this.subCategories,
+      };
 
-  factory CategoryModel.fromJson(Map<String, dynamic> json) =>
-      _$CategoryModelFromJson(json);
+  factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(
+        name: json['name'] as String?,
+        type: json['type'] as String?,
+        createAt: json['createAt'] as int?,
+        lastUpdate: json['lastUpdate'] as int?,
+        subCategories: (json['subCategories'] as List<dynamic>?)
+            ?.map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      );
 }
