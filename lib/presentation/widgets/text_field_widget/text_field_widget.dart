@@ -18,10 +18,10 @@ class TextFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode? focusNode;
   final Function(String)? onChanged;
+  final Function()? onTap;
   final String? Function(String?)? validate;
   final Function(String?)? onSaved;
   final Function()? onEditingComplete;
-  final Function()? onTap;
   final AutovalidateMode? autovalidateMode;
   final List<TextInputFormatter>? inputFormatter;
   final TextAlign? textAlign;
@@ -62,6 +62,7 @@ class TextFieldWidget extends StatelessWidget {
       controller: controller,
       initialValue: initValue,
       onChanged: onChanged,
+      onTap: onTap,
       onEditingComplete: onEditingComplete,
       textAlign: textAlign ?? TextAlign.start,
       textCapitalization: textCapitalization ?? TextCapitalization.none,
@@ -71,7 +72,6 @@ class TextFieldWidget extends StatelessWidget {
               .copyWith(color: AppColor.tuna, fontWeight: FontWeight.w400),
       onSaved: onSaved,
       validator: validate,
-      onTap: onTap,
       autovalidateMode: autovalidateMode,
       inputFormatters: inputFormatter,
       keyboardType: keyboardType,

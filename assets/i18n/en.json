@@ -16,5 +16,14 @@
   "transaction.create.category": "Category",
   "transaction.create.update": "Update",
   "transaction.create.invoice_photos": "Invoice photos",
-  "transaction.create": "Create"
+  "transaction.create": "Create",
+  "error_message" : "An error occurred. Please try again later",
+  "wallets": "Wallets",
+  "wallet_type": "Type of wallet",
+  "wallet_info": "Information of wallet",
+  "cash": "Cash",
+  "bank_account": "Bank Account",
+  "confirm": "Confirm",
+  "create": "Create",
+  "add_wallet": "Add Wallet"
 }

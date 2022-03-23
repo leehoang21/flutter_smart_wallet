@@ -12,4 +12,5 @@ class DefaultEnvironment {
   static const String daily = 'daily';
   static const String recurring = 'recurring';
   static const String repeatType = 'repeat_type';
+  static const String walletList = 'wallet_list';
 }

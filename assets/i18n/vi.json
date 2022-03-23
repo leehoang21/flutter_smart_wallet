@@ -15,5 +15,14 @@
   "transaction.create.category": "Danh mục",
   "transaction.create.update": "Cập nhật",
   "transaction.create.invoice_photos": "Ảnh hóa đơn",
-  "transaction.create": "Tạo"
+  "transaction.create": "Tạo",
+  "error_message": "Có lỗi xảy ra. Vui lòng thử lại sau",
+  "wallets": "Danh sách ví",
+  "wallet_type": "Loại ví",
+  "wallet_info": "Thông tin ví",
+  "cash": "Tiền mặt",
+  "bank_account": "Tài khoản ngân hàng",
+  "confirm": "Xác nhận",
+  "create": "Tạo mới",
+  "add_wallet": "Thêm ví"
 }

@@ -2,10 +2,8 @@ import 'dart:typed_data';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_smart_wallet/use_case/pick_image_use_case.dart';
-import 'package:injectable/injectable.dart';
 part 'pick_image_state.dart';
 
-@singleton
 class PickImageCubit extends Cubit<PickImageState> {
   PickImageCubit(this._pickImageUseCase) : super(PickImageInitial());
   final PickImageUseCase _pickImageUseCase;

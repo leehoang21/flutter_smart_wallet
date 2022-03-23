@@ -2,9 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_state.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_type.dart';
-import 'package:injectable/injectable.dart';
 
-@singleton
 class SnackbarBloc extends Cubit<SnackbarState> {
   SnackbarBloc() : super(InitialSnackbarState());
 

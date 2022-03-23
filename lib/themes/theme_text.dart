@@ -82,6 +82,12 @@ class ThemeText {
   );
 
   //
+  static TextStyle style12Regular = TextStyle(
+    fontSize: 12.sp,
+    color: AppColor.textColor,
+    fontWeight: FontWeight.normal,
+  );
+
   static TextStyle style14Medium = TextStyle(
     fontSize: 14.sp,
     color: AppColor.textColor,
