@@ -1,21 +1,24 @@
 import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_smart_wallet/common/utils/pick_image_function.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/pick_image/cubit/pick_image_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/pick_image/pick_image_screen_constant.dart';
-import 'package:flutter_smart_wallet/presentation/widgets/pick_image/widget/alert_dialog_error.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/pick_image/widget/crop_image.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/pick_image/widget/title_action.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 class PickImageScreen extends StatelessWidget {
   const PickImageScreen({
     required this.withCircleUi,
     Key? key,
     required this.imagePathStorage,
-    required this.initialArea,
+    required this.width,
+    required this.height,
   }) : super(key: key);
   final String imagePathStorage;
-  final Rect initialArea;
+  final double width;
+  final double height;
   final bool withCircleUi;
 
   @override
@@ -58,18 +61,20 @@ class PickImageScreen extends StatelessWidget {
     await context.read<PickImageCubit>().upAndDownImage(
           imagePathStorage,
         );
-    if (context.read<PickImageCubit>().state is PickImageError) {
-      await showCupertinoDialog(
-        context: context,
-        builder: (_) => AlertDialogError(
-          ctx: context,
+    String? _error = context.read<PickImageCubit>().state.error;
+    if (_error != null) {
+      Navigator.pop(
+        context,
+        Either(
+          error: translate(_error),
         ),
       );
-      Navigator.pop(context, null);
     } else {
       Navigator.pop(
         context,
-        context.read<PickImageCubit>().state.url,
+        Either(
+          url: context.read<PickImageCubit>().state.url,
+        ),
       );
     }
   }
@@ -77,6 +82,7 @@ class PickImageScreen extends StatelessWidget {
   Future<void> cropImage(BuildContext context) async {
     if (context.read<PickImageCubit>().state is ResultImage) {
       Uint8List? _image = context.read<PickImageCubit>().state.image;
+      String? _error = context.read<PickImageCubit>().state.error;
       if (_image != null) {
         await Navigator.push(
           context,
@@ -85,19 +91,20 @@ class PickImageScreen extends StatelessWidget {
               withCircleUi: withCircleUi,
               image: _image,
               ctx: context,
-              initialArea: initialArea,
+              width: width,
+              height: height,
             ),
           ),
         );
       }
-    } else {
-      await showCupertinoDialog(
-        context: context,
-        builder: (_) => AlertDialogError(
-          ctx: context,
-        ),
-      );
-      Navigator.pop(context, null);
+      if (_error != null) {
+        Navigator.pop(
+          context,
+          Either(
+            error: translate(_error),
+          ),
+        );
+      }
     }
   }
 }

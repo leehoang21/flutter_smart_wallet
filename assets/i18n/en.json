@@ -71,4 +71,16 @@
   "transaction_category_screen_borrow": "Borrow",
   "transaction_category_screen_loan": "Loan",
   "transaction_category_screen_pay": "Pay"
+  "invalid_email": "Invalid email",
+  "user_empty": "user name cannot be empty",
+  "no_image_selected": "No image selected",
+  "error_to_upload": "There was an error uploading, please try again later",
+  "no_internet": "No internet connection",
+  "cancel": "Cancel",
+  "gallery": "Gallery",
+  "camera": "Camera",
+  "crop_image": "Crop Image",
+  "register": "Register",
+  "email": "Email",
+  "user_name": "User name"
 }

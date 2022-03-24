@@ -1,20 +1,14 @@
 import 'dart:typed_data';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_smart_wallet/common/utils/compress.dart';
 import 'package:flutter_smart_wallet/repository/local/pick_image_local_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/up_and_down_storage_remote_repository.dart';
 import 'package:flutter_smart_wallet/use_case/pick_image_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'pick_image_use_case_test.mocks.dart';
 
 @GenerateMocks([
-  Compress,
-  ImagePicker,
-  FirebaseStorage,
   UpDownStorageRemoteRepository,
   PickImageLocalRepository,
 ])
@@ -23,14 +17,11 @@ void main() async {
   group(
     'pick image use case test',
     () {
-      final MockCompress mockCompress = MockCompress();
       final MockPickImageLocalRepository mockLocalRepository =
           MockPickImageLocalRepository();
       final MockUpDownStorageRemoteRepository mockRemoteRepository =
           MockUpDownStorageRemoteRepository();
       final PickImageUseCase pickImageUseCase = PickImageUseCase(
-        compress: mockCompress,
-        imagePathStorage: '1234',
         localRepository: mockLocalRepository,
         remoteRepository: mockRemoteRepository,
       );
@@ -99,19 +90,6 @@ void main() async {
 
       test('upAndDownImage return url', () async {
         when(
-          mockCompress.compressWithList(
-            Uint8List.fromList(
-              [1, 2, 3],
-            ),
-            90,
-          ),
-        ).thenAnswer(
-          (_) async => Uint8List.fromList(
-            [1, 2, 3],
-          ),
-        );
-
-        when(
           mockRemoteRepository.hasconnection(),
         ).thenAnswer(
           (realInvocation) async => true,
@@ -138,6 +116,7 @@ void main() async {
 
         expect(
           await pickImageUseCase.upAndDownImage(
+            imagePathStorage: '1234',
             imageToUpload: Uint8List.fromList(
               [1, 2, 3],
             ),
@@ -150,19 +129,6 @@ void main() async {
           'upAndDownImage return throw PickImageException(No internet connection)',
           () async {
         when(
-          mockCompress.compressWithList(
-            Uint8List.fromList(
-              [1, 2, 3],
-            ),
-            90,
-          ),
-        ).thenAnswer(
-          (_) async => Uint8List.fromList(
-            [1, 2, 3],
-          ),
-        );
-
-        when(
           mockRemoteRepository.hasconnection(),
         ).thenAnswer(
           (realInvocation) async => false,
@@ -170,6 +136,7 @@ void main() async {
 
         expect(
           () async => await pickImageUseCase.upAndDownImage(
+            imagePathStorage: '1234',
             imageToUpload: Uint8List.fromList(
               [1, 2, 3],
             ),
@@ -182,19 +149,6 @@ void main() async {
 
       test('upAndDownImage return throw PickImageException(Error to upload)',
           () async {
-        when(
-          mockCompress.compressWithList(
-            Uint8List.fromList(
-              [1, 2, 3],
-            ),
-            90,
-          ),
-        ).thenAnswer(
-          (_) async => Uint8List.fromList(
-            [1, 2, 3],
-          ),
-        );
-
         when(
           mockRemoteRepository.hasconnection(),
         ).thenAnswer(
@@ -214,6 +168,7 @@ void main() async {
 
         expect(
           () async => await pickImageUseCase.upAndDownImage(
+            imagePathStorage: '1234',
             imageToUpload: Uint8List.fromList(
               [1, 2, 3],
             ),

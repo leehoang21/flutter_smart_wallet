@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_wallet/model/bank_info_model.dart';
-import 'package:flutter_smart_wallet/use_case/vn_bank_usse_case.dart';
+import 'package:flutter_smart_wallet/use_case/vn_bank_use_case.dart';
 
 class BankSearchState extends Equatable {
   const BankSearchState();
@@ -35,8 +35,10 @@ class BankSearchError extends BankSearchState {
 class BankSearchCubit extends Cubit<BankSearchState> {
   late List<BankInfoModel> _bankList;
 
-  BankSearchCubit() : super(BankSearchLoading()) {
-    VnBankUseCase().getBankInfoList().then((value) {
+  final VnBankUseCase _vnBankUseCase;
+
+  BankSearchCubit(this._vnBankUseCase) : super(BankSearchLoading()) {
+    _vnBankUseCase.getBankInfoList().then((value) {
       _bankList = value;
       emit(BankSearchLoaded(_bankList));
     }).onError((VnBankUseCaseError error, stackTrace) {

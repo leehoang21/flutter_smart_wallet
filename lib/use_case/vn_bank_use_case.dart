@@ -2,9 +2,13 @@ import 'package:flutter_smart_wallet/model/bank_info_model.dart';
 import 'package:flutter_smart_wallet/repository/remote/vn_bank_repository.dart';
 
 class VnBankUseCase {
+  final VnBankRepository _vnBankRepository;
+
+  VnBankUseCase(this._vnBankRepository);
+
   Future<List<BankInfoModel>> getBankInfoList() async {
     try {
-      final response = await VnBankRepository().getVnBankList();
+      final response = await _vnBankRepository.getVnBankList();
       if (response.code != 1000) {
         throw VnBankUseCaseError(response.message);
       }

@@ -19,7 +19,7 @@ class PickImageLocalRepository {
       source: source,
     );
 
-    return Compress().compressWithFile(
+    return Compress.compressWithFile(
       File(pickedFile!.path),
       100,
     );
