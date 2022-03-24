@@ -1,6 +1,8 @@
 class ImageConstants {
   static const String _path = 'assets/images/';
 
+  static get path => _path;
+
   static const String logoSplashImg = _path + 'logo_splash.png';
   static const String defaultAvatarImg = _path + 'default_avatar.png';
 
@@ -10,5 +12,4 @@ class ImageConstants {
   static const String icCash = '$_path/ic_paper_money.png';
   static const String icWallet = '$_path/ic_wallet_list.png';
   static const String icWalletName = '$_path/ic_wallet.png';
-  static const String twoX = "$_path/2.0x/";
 }

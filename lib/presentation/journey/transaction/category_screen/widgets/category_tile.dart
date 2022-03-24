@@ -24,7 +24,7 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imagePath =
-        "${ImageConstants.twoX}/${categoryModel.name!.toLowerCase()}.png";
+        "${ImageConstants.path}/${categoryModel.name!.toLowerCase()}.png";
     return InkWell(
       onTap: () {
         onTap(categoryModel.name!);
