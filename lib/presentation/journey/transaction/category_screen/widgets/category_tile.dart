@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/common/constants/app_dimens.dart';
 import 'package:flutter_smart_wallet/common/constants/icon_constants.dart';
+import 'package:flutter_smart_wallet/common/constants/image_constants.dart';
 import 'package:flutter_smart_wallet/model/category_model.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/app_image_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
@@ -23,7 +24,7 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imagePath =
-        "assets/images/2.0x/${categoryModel.name!.toLowerCase()}.png";
+        "${ImageConstants.twoX}/${categoryModel.name!.toLowerCase()}.png";
     return InkWell(
       onTap: () {
         onTap(categoryModel.name!);

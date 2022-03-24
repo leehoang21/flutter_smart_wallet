@@ -10,4 +10,5 @@ class ImageConstants {
   static const String icCash = '$_path/ic_paper_money.png';
   static const String icWallet = '$_path/ic_wallet_list.png';
   static const String icWalletName = '$_path/ic_wallet.png';
+  static const String twoX = "$_path/2.0x/";
 }

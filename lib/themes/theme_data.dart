@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_smart_wallet/common/constants/app_dimens.dart';
 import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_smart_wallet/themes/theme_icon.dart';
@@ -33,9 +33,10 @@ ThemeData appTheme() {
       foregroundColor: Colors.white,
     ),
     tabBarTheme: TabBarTheme(
-      labelStyle: TextStyle(fontSize: 16.sp, color: AppColor.ebonyClay),
-      unselectedLabelStyle:
-          TextStyle(fontSize: 16.sp, color: AppColor.secondaryColor),
+      labelStyle:
+          TextStyle(fontSize: AppDimens.space_16, color: AppColor.ebonyClay),
+      unselectedLabelStyle: TextStyle(
+          fontSize: AppDimens.space_16, color: AppColor.secondaryColor),
     ),
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: AppColor.primaryColor,
