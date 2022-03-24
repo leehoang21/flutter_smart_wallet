@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_wallet/common/constants/route_list.dart';
 import 'package:flutter_smart_wallet/common/injector/injector.dart';
 import 'package:flutter_smart_wallet/presentation/journey/main/main_screen.dart';
+import 'package:flutter_smart_wallet/presentation/journey/register/cubit/register_cubit.dart';
+import 'package:flutter_smart_wallet/presentation/journey/register/register_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/splash/splash_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/bank_list_screen/bank_list_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/wallet_list_screen/wallet_list_screen.dart';
@@ -12,6 +14,13 @@ import 'journey/wallet/screens/wallet_list_screen/bloc/wallet_list_cubit.dart';
 class Routes {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case RouteList.registerScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => Injector.getIt.get<RegisterCubit>(),
+            child: RegisterScreen(),
+          ),
+        );
       case RouteList.splashScreen:
         return MaterialPageRoute(
           builder: (_) => SplashScreen(),

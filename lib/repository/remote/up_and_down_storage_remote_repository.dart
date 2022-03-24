@@ -1,6 +1,6 @@
-import 'dart:io';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_smart_wallet/common/utils/compress.dart';
 import 'package:flutter_smart_wallet/common/utils/internet_checker.dart';
 
 class UpDownStorageRemoteRepository {
@@ -14,21 +14,9 @@ class UpDownStorageRemoteRepository {
       pathStorage,
     );
 
-    TaskSnapshot _taskSnapshot = await firebaseStorageRef.putData(data);
-    if (_taskSnapshot.state == TaskState.success) {
-      return true;
-    }
-    return false;
-  }
+    data = await Compress.compressWithList(data, 90);
 
-  Future<bool> putFile({
-    required File data,
-    required String pathStorage,
-  }) async {
-    final Reference firebaseStorageRef = _firebaseStorage.ref(
-      pathStorage,
-    );
-    TaskSnapshot _taskSnapshot = await firebaseStorageRef.putFile(data);
+    TaskSnapshot _taskSnapshot = await firebaseStorageRef.putData(data);
     if (_taskSnapshot.state == TaskState.success) {
       return true;
     }

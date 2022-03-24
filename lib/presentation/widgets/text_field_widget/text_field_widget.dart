@@ -27,9 +27,11 @@ class TextFieldWidget extends StatelessWidget {
   final TextCapitalization? textCapitalization;
   final TextInputType? keyboardType;
   final bool? obscureText;
+  final bool? enabled;
 
   const TextFieldWidget(
       {Key? key,
+      this.enabled,
       this.labelText,
       this.hintText,
       this.initValue,
@@ -56,6 +58,7 @@ class TextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: enabled,
       controller: controller,
       initialValue: initValue,
       onChanged: onChanged,
