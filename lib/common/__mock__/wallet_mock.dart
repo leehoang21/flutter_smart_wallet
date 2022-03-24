@@ -1,4 +1,3 @@
-import 'package:flutter_smart_wallet/common/utils/app_utils.dart';
 import 'package:flutter_smart_wallet/model/wallet_model.dart';
 
 List<WalletModel> walletList = [
