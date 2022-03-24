@@ -1,18 +1,11 @@
-import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-part 'category_model.g.dart';
 
 @JsonSerializable()
-class CategoryModel extends Equatable {
-  @JsonKey(name: 'name')
+class CategoryModel {
   String? name;
-  @JsonKey(name: 'type')
   String? type;
-  @JsonKey(name: 'create_at')
   int? createAt;
-  @JsonKey(name: 'last_update')
   int? lastUpdate;
-  @JsonKey(name: 'sub_categories')
   List<CategoryModel>? subCategories;
 
   CategoryModel({
@@ -23,10 +16,21 @@ class CategoryModel extends Equatable {
     this.subCategories,
   });
 
-  factory CategoryModel.fromJson(Map<String, dynamic> json) =>
-      _$CategoryModelFromJson(json);
-  Map<String, dynamic> toJson() => _$CategoryModelToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'name': this.name,
+        'type': this.type,
+        'createAt': this.createAt,
+        'lastUpdate': this.lastUpdate,
+        'subCategories': this.subCategories,
+      };
 
-  @override
-  List<Object?> get props => [name, type, createAt, lastUpdate, subCategories];
+  factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(
+        name: json['name'] as String?,
+        type: json['type'] as String?,
+        createAt: json['createAt'] as int?,
+        lastUpdate: json['lastUpdate'] as int?,
+        subCategories: (json['subCategories'] as List<dynamic>?)
+            ?.map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      );
 }

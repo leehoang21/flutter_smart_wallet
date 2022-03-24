@@ -7,6 +7,8 @@ import 'package:flutter_smart_wallet/presentation/journey/register/cubit/registe
 import 'package:flutter_smart_wallet/presentation/journey/register/register_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/splash/splash_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/bank_list_screen/bank_list_screen.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/category_screen/bloc/category_select_cubit.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/category_screen/category_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/wallet_list_screen/wallet_list_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/add_photo_bloc/add_photo_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create_transaction_bloc/create_transaction_bloc.dart';
@@ -44,6 +46,12 @@ class Routes {
         );
       case RouteList.mainScreen:
         return MaterialPageRoute(builder: (_) => MainScreen());
+      case RouteList.categoryScreen:
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => CategorySelectCubit(),
+                  child: CategoryScreen(),
+                ));
       case RouteList.bankListScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
