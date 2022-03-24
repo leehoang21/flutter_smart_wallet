@@ -13,6 +13,8 @@ class PickImageCubit extends Cubit<PickImageState> {
       emit(ResultImage(_image));
     } on PickImageException catch (e) {
       emit(PickImageError(e.message));
+    } catch (e) {
+      emit(PickImageError('error_message'));
     }
   }
 
@@ -21,7 +23,9 @@ class PickImageCubit extends Cubit<PickImageState> {
       Uint8List _image = await _pickImageUseCase.captureImage();
       emit(ResultImage(_image));
     } on PickImageException catch (e) {
-      PickImageError(e.message);
+      emit(PickImageError(e.message));
+    } catch (e) {
+      emit(PickImageError('error_message'));
     }
   }
 
@@ -44,10 +48,12 @@ class PickImageCubit extends Cubit<PickImageState> {
         emit(
           PickImageError(e.message),
         );
+      } catch (e) {
+        emit(PickImageError('error_message'));
       }
     } else {
       emit(
-        const PickImageError('No image selected'),
+        const PickImageError('no_image_selected'),
       );
     }
   }

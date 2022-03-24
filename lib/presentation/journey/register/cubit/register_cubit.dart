@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_smart_wallet/common/utils/validator.dart';
 import 'package:flutter_smart_wallet/model/user_model.dart';
 import 'package:flutter_smart_wallet/use_case/register_use_case.dart';
@@ -8,14 +7,11 @@ import 'package:flutter_smart_wallet/use_case/register_use_case.dart';
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
-  final FirebaseAuth firebaseAuth;
   final RegisterUseCase registerUseCase;
   RegisterCubit({
-    required this.firebaseAuth,
     required this.registerUseCase,
   }) : super(
           RegisterState(
-            //id: firebaseAuth.currentUser!.uid,
             id: 'Io7VtUfx1CM7yU7nLwwetTBneit1',
             userModel: UserModel(phoneNumber: ''),
           ),
@@ -30,7 +26,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
   String _formatPhone() {
-    String _phone = firebaseAuth.currentUser!.phoneNumber!;
+    String _phone = '+84123456789';
     return '0' +
         _phone.substring(3, 6) +
         ' ' +
@@ -61,20 +57,22 @@ class RegisterCubit extends Cubit<RegisterState> {
         ),
       ),
     );
+
     if (!AppValidator().isNullEmpty(email)) {
-      if (AppValidator.expEmail.hasMatch(email)) {
+      if (!AppValidator.expEmail.hasMatch(email)) {
         emit(
           state.copyWith(
-            errorMessage: 'invalid email',
+            errorMessage: 'invalid_email',
           ),
         );
         return;
       }
     }
+
     if (userName.isEmpty) {
       emit(
         state.copyWith(
-          errorMessage: 'user name cannot be empty',
+          errorMessage: 'user_empty',
         ),
       );
       return;

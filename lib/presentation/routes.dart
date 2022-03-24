@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_wallet/common/constants/route_list.dart';
@@ -9,7 +8,6 @@ import 'package:flutter_smart_wallet/presentation/journey/register/register_scre
 import 'package:flutter_smart_wallet/presentation/journey/splash/splash_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/bank_list_screen/bank_list_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/wallet_list_screen/wallet_list_screen.dart';
-import 'package:flutter_smart_wallet/use_case/register_use_case.dart';
 import 'journey/transaction/bank_list_screen/bloc/bank_search_cubit.dart';
 import 'journey/wallet/screens/wallet_list_screen/bloc/wallet_list_cubit.dart';
 

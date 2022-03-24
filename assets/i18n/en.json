@@ -16,5 +16,18 @@
   "bank_account": "Bank Account",
   "confirm": "Confirm",
   "create": "Create",
-  "add_wallet": "Add Wallet"
+  "add_wallet": "Add Wallet",
+  "invalid_email": "Invalid email",
+  "user_empty": "user name cannot be empty",
+  "no_image_selected": "No image selected",
+  "error_to_upload": "There was an error uploading, please try again later",
+  "no_internet": "No internet connection",
+  "cancel": "Cancel",
+  "gallery": "Gallery",
+  "camera": "Camera",
+  "crop_image": "Crop Image",
+  "register": "Register",
+  "email": "Email",
+  "user_name": "User name"
+
 }

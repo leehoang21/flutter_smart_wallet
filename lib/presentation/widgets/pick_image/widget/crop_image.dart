@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/pick_image/cubit/pick_image_cubit.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/pick_image/pick_image_screen_constant.dart';
 
 class CropImage extends StatelessWidget {
   CropImage({
@@ -47,9 +48,11 @@ class CropImage extends StatelessWidget {
                 _controller.crop();
               }
             },
-            child: const Padding(
+            child: Padding(
               padding: EdgeInsets.symmetric(vertical: 16),
-              child: Text('crop image'),
+              child: Text(
+                PickImageScreenConstant.crop,
+              ),
             ),
           ),
         ),

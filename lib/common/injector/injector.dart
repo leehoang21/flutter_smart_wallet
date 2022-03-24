@@ -53,7 +53,6 @@ class Injector {
     );
     getIt.registerFactory(
       () => RegisterCubit(
-        firebaseAuth: getIt.get<FirebaseAuth>(),
         registerUseCase: getIt.get<RegisterUseCase>(),
       ),
     );
