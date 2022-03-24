@@ -7,7 +7,7 @@ class IconConstants {
   static const String bottomBarGoalIcon = "$_path/bottom_bar_goal.svg";
   static const String bottomBarStatisticIcon =
       "$_path/bottom_bar_statistic.svg";
-  static const String help = "assets/icons/help.svg";
+  static const String help = "$_path/help.svg";
   static const String bottomBarMyPageIcon = "$_path/bottom_bar_my_page.svg";
   static const String icBankCard = '$_path/icon_bank_cards.png';
   static const String icForm = '$_path/icon_form.png';
@@ -15,5 +15,5 @@ class IconConstants {
   static const String icCash = '$_path/icon_paper_money.png';
   static const String icWallet = '$_path/icon_wallet.png';
   static const String icWalletName = '$_path/icon_wallet_name.png';
-  static const String check = "assets/icons/check.svg";
+  static const String check = "$_path/check.svg";
 }
