@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class Compress {
-  Future<Uint8List> compressWithFile(File file, int quality) async {
+  static Future<Uint8List> compressWithFile(File file, int quality) async {
     final String filePath = file.absolute.path;
     final Uint8List? result = await FlutterImageCompress.compressWithFile(
       filePath,
@@ -18,7 +18,7 @@ class Compress {
     }
   }
 
-  Future<File?> compressAndGetFile(File file, int quality) async {
+  static Future<File?> compressAndGetFile(File file, int quality) async {
     final String filePath = file.absolute.path;
 
     final int lastIndex = filePath.lastIndexOf(
@@ -39,7 +39,7 @@ class Compress {
     }
   }
 
-  Future<Uint8List> compressWithList(
+  static Future<Uint8List> compressWithList(
       Uint8List imageToUpload, int quality) async {
     imageToUpload = await FlutterImageCompress.compressWithList(
       imageToUpload,

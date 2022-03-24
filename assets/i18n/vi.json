@@ -24,5 +24,17 @@
   "bank_account": "Tài khoản ngân hàng",
   "confirm": "Xác nhận",
   "create": "Tạo mới",
-  "add_wallet": "Thêm ví"
+  "add_wallet": "Thêm ví",
+  "invalid_email": "Email không hợp lệ",
+  "user_empty": "tên tài khoản không được để trống",
+  "no_image_selected": "Không có hình ảnh nào được chọn",
+  "error_to_upload": "quá trình tải lên đã xảy ra lỗi , vui lòng thử lại sau",
+  "no_internet": "Không có kết nối Internet",
+  "cancel": "Hủy bỏ",
+  "gallery": "Thư viện",
+  "camera": "Máy ảnh",
+  "crop_image": "Cắt ảnh",
+  "register": "Đăng ký",
+  "email": "Email",
+  "user_name": "Tên tài khoản"
 }

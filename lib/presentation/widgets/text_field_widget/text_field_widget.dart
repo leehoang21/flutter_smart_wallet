@@ -29,10 +29,11 @@ class TextFieldWidget extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool? obscureText;
   final bool? readOnly;
+  final bool? enabled;
 
   const TextFieldWidget({
     Key? key,
-    this.labelText,
+    this.enabled,this.labelText,
     this.hintText,
     this.initValue,
     this.color,
@@ -59,6 +60,7 @@ class TextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: enabled,
       controller: controller,
       initialValue: initValue,
       onChanged: onChanged,

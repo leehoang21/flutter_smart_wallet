@@ -2,25 +2,38 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_smart_wallet/common/utils/validator.dart';
 import 'package:flutter_smart_wallet/model/user_model.dart';
+import 'package:flutter_smart_wallet/use_case/register_use_case.dart';
 
 part 'register_state.dart';
 
-class UserMock {
-  final String uid = '1233144';
-  final String phoneNumber = '0987654321';
-}
-
 class RegisterCubit extends Cubit<RegisterState> {
+  final RegisterUseCase registerUseCase;
   RegisterCubit({
-    required UserMock user,
+    required this.registerUseCase,
   }) : super(
           RegisterState(
-            id: user.uid,
-            userModel: UserModel(
-              phoneNumber: user.phoneNumber,
-            ),
+            id: 'Io7VtUfx1CM7yU7nLwwetTBneit1',
+            userModel: UserModel(phoneNumber: ''),
           ),
-        );
+        ) {
+    emit(
+      state.copyWith(
+        userModel: UserModel(
+          phoneNumber: _formatPhone(),
+        ),
+      ),
+    );
+  }
+
+  String _formatPhone() {
+    String _phone = '+84123456789';
+    return '0' +
+        _phone.substring(3, 6) +
+        ' ' +
+        _phone.substring(6, 9) +
+        ' ' +
+        _phone.substring(9, 12);
+  }
 
   void addUrl(String? url) {
     emit(
@@ -36,7 +49,6 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String email,
     required String userName,
   }) async {
-    if (!AppValidator().isNullEmpty(email)) {}
     emit(
       state.copyWith(
         userModel: state.userModel.copyWith(
@@ -45,10 +57,36 @@ class RegisterCubit extends Cubit<RegisterState> {
         ),
       ),
     );
+
+    if (!AppValidator().isNullEmpty(email)) {
+      if (!AppValidator.expEmail.hasMatch(email)) {
+        emit(
+          state.copyWith(
+            errorMessage: 'invalid_email',
+          ),
+        );
+        return;
+      }
+    }
+
     if (userName.isEmpty) {
       emit(
         state.copyWith(
-          errorMessage: 'user name cannot be empty',
+          errorMessage: 'user_empty',
+        ),
+      );
+      return;
+    }
+
+    try {
+      await registerUseCase.addUser(
+        state.id,
+        state.userModel,
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          errorMessage: e.toString(),
         ),
       );
       return;
