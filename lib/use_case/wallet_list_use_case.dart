@@ -28,7 +28,7 @@ class WalletUseCase {
       String userId, WalletModel walletModel) async {
     try {
       final result = await walletRepository.addAndUpdateWalletListFirebase(
-          userId, {"${walletModel.createAt}": walletModel.toJson()});
+          userId: userId,walletModel: walletModel );
       return result;
     } catch (e) {
       return false;

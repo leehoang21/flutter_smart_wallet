@@ -10,11 +10,13 @@
   "transaction_bank_list_screen_no_result": "No result found",
   "error_message" : "An error occurred. Please try again later",
   "wallets": "Wallets",
-  "wallet_type": "Type of wallet",
-  "wallet_info": "Information of wallet",
+  "wallet_type": "Wallet's Type",
+  "wallet_info": "Wallet's Information",
   "cash": "Cash",
   "bank_account": "Bank Account",
   "confirm": "Confirm",
   "create": "Create",
-  "add_wallet": "Add Wallet"
+  "add_wallet": "Add Wallet",
+  "wallet_name": "Wallet's Name",
+  "success": "Success"
 }

@@ -4,6 +4,7 @@ import 'package:flutter_smart_wallet/presentation/bloc/loading_bloc/loading_bloc
 import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/journey/main/bloc/tab_manger_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/bank_list_screen/bloc/bank_search_cubit.dart';
+import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/create_wallet_screen/bloc/create_wallet_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/wallet_list_screen/bloc/wallet_list_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/pick_image/cubit/pick_image_cubit.dart';
 import 'package:flutter_smart_wallet/repository/remote/vn_bank_repository.dart';
@@ -44,6 +45,11 @@ class Injector {
     );
     getIt.registerFactory<WalletListCubit>(
       () => WalletListCubit(getIt.get<WalletUseCase>()),
+    );
+    getIt.registerFactory<CreateWalletCubit>(
+      () => CreateWalletCubit(
+          walletUseCase: getIt.get<WalletUseCase>(),
+          snackbarBloc: getIt.get<SnackbarBloc>()),
     );
   }
 

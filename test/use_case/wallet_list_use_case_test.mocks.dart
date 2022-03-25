@@ -40,10 +40,5 @@ class MockWalletRepository extends _i1.Mock implements _i3.WalletRepository {
               returnValue:
                   Future<Map<dynamic, dynamic>>.value(<dynamic, dynamic>{}))
           as _i4.Future<Map<dynamic, dynamic>>);
-  @override
-  _i4.Future<bool> addAndUpdateWalletListFirebase(
-          String? userId, Map<String, Object?>? data) =>
-      (super.noSuchMethod(
-          Invocation.method(#addAndUpdateWalletListFirebase, [userId, data]),
-          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+
 }
