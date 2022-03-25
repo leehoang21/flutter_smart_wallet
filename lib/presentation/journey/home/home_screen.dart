@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_smart_wallet/common/constants/route_list.dart';
 import 'package:flutter_smart_wallet/presentation/journey/home/home_constants.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key ?? HomeConstants.key);
@@ -7,7 +9,15 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Home'),
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.pushNamed(
+            context,
+            RouteList.registerScreen,
+          );
+        },
+        child: Text(translate('register')),
+      ),
     );
   }
 }

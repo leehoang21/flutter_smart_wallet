@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_smart_wallet/presentation/widgets/pick_image/pick_image_screen_constant.dart';
+import 'package:flutter_smart_wallet/common/constants/app_dimens.dart';
 
 class TitleAction extends StatelessWidget {
   final String text;
@@ -15,7 +15,7 @@ class TitleAction extends StatelessWidget {
       textAlign: TextAlign.center,
       style: TextStyle(
         color: Colors.blue,
-        fontSize: PickImageScreenConstant.textSize,
+        fontSize: AppDimens.space_24,
       ),
     );
   }

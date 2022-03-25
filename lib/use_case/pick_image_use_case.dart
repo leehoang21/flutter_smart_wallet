@@ -1,18 +1,13 @@
 import 'dart:typed_data';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_smart_wallet/common/utils/compress.dart';
 import 'package:flutter_smart_wallet/repository/local/pick_image_local_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/up_and_down_storage_remote_repository.dart';
 
 class PickImageUseCase {
   final UpDownStorageRemoteRepository remoteRepository;
-  final Compress compress;
   final PickImageLocalRepository localRepository;
-  final String imagePathStorage;
 
   PickImageUseCase({
-    required this.imagePathStorage,
-    required this.compress,
     required this.localRepository,
     required this.remoteRepository,
   });
@@ -22,7 +17,7 @@ class PickImageUseCase {
     if (imageToUpload != null) {
       return imageToUpload;
     } else {
-      throw PickImageException('No image selected');
+      throw PickImageException('no_image_selected');
     }
   }
 
@@ -31,15 +26,14 @@ class PickImageUseCase {
     if (imageToUpload != null) {
       return imageToUpload;
     } else {
-      throw PickImageException('No image selected');
+      throw PickImageException('no_image_selected');
     }
   }
 
   Future<String> upAndDownImage({
     required Uint8List imageToUpload,
+    required String imagePathStorage,
   }) async {
-    imageToUpload = await compress.compressWithList(imageToUpload, 90);
-
     bool hasConnection = await remoteRepository.hasconnection();
 
     if (hasConnection) {
@@ -53,10 +47,10 @@ class PickImageUseCase {
           pathStorage: imagePathStorage,
         );
       } else {
-        throw PickImageException('Error to upload');
+        throw PickImageException('error_to_upload');
       }
     } else {
-      throw PickImageException('No internet connection');
+      throw PickImageException('no_internet');
     }
   }
 }
@@ -64,9 +58,7 @@ class PickImageUseCase {
 class PickImageException extends Equatable implements Exception {
   final String message;
 
-  PickImageException([
-    String? message,
-  ]) : message = message ?? 'An unknown exception occurred';
+  PickImageException(this.message);
 
   @override
   List<Object?> get props => [message];
