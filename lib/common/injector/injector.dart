@@ -62,7 +62,7 @@ class Injector {
     getIt.registerFactory(
       () => CreateTransactionBloc(
         getIt.get<TransactionUseCase>(),
-        // getIt.get<UserUseCase>(),
+        getIt.get<UserUseCase>(),
         getIt.get<SnackbarBloc>(),
         getIt.get<LoadingBloc>(),
       ),

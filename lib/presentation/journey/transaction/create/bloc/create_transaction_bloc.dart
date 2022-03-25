@@ -10,23 +10,24 @@ import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_bl
 import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_type.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create_transaction_state.dart';
 import 'package:flutter_smart_wallet/use_case/transaction_use_case.dart';
+import 'package:flutter_smart_wallet/use_case/user_use_case.dart';
 
 class CreateTransactionBloc extends BaseBloc<CreateTransactionState> {
   final TransactionUseCase _transactionUseCase;
-  // final UserUseCase _useCase;
+  final UserUseCase _useCase;
   final SnackbarBloc _snackbarBloc;
   final LoadingBloc _loadingBloc;
 
   late String _uid;
   CreateTransactionBloc(
       this._transactionUseCase,
-      // this._useCase,\
+      this._useCase,
       this._snackbarBloc,
       this._loadingBloc)
       : super(
           CreateTransactionState.initial(),
         ) {
-    _uid = 'Io7VtUfx1CM7yU7nLwwetTBneit1';
+    _uid = _useCase.getUid();
   }
 
   @override
