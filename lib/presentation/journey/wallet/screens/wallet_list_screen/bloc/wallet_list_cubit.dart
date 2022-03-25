@@ -1,8 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_smart_wallet/model/bank_info_model.dart';
 import 'package:flutter_smart_wallet/model/wallet_model.dart';
-import 'package:flutter_smart_wallet/repository/remote/wallet_repository.dart';
 import 'package:flutter_smart_wallet/use_case/wallet_list_use_case.dart';
 
 class WalletListState extends Equatable {
