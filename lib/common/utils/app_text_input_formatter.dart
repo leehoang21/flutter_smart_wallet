@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
-import 'app_utils.dart';
 // import 'configs/app_config.dart';
 //
 //
@@ -96,9 +95,9 @@ class CurrencyTextInputFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue,
-      TextEditingValue newValue,
-      ) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
     // final bool isInsertedCharacter =
     //     oldValue.text.length + 1 == newValue.text.length &&
     //         newValue.text.startsWith(oldValue.text);

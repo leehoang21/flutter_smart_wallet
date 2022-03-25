@@ -30,6 +30,15 @@ class PickImageUseCase {
     }
   }
 
+  Future<List<Uint8List>> multiImagePicker() async {
+    final images = await localRepository.multiImage();
+    if (images.isEmpty) {
+      return images;
+    } else {
+      throw PickImageException('no_image_selected');
+    }
+  }
+
   Future<String> upAndDownImage({
     required Uint8List imageToUpload,
     required String imagePathStorage,

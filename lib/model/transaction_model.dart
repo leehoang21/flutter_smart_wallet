@@ -4,26 +4,15 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:flutter_smart_wallet/model/category_model.dart';
 import 'package:flutter_smart_wallet/model/wallet_model.dart';
 
-part 'transaction_model.g.dart';
-
-@JsonSerializable()
 class TransactionModel extends Equatable {
-  @JsonKey(name: 'id')
   final String? id;
-  @JsonKey(name: 'amount')
-  final String amount;
-  @JsonKey(name: 'note')
+  final int amount;
   final String? note;
-  @JsonKey(name: 'category')
   final CategoryModel category;
-  @JsonKey(name: 'spend_time')
   final int spendTime;
-  @JsonKey(name: 'photos')
   final List<String>? photos;
   final WalletModel wallet;
-  @JsonKey(name: 'create_at')
   final int createAt;
-  @JsonKey(name: 'last_update')
   final int lastUpdate;
 
   TransactionModel(
@@ -37,14 +26,35 @@ class TransactionModel extends Equatable {
       required this.createAt,
       required this.lastUpdate});
 
-  factory TransactionModel.fromJson(Map<String, dynamic> json) =>
-      _$TransactionModelFromJson(json);
+  factory TransactionModel.fromJson(Map<String, dynamic> json, String id) =>
+      TransactionModel(
+        id: id,
+        amount: json['amount'] as int,
+        note: json['note'] as String?,
+        category:
+            CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
+        spendTime: json['spendTime'] as int,
+        photos:
+            (json['photo'] as List<dynamic>?)?.map((e) => e as String).toList(),
+        wallet: WalletModel.fromJson(json['wallet'] as Map<String, dynamic>),
+        createAt: json['createAt'] as int,
+        lastUpdate: json['lastUpdate'] as int,
+      );
 
-  Map<String, dynamic> toJson() => _$TransactionModelToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'amount': this.amount,
+        'note': this.note,
+        'category': this.category.toJson(),
+        'spendTime': this.spendTime,
+        'photo': this.photos,
+        'wallet': this.wallet.toJson(),
+        'createAt': this.createAt,
+        'lastUpdate': this.lastUpdate,
+      };
 
   TransactionModel copyWith({
     String? id,
-    String? amount,
+    int? amount,
     String? note,
     CategoryModel? category,
     int? spendTime,

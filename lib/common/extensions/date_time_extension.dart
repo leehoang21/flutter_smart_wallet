@@ -12,4 +12,6 @@ extension DateTimeExtension on DateTime {
       return DateFormat('dd/MM/yyyy').format(this);
     }
   }
+
+  DateTime get date => DateTime(this.year, this.month, this.day);
 }

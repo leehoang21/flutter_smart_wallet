@@ -1,16 +1,14 @@
 import 'package:flutter_smart_wallet/model/transaction_model.dart';
-import 'package:flutter_smart_wallet/repository/remote/transaction_remote_repository.dart';
-import 'package:injectable/injectable.dart';
+import 'package:flutter_smart_wallet/repository/remote/transaction/transaction_remote_repository.dart';
 
-@injectable
 class TransactionUseCase {
   final TransactionRemoteRepository _remoteRepository;
 
   TransactionUseCase(this._remoteRepository);
 
-  Future<void> addTransaction(String uid, TransactionModel transaction) =>
-      _remoteRepository.addTransaction(uid, transaction);
+  Future<String> addTransaction(String uid, TransactionModel transaction) =>
+      _remoteRepository.createTransaction(uid, transaction.toJson());
 
-  Future<void> updateTransaction(String uid, TransactionModel transaction) =>
+  Future<bool> updateTransaction(String uid, TransactionModel transaction) =>
       _remoteRepository.updateTransaction(uid, transaction);
 }

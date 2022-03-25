@@ -21,6 +21,7 @@ class ScaffoldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbar,
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColor.ebonyClay,
       body: SafeArea(
         child: Padding(

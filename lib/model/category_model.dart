@@ -21,7 +21,7 @@ class CategoryModel {
         'type': this.type,
         'createAt': this.createAt,
         'lastUpdate': this.lastUpdate,
-        'subCategories': this.subCategories,
+        'subCategories': this.subCategories?.map((e) => e.toJson()).toList(),
       };
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(

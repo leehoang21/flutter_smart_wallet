@@ -10,6 +10,8 @@ class CreateTransactionConstants {
   static final String invoicePhotos =
       translate('transaction.create.invoice_photos');
   static final String create = translate('transaction.create');
+  static final String chooseAWallet =
+      translate('transaction.create.choose_a_wallet');
   static final double sizedBoxHeight12 = 12.h;
   static final double sizedBoxHeight8 = 8.h;
   static final double sizedBoxHeight100 = 100.h;

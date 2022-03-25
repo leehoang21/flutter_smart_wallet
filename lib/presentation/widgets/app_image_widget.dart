@@ -6,7 +6,7 @@ import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 
-class AppImageWidget extends StatelessWidget {
+class   AppImageWidget extends StatelessWidget {
   final String path;
   bool isAsset = false;
   Widget? placeholder;

@@ -11,8 +11,7 @@ Future<void> main() async {
   Injector.configDependency();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  final firebaseConfig = Injector.getIt<FirebaseConfig>();
-  await firebaseConfig.init();
+  await FirebaseConfig.init();
   final delegate = await LocalizationDelegate.create(
     fallbackLocale: LanguageConstants.en,
     supportedLocales: [

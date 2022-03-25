@@ -1,9 +1,9 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_smart_wallet/common/configs/hive_config/hive_type_id.dart';
 import 'package:hive/hive.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 @HiveType(typeId: HiveTypeId.userType)
-class WalletModel {
+class WalletModel extends Equatable {
   @HiveField(0)
   final String? walletImage;
   @HiveField(1)
@@ -47,4 +47,8 @@ class WalletModel {
         'createAt': createAt,
         'lastUpdate': lastUpdate,
       };
+
+  @override
+  List<Object?> get props =>
+      [walletImage, walletName, balance, walletType, createAt, lastUpdate];
 }

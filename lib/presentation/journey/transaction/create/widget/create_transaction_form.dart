@@ -2,11 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_smart_wallet/common/constants/argument_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/image_constants.dart';
+import 'package:flutter_smart_wallet/common/constants/route_list.dart';
 import 'package:flutter_smart_wallet/common/utils/format_utils.dart';
-import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create_transaction_bloc/create_transaction_bloc.dart';
-import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create_transaction_bloc/create_transaction_state.dart';
+import 'package:flutter_smart_wallet/model/category_model.dart';
+import 'package:flutter_smart_wallet/model/wallet_model.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create_transaction_bloc.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create_transaction_state.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/create_transaction_constants.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/app_image_widget.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/keyboard_avoider/keyboard_avoider.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/text_field_widget/text_field_widget.dart';
 import 'package:flutter_smart_wallet/common/extensions/date_time_extension.dart';
 
@@ -46,15 +52,20 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
         TextFieldWidget(
           controller: widget.amountCtrl,
           keyboardType: TextInputType.numberWithOptions(signed: true),
-          prefixIcon: Image.asset(ImageConstants.coinIcon),
+          prefixIcon: AppImageWidget(
+            path: ImageConstants.coinIcon,
+          ),
           inputFormatter: [
             AmountInputFormatter(),
             LengthLimitingTextInputFormatter(12),
           ],
           hintText: '0₫',
           onChanged: (value) {
-            _createTransactionBloc
-                .onChangeAmount(value.replaceAll(new RegExp(r'[^0-9]'), ''));
+            _createTransactionBloc.onChangeAmount(
+              int.parse(
+                value.replaceAll(new RegExp(r'[^0-9]'), ''),
+              ),
+            );
           },
         ),
         SizedBox(
@@ -62,26 +73,39 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
         ),
         TextFieldWidget(
           controller: widget.walletCtrl,
-          prefixIcon: Image.asset(ImageConstants.wallet),
-          hintText: CreateTransactionConstants.category,
+          prefixIcon: AppImageWidget(
+            path: ImageConstants.wallet,
+          ),
+          hintText: CreateTransactionConstants.chooseAWallet,
           readOnly: true,
+          onTap: _chooseWallet,
         ),
         SizedBox(
           height: CreateTransactionConstants.sizedBoxHeight12,
         ),
-        TextFieldWidget(
-          controller: widget.categoryCtl,
-          prefixIcon: Image.asset(ImageConstants.category),
-          hintText: CreateTransactionConstants.category,
-          readOnly: true,
-        ),
+        BlocBuilder<CreateTransactionBloc, CreateTransactionState>(
+            bloc: _createTransactionBloc,
+            buildWhen: (previous, current) =>
+                previous.category != current.category,
+            builder: (context, state) {
+              return TextFieldWidget(
+                controller: widget.categoryCtl,
+                prefixIcon: AppImageWidget(
+                    path: state.category != null
+                        ? "${ImageConstants.path}${state.category!.name!.toLowerCase()}.png"
+                        : ImageConstants.category),
+                hintText: CreateTransactionConstants.category,
+                readOnly: true,
+                onTap: () => _chooseCategory(state.category),
+              );
+            }),
         SizedBox(
           height: CreateTransactionConstants.sizedBoxHeight12,
         ),
         TextFieldWidget(
           controller: widget.dateCtl,
-          prefixIcon: Image.asset(ImageConstants.calendar),
-          hintText: 'Today',
+          prefixIcon: AppImageWidget(path: ImageConstants.calendar),
+          hintText: 'To day',
           readOnly: true,
           onTap: _selectDate,
         ),
@@ -90,11 +114,32 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
         ),
         TextFieldWidget(
           controller: widget.noteCtl,
-          prefixIcon: Image.asset(ImageConstants.note),
+          prefixIcon: AppImageWidget(path: ImageConstants.note),
           hintText: CreateTransactionConstants.note,
         ),
       ],
     );
+  }
+
+  Future<void> _chooseCategory(CategoryModel? currentCategory) async {
+    final category = await Navigator.pushNamed(
+      context,
+      RouteList.categoryScreen,
+      arguments: {ArgumentConstants.category: currentCategory},
+    );
+    if (category != null) {
+      _createTransactionBloc.chooseCategory(category as CategoryModel);
+      widget.categoryCtl.text = category.name!;
+    }
+  }
+
+  Future<void> _chooseWallet() async {
+    final wallet =
+        await Navigator.pushNamed(context, RouteList.walletListScreen);
+    if (wallet != null) {
+      _createTransactionBloc.chooseWallet(wallet as WalletModel);
+      widget.walletCtrl.text = wallet.walletName ?? '';
+    }
   }
 
   void _selectDate() {

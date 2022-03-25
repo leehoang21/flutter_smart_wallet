@@ -28,10 +28,15 @@ class InvoicePhotosWidget extends StatelessWidget {
         SizedBox(
           height: CreateTransactionConstants.sizedBoxHeight8,
         ),
-        Row(
-          children: [
-            AddPhotoButton(addPhoto: _addPhoto),
-          ],
+        GridView.count(
+          crossAxisCount: 3,
+          primary: false,
+          shrinkWrap: true,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          children: List.generate(1, (index) {
+            return AddPhotoButton(addPhoto: _addPhoto);
+          }),
         )
       ],
     );
