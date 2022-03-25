@@ -6,6 +6,5 @@ class BankListScreenConstants {
       translate("transaction_bank_list_screen_search_bank");
   static final noResultText =
       translate("transaction_bank_list_screen_no_result");
-  static final errorMessage =
-      translate("transaction_bank_list_screen_error_message");
+  static final errorMessage = translate("error_message");
 }

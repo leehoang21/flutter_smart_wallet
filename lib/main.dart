@@ -1,12 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/common/constants/language_constants.dart';
 import 'package:flutter_smart_wallet/common/injector/injector.dart';
 import 'package:flutter_smart_wallet/presentation/app.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
+import 'common/configs/firebase_config.dart';
+
 Future<void> main() async {
-  configDependency();
+  Injector.configDependency();
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  final firebaseConfig = Injector.getIt<FirebaseConfig>();
+  await firebaseConfig.init();
   final delegate = await LocalizationDelegate.create(
     fallbackLocale: LanguageConstants.en,
     supportedLocales: [

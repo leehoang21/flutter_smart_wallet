@@ -9,6 +9,7 @@ class AppDimens {
   /// Radius
   static const double radius_12 = 12;
   static const double radius_16 = 16;
+  static const double radius_20 = 20;
 
   /// Space
   static double space_2 = 2.sp;
@@ -20,6 +21,8 @@ class AppDimens {
   static double space_18 = 18.sp;
   static double space_20 = 20.sp;
   static double space_24 = 24.sp;
+  static double space_26 = 26.sp;
+  static double space_30 = 30.sp;
   static double space_36 = 36.sp;
   static double space_48 = 48.sp;
   static double space_40 = 40.sp;
@@ -39,6 +42,7 @@ class AppDimens {
   static double height_28 = 28.h;
   static double height_32 = 32.h;
   static double height_36 = 36.h;
+  static double height_44 = 44.h;
   static double height_50 = 50.h;
   static double height_52 = 52.h;
   static double height_56 = 56.h;
@@ -48,4 +52,5 @@ class AppDimens {
   static double width_8 = 8.w;
   static double width_12 = 12.w;
   static double width_16 = 16.w;
+  static double width_18 = 18.w;
 }

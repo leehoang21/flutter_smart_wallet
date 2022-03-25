@@ -30,13 +30,13 @@ class App extends StatelessWidget {
       builder: () => MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (_) => injector.get<LanguageBloc>(),
+            create: (_) => Injector.getIt.get<LanguageBloc>(),
           ),
           BlocProvider(
-            create: (_) => injector.get<LoadingBloc>(),
+            create: (_) => Injector.getIt.get<LoadingBloc>(),
           ),
           BlocProvider(
-            create: (_) => injector.get<SnackbarBloc>(),
+            create: (_) => Injector.getIt.get<SnackbarBloc>(),
           )
         ],
         child: GestureDetector(
@@ -48,6 +48,7 @@ class App extends StatelessWidget {
             }
           },
           child: MaterialApp(
+            navigatorKey: _navigator,
             localizationsDelegates: [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,

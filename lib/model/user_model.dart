@@ -1,35 +1,62 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_smart_wallet/common/configs/hive_config/hive_type_id.dart';
 import 'package:hive/hive.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'user_model.g.dart';
 
-@JsonSerializable()
-@HiveType(typeId :HiveTypeId.userType)
+@HiveType(typeId: HiveTypeId.userType)
 class UserModel {
   @HiveField(0)
-  final String? accountName;
+  final String userName;
+  // email người dùng nếu có
   @HiveField(1)
-  final String? avatar;
-  @HiveField(2)
   final String? email;
+  // url avatar nếu có
+  @HiveField(2)
+  final String? avatar;
+  //số điện thoại người dùng
   @HiveField(3)
-  final String? phone;
-  @HiveField(4)
-  final int? createAt;
-  @HiveField(5)
-  final int? lastUpdate;
+  final String phoneNumber;
 
-  UserModel(
-      {this.accountName,
-        this.avatar,
-        this.email,
-        this.phone,
-        this.createAt,
-        this.lastUpdate});
-  factory UserModel.fromJson(Map<String, dynamic> json) =>
-      _$UserModelFromJson(json);
+  const UserModel({
+    required this.phoneNumber,
+    this.userName = '',
+    this.email,
+    this.avatar,
+  });
 
-  Map<String, dynamic> toJson() => _$UserModelToJson(this);
+  UserModel copyWith({
+    String? userName,
+    String? email,
+    String? avatar,
+  }) {
+    return UserModel(
+      phoneNumber: phoneNumber,
+      userName: userName ?? this.userName,
+      email: email ?? this.email,
+      avatar: avatar ?? this.avatar,
+    );
+  }
 
+  factory UserModel.fromDocument(DocumentSnapshot snapshot) {
+    if (snapshot.data() == null) {
+      throw Exception;
+    }
+    final data = snapshot.data() as Map<String, dynamic>;
+
+    return UserModel(
+      userName: data['userName'] as String,
+      email: data['email'] as String?,
+      avatar: data['avatar'] as String?,
+      phoneNumber: data['phoneNumber'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'phoneNumber': phoneNumber,
+      'userName': userName,
+      'avatar': avatar,
+      'email': email,
+    };
+  }
 }

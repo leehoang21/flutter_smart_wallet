@@ -17,6 +17,7 @@ class TextFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode? focusNode;
   final Function(String)? onChanged;
+  final Function()? onTap;
   final String? Function(String?)? validate;
   final Function(String?)? onSaved;
   final Function()? onEditingComplete;
@@ -26,9 +27,11 @@ class TextFieldWidget extends StatelessWidget {
   final TextCapitalization? textCapitalization;
   final TextInputType? keyboardType;
   final bool? obscureText;
+  final bool? enabled;
 
   const TextFieldWidget(
       {Key? key,
+      this.enabled,
       this.labelText,
       this.hintText,
       this.initValue,
@@ -48,15 +51,18 @@ class TextFieldWidget extends StatelessWidget {
       this.textAlign,
       this.textCapitalization,
       this.keyboardType,
-      this.obscureText})
+      this.obscureText,
+      this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: enabled,
       controller: controller,
       initialValue: initValue,
       onChanged: onChanged,
+      onTap: onTap,
       onEditingComplete: onEditingComplete,
       textAlign: textAlign ?? TextAlign.start,
       textCapitalization: textCapitalization ?? TextCapitalization.none,

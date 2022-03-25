@@ -22,4 +22,5 @@ class AppColor {
   static const Color iron = Color(0xffE5E5E7);
   static const Color secondaryColor = Color(0xff767680);
   static const Color ebonyClay = Color(0xff232639);
+  static const Color shadow = Color(0xff2B2E40);
 }
