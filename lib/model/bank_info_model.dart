@@ -1,14 +1,8 @@
-import 'package:json_annotation/json_annotation.dart';
-
-part 'bank_info_model.g.dart';
-
-@JsonSerializable()
 class BankInfoModel {
   final int? id;
   final String? bin;
   final String? code;
   final int? isTransfer;
-  @JsonKey(name: "short_name")
   final String? shortName;
   final String? logo;
   final int? support;
@@ -25,8 +19,25 @@ class BankInfoModel {
     this.name,
   });
 
-  factory BankInfoModel.fromJson(Map<String, dynamic> json) =>
-      _$BankInfoModelFromJson(json);
+  factory BankInfoModel.fromJson(Map<String, dynamic> json) => BankInfoModel(
+        id: json['id'] as int?,
+        bin: json['bin'] as String?,
+        code: json['code'] as String?,
+        isTransfer: json['isTransfer'] as int?,
+        shortName: json['short_name'] as String?,
+        logo: json['logo'] as String?,
+        support: json['support'] as int?,
+        name: json['name'] as String?,
+      );
 
-  Map<String, dynamic> toJson() => _$BankInfoModelToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'id': this.id,
+        'bin': this.bin,
+        'code': this.code,
+        'isTransfer': this.isTransfer,
+        'short_name': this.shortName,
+        'logo': this.logo,
+        'support': this.support,
+        'name': this.name,
+      };
 }
