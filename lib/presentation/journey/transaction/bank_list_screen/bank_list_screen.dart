@@ -9,16 +9,10 @@ import 'package:flutter_smart_wallet/presentation/widgets/loading_widget/loader_
 import 'package:flutter_smart_wallet/presentation/widgets/text_field_widget/text_field_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 
-class BankListScreen extends StatefulWidget {
+class BankListScreen extends StatelessWidget {
   BankListScreen({Key? key}) : super(key: key);
 
-  @override
-  State<BankListScreen> createState() => _BankListScreenState();
-}
-
-class _BankListScreenState extends State<BankListScreen> {
   final bankSearchController = TextEditingController();
-  bool isEmpty = true;
 
   @override
   Widget build(BuildContext context) {
@@ -41,19 +35,20 @@ class _BankListScreenState extends State<BankListScreen> {
                     context
                         .read<BankSearchCubit>()
                         .search(bankSearchController.text);
-                    setState(() {
-                      isEmpty = bankSearchController.text.isEmpty;
-                    });
                   },
                 ),
               hintText: BankListScreenConstants.searchBarHint,
-              suffixIcon: !isEmpty
-                  ? IconButton(
+              suffixIcon: context.read<BankSearchCubit>().state.keyword.isEmpty
+                  ? Icon(Icons.search, color: AppColor.ebonyClay)
+                  : IconButton(
+                      icon: Icon(Icons.clear, color: AppColor.ebonyClay),
                       onPressed: () {
                         bankSearchController.clear();
+                        context
+                            .read<BankSearchCubit>()
+                            .search(bankSearchController.text);
                       },
-                      icon: Icon(Icons.close, color: AppColor.ebonyClay))
-                  : Icon(Icons.search, color: AppColor.ebonyClay),
+                    ),
             ),
             Expanded(
               child: BlocBuilder<BankSearchCubit, BankSearchState>(
