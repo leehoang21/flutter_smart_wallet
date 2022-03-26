@@ -1,3 +1,6 @@
+import 'dart:typed_data';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_wallet/common/constants/app_dimens.dart';
@@ -11,6 +14,8 @@ import 'package:flutter_smart_wallet/presentation/journey/register/register_scre
 import 'package:flutter_smart_wallet/presentation/journey/register/widget/back_ground_register.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/app_image_widget.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/button_widget/text_button_widget.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/pick_image/cubit/pick_image_cubit.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/pick_image/widget/crop_image.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/text_field_widget/text_field_widget.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
@@ -112,9 +117,17 @@ class RegisterScreen extends StatelessWidget {
 
   Future<void> _pickImage(BuildContext context, String _id) async {
     final Either? _result = await pickImageFuncion(
-      context,
-      '$_id/avatar.png',
-    );
+        context: context,
+        camera: (context) async {
+          await context.read<PickImageCubit>().captureImage();
+          await cropImage(context);
+          await resultUrl(context, _id);
+        },
+        gallery: (context) async {
+          await context.read<PickImageCubit>().captureImage();
+          await cropImage(context);
+          await resultUrl(context, _id);
+        });
     if (_result != null) {
       String? _error = _result.error;
       if (_error != null) {
@@ -127,6 +140,57 @@ class RegisterScreen extends StatelessWidget {
         context.read<RegisterCubit>().addUrl(
               _result.url,
             );
+      }
+    }
+  }
+
+  Future<void> resultUrl(BuildContext context, String id) async {
+    await context.read<PickImageCubit>().upAndDownImage(
+          '$id/avatar.png',
+        );
+    String? _error = context.read<PickImageCubit>().state.error;
+    if (_error != null) {
+      Navigator.pop(
+        context,
+        Either(
+          error: translate(_error),
+        ),
+      );
+    } else {
+      Navigator.pop(
+        context,
+        Either(
+          url: context.read<PickImageCubit>().state.url,
+        ),
+      );
+    }
+  }
+
+  Future<void> cropImage(BuildContext context) async {
+    if (context.read<PickImageCubit>().state is ResultImage) {
+      Uint8List? _image = context.read<PickImageCubit>().state.image;
+      String? _error = context.read<PickImageCubit>().state.error;
+      if (_image != null) {
+        await Navigator.push(
+          context,
+          CupertinoPageRoute(
+            builder: (_) => CropImage(
+              isCircleUi: true,
+              image: _image,
+              ctx: context,
+              width: 446,
+              height: 446,
+            ),
+          ),
+        );
+      }
+      if (_error != null) {
+        Navigator.pop(
+          context,
+          Either(
+            error: translate(_error),
+          ),
+        );
       }
     }
   }
