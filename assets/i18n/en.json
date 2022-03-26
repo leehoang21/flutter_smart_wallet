@@ -70,7 +70,7 @@
   "transaction_category_screen_debt_collection": "Debt Collection",
   "transaction_category_screen_borrow": "Borrow",
   "transaction_category_screen_loan": "Loan",
-  "transaction_category_screen_pay": "Pay"
+  "transaction_category_screen_pay": "Pay",
   "invalid_email": "Invalid email",
   "user_empty": "user name cannot be empty",
   "no_image_selected": "No image selected",
