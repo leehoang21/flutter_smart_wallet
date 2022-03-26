@@ -79,7 +79,7 @@ class Injector {
 
   static void _configureRepository() {
     getIt.registerFactory(
-      () => VnBankRepository(DioApiClient.instance),
+      () => VnBankRepository(getIt.get<DioApiClient>()),
     );
     getIt.registerFactory<WalletRepository>(
       () => WalletRepositoryImpl(getIt.get<FirebaseConfig>()),
@@ -96,6 +96,7 @@ class Injector {
   }
 
   static void _configCommon() {
+    getIt.registerLazySingleton(() => DioApiClient());
     getIt.registerLazySingleton<FirebaseConfig>(() => FirebaseConfig());
     getIt.registerLazySingleton<FirebaseAuth>(
       () => FirebaseAuth.instance,
