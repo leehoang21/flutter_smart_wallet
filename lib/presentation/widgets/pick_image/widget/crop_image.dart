@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/pick_image/cubit/pick_image_cubit.dart';
-import 'package:flutter_smart_wallet/presentation/widgets/pick_image/pick_image_screen_constant.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/pick_image/pick_image_widget_constant.dart';
 
 class CropImage extends StatelessWidget {
   CropImage({
-    required this.withCircleUi,
+    required this.isCircleUi,
     required this.image,
     required this.ctx,
     Key? key,
@@ -20,7 +20,7 @@ class CropImage extends StatelessWidget {
   final double width;
   final double height;
   final Uint8List image;
-  final bool withCircleUi;
+  final bool isCircleUi;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class CropImage extends StatelessWidget {
           child: Crop(
             controller: _controller,
             initialArea: sizeImage(),
-            withCircleUi: withCircleUi,
+            withCircleUi: isCircleUi,
             image: image,
             onCropped: (image) async {
               ctx.read<PickImageCubit>().addImage(image);
@@ -42,7 +42,7 @@ class CropImage extends StatelessWidget {
           size: Size(150.w, 100.h),
           child: ElevatedButton(
             onPressed: () {
-              if (withCircleUi) {
+              if (isCircleUi) {
                 _controller.cropCircle();
               } else {
                 _controller.crop();
@@ -51,7 +51,7 @@ class CropImage extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 16),
               child: Text(
-                PickImageScreenConstant.crop,
+                PickImageWidgetConstant.crop,
               ),
             ),
           ),
@@ -61,7 +61,7 @@ class CropImage extends StatelessWidget {
   }
 
   Rect sizeImage() {
-    if (withCircleUi) {
+    if (isCircleUi) {
       if (width < height) {
         return Rect.fromLTWH(0, 0, width, width);
       } else {

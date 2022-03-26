@@ -129,6 +129,7 @@ class Injector {
   }
 
   static void _configCommon() {
+    getIt.registerLazySingleton(() => DioApiClient());
     getIt.registerLazySingleton<FirebaseConfig>(() => FirebaseConfig());
     getIt.registerLazySingleton<DioApiClient>(
       () => DioApiClient(),

@@ -15,7 +15,7 @@ class TitleAction extends StatelessWidget {
       textAlign: TextAlign.center,
       style: TextStyle(
         color: Colors.blue,
-        fontSize: AppDimens.space_24,
+        fontSize: AppDimens.space_16,
       ),
     );
   }
