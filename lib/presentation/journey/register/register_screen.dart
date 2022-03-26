@@ -118,12 +118,12 @@ class RegisterScreen extends StatelessWidget {
   Future<void> _pickImage(BuildContext context, String _id) async {
     final Either? _result = await pickImageFuncion(
         context: context,
-        camera: (context) async {
+        gallery: (context) async {
           await context.read<PickImageCubit>().captureImage();
           await cropImage(context);
           await resultUrl(context, _id);
         },
-        gallery: (context) async {
+        camera: (context) async {
           await context.read<PickImageCubit>().captureImage();
           await cropImage(context);
           await resultUrl(context, _id);
