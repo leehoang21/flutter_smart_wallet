@@ -24,13 +24,13 @@ class PickImageWidget extends StatelessWidget {
       ),
       actions: [
         CupertinoActionSheetAction(
-          onPressed: () => camera(context),
+          onPressed: () => gallery(context),
           child: TitleAction(
             text: PickImageWidgetConstant.gallery,
           ),
         ),
         CupertinoActionSheetAction(
-          onPressed: () => gallery(context),
+          onPressed: () => camera(context),
           child: TitleAction(
             text: PickImageWidgetConstant.camera,
           ),

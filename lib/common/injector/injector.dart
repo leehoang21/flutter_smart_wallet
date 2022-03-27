@@ -7,7 +7,8 @@ import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_bl
 import 'package:flutter_smart_wallet/presentation/journey/main/bloc/tab_manger_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/register/cubit/register_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/bank_list_screen/bloc/bank_search_cubit.dart';
-import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create_transaction_bloc.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/add_photo/add_photo_bloc.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create/create_transaction_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/wallet_list_screen/bloc/wallet_list_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/pick_image/cubit/pick_image_cubit.dart';
 import 'package:flutter_smart_wallet/repository/remote/transaction/transaction_remote_repository.dart';
@@ -63,6 +64,7 @@ class Injector {
       () => CreateTransactionBloc(
         getIt.get<TransactionUseCase>(),
         getIt.get<UserUseCase>(),
+        getIt.get<PickImageUseCase>(),
         getIt.get<SnackbarBloc>(),
         getIt.get<LoadingBloc>(),
       ),
@@ -70,6 +72,11 @@ class Injector {
     getIt.registerFactory(
       () => RegisterCubit(
         registerUseCase: getIt.get<RegisterUseCase>(),
+      ),
+    );
+    getIt.registerFactory(
+      () => AddPhotoBloc(
+        getIt.get<PickImageUseCase>(),
       ),
     );
   }
@@ -110,7 +117,7 @@ class Injector {
       () => WalletRepositoryImpl(getIt.get<FirebaseConfig>()),
     );
     getIt.registerFactory<TransactionRemoteRepository>(
-      () => TransactionRemoteRepositoryImpl(getIt.get<FirebaseConfig>()),
+      () => TransactionRemoteRepositoryImpl(),
     );
     getIt.registerFactory<UserRemoteRepository>(
       () => UserRemoteRepositoryImpl(
@@ -129,7 +136,6 @@ class Injector {
   }
 
   static void _configCommon() {
-    getIt.registerLazySingleton(() => DioApiClient());
     getIt.registerLazySingleton<FirebaseConfig>(() => FirebaseConfig());
     getIt.registerLazySingleton<DioApiClient>(
       () => DioApiClient(),

@@ -2,17 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_smart_wallet/common/constants/app_dimens.dart';
 import 'package:flutter_smart_wallet/common/constants/argument_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/image_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/route_list.dart';
 import 'package:flutter_smart_wallet/common/utils/format_utils.dart';
 import 'package:flutter_smart_wallet/model/category_model.dart';
 import 'package:flutter_smart_wallet/model/wallet_model.dart';
-import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create_transaction_bloc.dart';
-import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create_transaction_state.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create/create_transaction_bloc.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create/create_transaction_state.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/create_transaction_constants.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/app_image_widget.dart';
-import 'package:flutter_smart_wallet/presentation/widgets/keyboard_avoider/keyboard_avoider.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/text_field_widget/text_field_widget.dart';
 import 'package:flutter_smart_wallet/common/extensions/date_time_extension.dart';
 
@@ -69,7 +69,7 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
           },
         ),
         SizedBox(
-          height: CreateTransactionConstants.sizedBoxHeight12,
+          height: AppDimens.height_12,
         ),
         TextFieldWidget(
           controller: widget.walletCtrl,
@@ -81,7 +81,7 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
           onTap: _chooseWallet,
         ),
         SizedBox(
-          height: CreateTransactionConstants.sizedBoxHeight12,
+          height: AppDimens.height_12,
         ),
         BlocBuilder<CreateTransactionBloc, CreateTransactionState>(
             bloc: _createTransactionBloc,
@@ -100,7 +100,7 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
               );
             }),
         SizedBox(
-          height: CreateTransactionConstants.sizedBoxHeight12,
+          height: AppDimens.height_12,
         ),
         TextFieldWidget(
           controller: widget.dateCtl,
@@ -110,7 +110,7 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
           onTap: _selectDate,
         ),
         SizedBox(
-          height: CreateTransactionConstants.sizedBoxHeight12,
+          height: AppDimens.height_12,
         ),
         TextFieldWidget(
           controller: widget.noteCtl,

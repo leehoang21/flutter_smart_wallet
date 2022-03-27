@@ -4,8 +4,7 @@ import 'package:flutter_smart_wallet/model/transaction_model.dart';
 import 'package:flutter_smart_wallet/repository/remote/transaction/transaction_remote_repository.dart';
 
 class TransactionRemoteRepositoryImpl extends TransactionRemoteRepository {
-  TransactionRemoteRepositoryImpl(FirebaseConfig firebaseConfig)
-      : super(firebaseConfig);
+  TransactionRemoteRepositoryImpl() : super();
 
   @override
   Future<String> createTransaction(

@@ -61,7 +61,7 @@ class CategoryTile extends StatelessWidget {
               SizedBox.square(
                 dimension: AppDimens.width_18,
                 child: AppImageWidget(
-                  path: IconConstants.check,
+                  path: IconConstants.icCheck,
                 ),
               )
           ],

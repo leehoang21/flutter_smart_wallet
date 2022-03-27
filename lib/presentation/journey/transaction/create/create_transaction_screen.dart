@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
+import 'package:flutter_smart_wallet/common/constants/app_dimens.dart';
 import 'package:flutter_smart_wallet/model/transaction_model.dart';
-import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create_transaction_bloc.dart';
-import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create_transaction_state.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/add_photo/add_photo_bloc.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create/create_transaction_bloc.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create/create_transaction_state.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/create_transaction_constants.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/widget/create_transaction_form.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/widget/inovoice_photos_widget.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/appbar_widget/appbar_widget.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/button_widget/text_button_widget.dart';
-import 'package:flutter_smart_wallet/presentation/widgets/keyboard_avoider/keyboard_avoider.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/scaffold_wdiget/scaffold_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_smart_wallet/common/extensions/date_time_extension.dart';
@@ -36,6 +36,7 @@ class _CreateTransactionScreenState extends State<CreateTransactionScreen> {
   final TextEditingController _noteCtl = TextEditingController();
 
   late CreateTransactionBloc _createTransactionBloc;
+  late AddPhotoBloc _addPhotoBloc;
 
   TransactionModel? _transaction;
 
@@ -43,6 +44,7 @@ class _CreateTransactionScreenState extends State<CreateTransactionScreen> {
   void initState() {
     _transaction = widget.transaction;
     _createTransactionBloc = BlocProvider.of<CreateTransactionBloc>(context);
+    _addPhotoBloc = BlocProvider.of<AddPhotoBloc>(context);
     if (_transaction != null) {
       _amountCtrl.text = _transaction!.amount.getTextAmount;
       _walletCtrl.text = _transaction!.category.name!;
@@ -62,6 +64,8 @@ class _CreateTransactionScreenState extends State<CreateTransactionScreen> {
     _categoryCtl.dispose();
     _dateCtl.dispose();
     _noteCtl.dispose();
+    _createTransactionBloc.close();
+    _addPhotoBloc.close();
     super.dispose();
   }
 
@@ -82,54 +86,63 @@ class _CreateTransactionScreenState extends State<CreateTransactionScreen> {
             Navigator.pop(context);
           }
         },
-        child: Padding(
-          padding: EdgeInsets.only(
-            top: LayoutConstants.paddingTop24,
-          ),
-          child: Column(
-            children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    CreateTransactionForm(
-                      amountCtrl: _amountCtrl,
-                      walletCtrl: _walletCtrl,
-                      categoryCtl: _categoryCtl,
-                      dateCtl: _dateCtl,
-                      noteCtl: _noteCtl,
-                    ),
-                    SizedBox(
-                      height: CreateTransactionConstants.sizedBoxHeight12,
-                    ),
-                    InvoicePhotosWidget(),
-                  ],
-                ),
+        child: LayoutBuilder(builder: (context, constraint) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraint.maxHeight),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: AppDimens.height_24,
+                      ),
+                      CreateTransactionForm(
+                        amountCtrl: _amountCtrl,
+                        walletCtrl: _walletCtrl,
+                        categoryCtl: _categoryCtl,
+                        dateCtl: _dateCtl,
+                        noteCtl: _noteCtl,
+                      ),
+                      SizedBox(
+                        height: AppDimens.height_12,
+                      ),
+                      InvoicePhotosWidget(),
+                      SizedBox(
+                        height: AppDimens.height_12,
+                      ),
+                    ],
+                  ),
+                  BlocBuilder<CreateTransactionBloc, CreateTransactionState>(
+                    bloc: _createTransactionBloc,
+                    buildWhen: (previous, current) =>
+                        previous.buttonIsValid != current.buttonIsValid,
+                    builder: (context, state) {
+                      return TextButtonWidget(
+                          onPressed: state.buttonIsValid
+                              ? _transaction != null
+                                  ? _onEdit
+                                  : _onCreate
+                              : null,
+                          title: _transaction != null
+                              ? CreateTransactionConstants.update
+                              : CreateTransactionConstants.create);
+                    },
+                  ),
+                ],
               ),
-              BlocBuilder<CreateTransactionBloc, CreateTransactionState>(
-                bloc: _createTransactionBloc,
-                buildWhen: (previous, current) =>
-                    previous.buttonIsValid != current.buttonIsValid,
-                builder: (context, state) {
-                  return TextButtonWidget(
-                      onPressed: state.buttonIsValid
-                          ? _transaction != null
-                              ? _onEdit
-                              : _onCreate
-                          : null,
-                      title: _transaction != null
-                          ? CreateTransactionConstants.update
-                          : CreateTransactionConstants.create);
-                },
-              )
-            ],
-          ),
-        ),
+            ),
+          );
+        }),
       ),
     );
   }
 
   void _onCreate() {
-    _createTransactionBloc.onCreate(note: _noteCtl.text);
+    _createTransactionBloc.onCreate(
+        note: _noteCtl.text, photos: _addPhotoBloc.state.photos);
   }
 
   void _onEdit() {

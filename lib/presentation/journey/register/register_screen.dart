@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_wallet/common/constants/app_dimens.dart';
 import 'package:flutter_smart_wallet/common/constants/image_constants.dart';
@@ -119,7 +118,7 @@ class RegisterScreen extends StatelessWidget {
     final Either? _result = await pickImageFuncion(
         context: context,
         gallery: (context) async {
-          await context.read<PickImageCubit>().captureImage();
+          await context.read<PickImageCubit>().pickImageFromGallery();
           await cropImage(context);
           await resultUrl(context, _id);
         },

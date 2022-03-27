@@ -1,4 +1,8 @@
+import 'dart:developer';
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_smart_wallet/common/configs/default_environment.dart';
 import 'package:flutter_smart_wallet/common/utils/internet_checker.dart';
 import 'package:flutter_smart_wallet/common/utils/validator.dart';
 import 'package:flutter_smart_wallet/model/category_model.dart';
@@ -8,26 +12,25 @@ import 'package:flutter_smart_wallet/presentation/bloc/base_bloc/base_bloc.dart'
 import 'package:flutter_smart_wallet/presentation/bloc/loading_bloc/loading_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_type.dart';
-import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create_transaction_state.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create/create_transaction_state.dart';
+import 'package:flutter_smart_wallet/use_case/pick_image_use_case.dart';
 import 'package:flutter_smart_wallet/use_case/transaction_use_case.dart';
 import 'package:flutter_smart_wallet/use_case/user_use_case.dart';
 
 class CreateTransactionBloc extends BaseBloc<CreateTransactionState> {
   final TransactionUseCase _transactionUseCase;
   final UserUseCase _useCase;
+  final PickImageUseCase _pickImageUseCase;
   final SnackbarBloc _snackbarBloc;
   final LoadingBloc _loadingBloc;
 
   late String _uid;
-  CreateTransactionBloc(
-      this._transactionUseCase,
-      this._useCase,
-      this._snackbarBloc,
-      this._loadingBloc)
+  CreateTransactionBloc(this._transactionUseCase, this._useCase,
+      this._pickImageUseCase, this._snackbarBloc, this._loadingBloc)
       : super(
           CreateTransactionState.initial(),
         ) {
-    _uid = _useCase.getUid();
+    _uid = 'ra1g58S8I1a5BDwAP7BMAk6nakF2';
   }
 
   @override
@@ -96,21 +99,33 @@ class CreateTransactionBloc extends BaseBloc<CreateTransactionState> {
     );
   }
 
-  Future<void> onCreate({String? note}) async {
+  Future<void> onCreate(
+      {String? note, List<Uint8List> photos = const []}) async {
     _loadingBloc.startLoading();
     if (await InternetChecker.hasConnection()) {
       try {
-        _transactionUseCase.addTransaction(
-          _uid,
-          TransactionModel(
-              amount: state.amount!,
-              category: state.category!,
-              spendTime: state.spendTime.millisecondsSinceEpoch,
-              wallet: state.wallet!,
-              note: note,
-              createAt: DateTime.now().millisecondsSinceEpoch,
-              lastUpdate: DateTime.now().millisecondsSinceEpoch),
-        );
+        TransactionModel transaction = TransactionModel(
+            amount: state.amount!,
+            category: state.category!,
+            spendTime: state.spendTime.millisecondsSinceEpoch,
+            wallet: state.wallet!,
+            note: note,
+            createAt: DateTime.now().millisecondsSinceEpoch,
+            lastUpdate: DateTime.now().millisecondsSinceEpoch);
+        final transactionId =
+            await _transactionUseCase.addTransaction(_uid, transaction);
+        log('transaction id : $transactionId');
+        final List<String> imagePaths = [];
+        for (final photo in photos) {
+          final String storagePath =
+              '$_uid/${DefaultEnvironment.transaction}/$transactionId/${DateTime.now().millisecondsSinceEpoch}.png';
+          final path = await _pickImageUseCase.upAndDownImage(
+              imageToUpload: photo, imagePathStorage: storagePath);
+          imagePaths.add(path);
+        }
+        transaction =
+            transaction.copyWith(id: transactionId, photos: imagePaths);
+        _transactionUseCase.updateTransaction(_uid, transaction);
         _loadingBloc.finishLoading();
         emit(
           state.copyWith(
@@ -125,6 +140,8 @@ class CreateTransactionBloc extends BaseBloc<CreateTransactionState> {
             lastUpdate: DateTime.now(),
           ),
         );
+        log('error code: ${e.code}');
+        log('error message: ${e.message}');
         _loadingBloc.finishLoading();
         _snackbarBloc.showSnackbar(
             translationKey: e.message ?? '', type: SnackBarType.error);

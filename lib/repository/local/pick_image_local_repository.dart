@@ -28,8 +28,8 @@ class PickImageLocalRepository {
   Future<List<Uint8List>> multiImage() async {
     final List<XFile>? files = await _imagePicker.pickMultiImage();
     final List<Uint8List> images = [];
-    for (final file in files ?? []) {
-      final image = await Compress.compressWithFile(file, 100);
+    for (final file in files ?? <XFile>[]) {
+      final image = await Compress.compressWithFile(File(file.path), 100);
       images.add(image);
     }
     return images;

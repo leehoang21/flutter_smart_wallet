@@ -32,7 +32,7 @@ class PickImageUseCase {
 
   Future<List<Uint8List>> multiImagePicker() async {
     final images = await localRepository.multiImage();
-    if (images.isEmpty) {
+    if (images.isNotEmpty) {
       return images;
     } else {
       throw PickImageException('no_image_selected');

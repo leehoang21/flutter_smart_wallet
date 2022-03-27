@@ -8,7 +8,8 @@ import 'package:flutter_smart_wallet/presentation/journey/register/cubit/registe
 import 'package:flutter_smart_wallet/presentation/journey/register/register_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/splash/splash_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/bank_list_screen/bank_list_screen.dart';
-import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create_transaction_bloc.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/add_photo/add_photo_bloc.dart';
+import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create/create_transaction_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/category_screen/bloc/category_select_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/category_screen/category_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/wallet_list_screen/wallet_list_screen.dart';
@@ -37,6 +38,9 @@ class Routes {
             providers: [
               BlocProvider(
                 create: (_) => Injector.getIt.get<CreateTransactionBloc>(),
+              ),
+              BlocProvider(
+                create: (_) => Injector.getIt.get<AddPhotoBloc>(),
               )
             ],
             child: CreateTransactionScreen(

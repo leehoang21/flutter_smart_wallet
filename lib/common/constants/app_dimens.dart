@@ -46,10 +46,12 @@ class AppDimens {
   static double height_52 = 52.h;
   static double height_56 = 56.h;
   static double height_60 = 60.h;
+  static double height_100 = 100.h;
 
   /// Width
   static double width_8 = 8.w;
   static double width_12 = 12.w;
   static double width_16 = 16.w;
   static double width_18 = 18.w;
+  static double width_20 = 20.w;
 }
