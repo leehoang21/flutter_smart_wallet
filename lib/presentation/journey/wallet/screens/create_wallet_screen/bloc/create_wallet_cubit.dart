@@ -11,12 +11,12 @@ import 'package:flutter_smart_wallet/presentation/widgets/button_widget/text_but
 import 'package:flutter_smart_wallet/use_case/wallet_list_use_case.dart';
 
 class CreateWalletState extends Equatable {
-  WalletTypeModel walletTypeModel;
-  int balance;
-  String walletName;
-  WalletTypeModel walletTypeSelecting;
-  ButtonState buttonState;
-  String? walletImage;
+  final WalletTypeModel walletTypeModel;
+  final int balance;
+  final String walletName;
+  final WalletTypeModel walletTypeSelecting;
+  final ButtonState buttonState;
+  final String? walletImage;
 
   CreateWalletState(
       {required this.walletTypeModel,

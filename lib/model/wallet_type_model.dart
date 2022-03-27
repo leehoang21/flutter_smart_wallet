@@ -1,6 +1,6 @@
 class WalletTypeModel{
-  int? id;
-  String? name;
+  final int? id;
+  final String? name;
 
   WalletTypeModel({this.id, this.name});
 

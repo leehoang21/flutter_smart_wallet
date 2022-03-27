@@ -28,9 +28,9 @@ class WalletRepositoryImpl extends WalletRepository{
 
   Future<Map> fetchWalletListFirebase(String userId) async {
     final response = await firebaseConfig.userDoc
-        .collection('customer')
-        .doc('profile')
-        .collection('wallet').get();
+        .collection(DefaultEnvironment.customer)
+        .doc(DefaultEnvironment.profile)
+        .collection(DefaultEnvironment.walletList).get();
     if (isNullEmpty(response.docs)) {
       log(response.docs.toString());
       return {};
@@ -50,19 +50,19 @@ class WalletRepositoryImpl extends WalletRepository{
   {required String userId,required WalletModel walletModel}) async {
     try {
       final result = await firebaseConfig.userDoc
-          .collection('customer')
-      .doc('profile')
-          .collection('wallet').doc(walletModel.id.toString()).get();
+          .collection(DefaultEnvironment.customer)
+          .doc(DefaultEnvironment.profile)
+          .collection(DefaultEnvironment.walletList).doc(walletModel.id.toString()).get();
       if (isNullEmpty(result.data())) {
         await firebaseConfig.userDoc
-            .collection('customer')
-            .doc('profile')
-            .collection('wallet').add(walletModel.toJson());
+            .collection(DefaultEnvironment.customer)
+            .doc(DefaultEnvironment.profile)
+            .collection(DefaultEnvironment.walletList).add(walletModel.toJson());
       } else {
         await firebaseConfig.userDoc
-            .collection('customer')
-            .doc('profile')
-            .collection('wallet')
+            .collection(DefaultEnvironment.customer)
+            .doc(DefaultEnvironment.profile)
+            .collection(DefaultEnvironment.walletList)
             .doc(walletModel.id.toString()).update(walletModel.toJson());
       }
       return true;
