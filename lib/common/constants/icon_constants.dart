@@ -15,5 +15,5 @@ class IconConstants {
   static const String icCash = '$_path/icon_paper_money.png';
   static const String icWallet = '$_path/icon_wallet.png';
   static const String icWalletName = '$_path/icon_wallet_name.png';
-  static const String check = "$_path/check.svg";
+  static const String icCheck = "$_path/check.svg";
 }

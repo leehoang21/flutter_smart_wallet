@@ -44,8 +44,8 @@ class Injector {
     getIt.registerFactory(
       () => TabMangerCubit(),
     );
-    getIt.registerFactory<BankSearchCubit>(
-          () => BankSearchCubit(getIt.get<VnBankUseCase>()),
+    getIt.registerFactory(
+      () => BankSearchCubit(getIt.get<VnBankUseCase>()),
     );
     getIt.registerFactory(
       () => PickImageCubit(getIt.get<PickImageUseCase>()),
@@ -85,7 +85,7 @@ class Injector {
 
   static void _configureRepository() {
     getIt.registerFactory(
-          () => VnBankRepository(DioApiClient()),
+      () => VnBankRepository(getIt.get<DioApiClient>()),
     );
     getIt.registerFactory<WalletRepository>(
       () => WalletRepositoryImpl(getIt.get<FirebaseConfig>()),
@@ -102,6 +102,7 @@ class Injector {
   }
 
   static void _configCommon() {
+    getIt.registerLazySingleton(() => DioApiClient());
     getIt.registerLazySingleton<FirebaseConfig>(() => FirebaseConfig());
     getIt.registerLazySingleton<FirebaseAuth>(
       () => FirebaseAuth.instance,

@@ -71,7 +71,7 @@
   "transaction_category_screen_debt_collection": "Thu tiền nợ",
   "transaction_category_screen_borrow": "Tiền mượn",
   "transaction_category_screen_loan": "Vay nợ",
-  "transaction_category_screen_pay": "Khoản thanh toán"
+  "transaction_category_screen_pay": "Khoản thanh toán",
   "invalid_email": "Email không hợp lệ",
   "user_empty": "tên tài khoản không được để trống",
   "no_image_selected": "Không có hình ảnh nào được chọn",
