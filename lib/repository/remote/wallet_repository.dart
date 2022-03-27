@@ -52,7 +52,7 @@ class WalletRepositoryImpl extends WalletRepository{
       final result = await firebaseConfig.userDoc
           .collection('customer')
       .doc('profile')
-          .collection('wallet').doc(walletModel.createAt.toString()).get();
+          .collection('wallet').doc(walletModel.id.toString()).get();
       if (isNullEmpty(result.data())) {
         await firebaseConfig.userDoc
             .collection('customer')
@@ -63,7 +63,7 @@ class WalletRepositoryImpl extends WalletRepository{
             .collection('customer')
             .doc('profile')
             .collection('wallet')
-            .doc(walletModel.createAt.toString()).update(walletModel.toJson());
+            .doc(walletModel.id.toString()).update(walletModel.toJson());
       }
       return true;
     } catch (e) {

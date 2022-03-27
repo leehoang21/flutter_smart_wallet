@@ -6,6 +6,7 @@ import 'dart:async' as _i4;
 
 import 'package:flutter_smart_wallet/common/configs/firebase_config.dart'
     as _i2;
+import 'package:flutter_smart_wallet/model/wallet_model.dart' as _i5;
 import 'package:flutter_smart_wallet/repository/remote/wallet_repository.dart'
     as _i3;
 import 'package:mockito/mockito.dart' as _i1;
@@ -40,5 +41,11 @@ class MockWalletRepository extends _i1.Mock implements _i3.WalletRepository {
               returnValue:
                   Future<Map<dynamic, dynamic>>.value(<dynamic, dynamic>{}))
           as _i4.Future<Map<dynamic, dynamic>>);
-
+  @override
+  _i4.Future<bool> addAndUpdateWalletListFirebase(
+          {String? userId, _i5.WalletModel? walletModel}) =>
+      (super.noSuchMethod(
+          Invocation.method(#addAndUpdateWalletListFirebase, [],
+              {#userId: userId, #walletModel: walletModel}),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
-import 'package:flutter_smart_wallet/common/utils/app_text_input_formatter.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/text_field_widget/text_field_constants.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 

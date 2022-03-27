@@ -1,11 +1,11 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_wallet/common/constants/app_dimens.dart';
 import 'package:flutter_smart_wallet/common/constants/image_constants.dart';
+import 'package:flutter_smart_wallet/common/constants/route_list.dart';
 import 'package:flutter_smart_wallet/common/utils/app_utils.dart';
-import 'package:flutter_smart_wallet/presentation/app.dart';
+import 'package:flutter_smart_wallet/model/bank_info_model.dart';
 import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/create_wallet_screen/bloc/create_wallet_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/app_image_widget.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/appbar_widget/appbar_widget.dart';
@@ -14,8 +14,7 @@ import 'package:flutter_smart_wallet/presentation/widgets/text_field_widget/text
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_smart_wallet/themes/theme_text.dart';
 import 'package:flutter_translate/flutter_translate.dart';
-
-import '../../../../../common/utils/app_text_input_formatter.dart';
+import 'package:intl/intl.dart';
 
 class CreateWalletScreen extends StatelessWidget {
   CreateWalletScreen({Key? key}) : super(key: key);
@@ -23,6 +22,12 @@ class CreateWalletScreen extends StatelessWidget {
   final walletTypeController = TextEditingController();
   final balanceController = TextEditingController();
   final walletNameController = TextEditingController();
+  static const _locale = 'en';
+  String _formatNumber(String s) =>
+      NumberFormat.decimalPattern(_locale).format(int.parse(s));
+  String get _currency =>
+      NumberFormat.compactSimpleCurrency(locale: 'vi').currencySymbol;
+  String imagePath = '';
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +45,6 @@ class CreateWalletScreen extends StatelessWidget {
             textAlign: TextAlign.center,
             style: ThemeText.style18Bold.copyWith(color: AppColor.white),
           ),
-          //  color: AppColor.ebonyClay,
           leading: GestureDetector(
             onTap: () => Navigator.pop(context),
             child: Padding(
@@ -86,7 +90,6 @@ class CreateWalletScreen extends StatelessWidget {
                       controller: walletTypeController,
                       textStyle: ThemeText.style14Medium
                           .copyWith(height: 1.5, color: AppColor.grey),
-                      //   hintText: translate(createWalletState.walletTypeModel.id! == 1 ?'cash':'bank_account')
                     ),
                     SizedBox(height: AppDimens.space_16),
                     Text(
@@ -103,19 +106,29 @@ class CreateWalletScreen extends StatelessWidget {
                           height: AppDimens.space_26,
                           width: AppDimens.space_26),
                       controller: balanceController
-                        // ..addListener(() {
-                        //   context
-                        //       .read<CreateWalletCubit>()
-                        //       .onChangedButtonState(
-                        //           balanceController.text.isNotEmpty &&
-                        //               walletNameController.text.isNotEmpty);
-                        // })
-                      ,
-                      hintText: '0đ',
-                      keyboardType: TextInputType.phone,
-                      inputFormatters: [
-                        CurrencyTextInputFormatter(locate: 'vi_VN'),
-                      ],
+                        ..addListener(() {
+                          if (balanceController.text.length > 1) {
+                            String str =
+                                '${_formatNumber(balanceController.text.substring(0, balanceController.text.length - 1).replaceAll(',', ''))}';
+                            log(str);
+                            balanceController.value = TextEditingValue(
+                              text: str + _currency,
+                              selection:
+                                  TextSelection.collapsed(offset: str.length),
+                            );
+                            context
+                                .read<CreateWalletCubit>()
+                                .onChangedButtonState(
+                                    walletNameController.text.isNotEmpty);
+                          } else {
+                            context
+                                .read<CreateWalletCubit>()
+                                .onChangedButtonState(false);
+                          }
+                        }),
+                      onChanged: (string) {},
+                      hintText: '0' + _currency,
+                      keyboardType: TextInputType.number,
                       textStyle: ThemeText.style14Medium
                           .copyWith(height: 1.5, color: AppColor.grey),
                     ),
@@ -130,9 +143,28 @@ class CreateWalletScreen extends StatelessWidget {
                           context
                               .read<CreateWalletCubit>()
                               .onChangedButtonState(
-                                  balanceController.text.isNotEmpty &&
-                                      walletNameController.text.isNotEmpty);
+                                  walletNameController.text.isNotEmpty);
                         }),
+                      readOnly: context
+                              .read<CreateWalletCubit>()
+                              .state
+                              .walletTypeModel ==
+                          walletTypeList.last,
+                      onTap: () async {
+                        if (context
+                                .read<CreateWalletCubit>()
+                                .state
+                                .walletTypeModel ==
+                            walletTypeList.last) {
+                          final result = await Navigator.pushNamed(
+                              context, RouteList.bankListScreen);
+                          if (result != null) {
+                            walletNameController.text =
+                                (result as BankInfoModel).code ?? "";
+                            imagePath = (result).logo ?? "";
+                          }
+                        }
+                      },
                       hintText: translate('wallet_name'),
                       textStyle: ThemeText.style14Medium
                           .copyWith(height: 1.5, color: AppColor.grey),
@@ -146,33 +178,21 @@ class CreateWalletScreen extends StatelessWidget {
                 right: AppDimens.space_16,
                 bottom: AppDimens.space_16,
                 child: TextButtonWidget(
-                  onPressed: () => context
-                      .read<CreateWalletCubit>()
-                      .onCreateWallet(
-                          name: walletNameController.text,
-                          balance: balanceController.text),
+                  onPressed: () {
+                    context.read<CreateWalletCubit>().onCreateWallet(context,
+                        name: walletNameController.text,
+                        balance: balanceController.text,
+                        imagePath: imagePath);
+                    walletNameController.text = '';
+                    balanceController.text = '';
+                    FocusScope.of(context).unfocus();
+                  },
                   buttonState:
                       context.watch<CreateWalletCubit>().state.buttonState,
-                  title: translate('confirm'),
+                  title: translate('create'),
                 )),
           ],
         ),
-        // bottomNavigationBar:    Container(
-        //   color: AppColor.white,
-        //   child: GestureDetector(
-        //     onTap: ()=> context.read<CreateWalletCubit>().onChangedWalletTypeSelected(),
-        //     child: Container(
-        //         margin: EdgeInsets.all(AppDimens.space_16),
-        //         height: AppDimens.height_52,
-        //         decoration: BoxDecoration(
-        //             borderRadius: BorderRadius.circular(AppDimens.radius_12),
-        //             color: AppColor.grey
-        //         ),
-        //         child:   Center(child: Text(translate('create'), style: ThemeText.style14Medium.copyWith(fontWeight: FontWeight.bold, color: AppColor.white),))
-        //
-        //     ),
-        //   ),
-        // )
       );
     });
   }
@@ -181,12 +201,10 @@ class CreateWalletScreen extends StatelessWidget {
       isDismissible: false,
       context: context,
       builder: (BuildContext bottomContext) {
-        int selected = 1;
         return BlocProvider.value(
           value: BlocProvider.of<CreateWalletCubit>(context),
           child: BlocBuilder<CreateWalletCubit, CreateWalletState>(
               builder: (context, createWalletState) => Container(
-
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
@@ -202,35 +220,6 @@ class CreateWalletScreen extends StatelessWidget {
                               onPressed: () => Navigator.pop(context),
                               icon: Icon(Icons.close)),
                         ),
-                        // Container(
-                        //   width: ScreenUtil().screenWidth,
-                        //   color: Colors.red,
-                        //   child: Center(
-                        //     child: Row(
-                        //       // mainAxisAlignment: MainAxisAlignment.center,
-                        //       children: [
-                        //         // Expanded(
-                        //         //   flex: 5,
-                        //           //child:
-                        //           Center(
-                        //             child: Text(
-                        //               translate(('wallet_type')),
-                        //               style: ThemeText.style18Bold
-                        //                   .copyWith(fontWeight: FontWeight.w500),
-                        //             ),
-                        //           ),
-                        //         // ),
-                        //         // Expanded(
-                        //         //   flex: 1,
-                        //           //child:
-                        //           IconButton(
-                        //               onPressed: () => Navigator.pop(context),
-                        //               icon: Icon(Icons.close)),
-                        //         // ),
-                        //       ],
-                        //     ),
-                        //   ),
-                        // ),
                         Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: AppDimens.space_16),
@@ -297,6 +286,7 @@ class CreateWalletScreen extends StatelessWidget {
                                 context
                                     .read<CreateWalletCubit>()
                                     .onChangedWalletTypeSelected();
+                                walletNameController.text = '';
                                 Navigator.pop(context);
                               }),
                         ),

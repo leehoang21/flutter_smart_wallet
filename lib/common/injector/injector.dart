@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_smart_wallet/common/configs/dio_config/dio_api_client.dart';
 import 'package:flutter_smart_wallet/common/configs/firebase_config.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/language_bloc/language_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/loading_bloc/loading_bloc.dart';
@@ -16,7 +17,7 @@ import 'package:flutter_smart_wallet/repository/remote/vn_bank_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/wallet_repository.dart';
 import 'package:flutter_smart_wallet/use_case/pick_image_use_case.dart';
 import 'package:flutter_smart_wallet/use_case/register_use_case.dart';
-import 'package:flutter_smart_wallet/use_case/vn_bank_usse_case.dart';
+import 'package:flutter_smart_wallet/use_case/vn_bank_use_case.dart';
 import 'package:flutter_smart_wallet/use_case/wallet_list_use_case.dart';
 import 'package:get_it/get_it.dart';
 
@@ -43,8 +44,8 @@ class Injector {
     getIt.registerFactory(
       () => TabMangerCubit(),
     );
-    getIt.registerFactory(
-      () => BankSearchCubit(),
+    getIt.registerFactory<BankSearchCubit>(
+          () => BankSearchCubit(getIt.get<VnBankUseCase>()),
     );
     getIt.registerFactory(
       () => PickImageCubit(getIt.get<PickImageUseCase>()),
@@ -71,8 +72,8 @@ class Injector {
         remoteRepository: getIt.get<UpDownStorageRemoteRepository>(),
       ),
     );
-    getIt.registerFactory(
-      () => VnBankUseCase(),
+    getIt.registerFactory<VnBankUseCase>(
+          () => VnBankUseCase(getIt.get<VnBankRepository>()),
     );
     getIt.registerFactory<WalletUseCase>(
       () => WalletUseCase(getIt.get<WalletRepository>()),
@@ -84,7 +85,7 @@ class Injector {
 
   static void _configureRepository() {
     getIt.registerFactory(
-      () => VnBankRepository(),
+          () => VnBankRepository(DioApiClient()),
     );
     getIt.registerFactory<WalletRepository>(
       () => WalletRepositoryImpl(getIt.get<FirebaseConfig>()),

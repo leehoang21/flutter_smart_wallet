@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_wallet/common/utils/app_utils.dart';
 import 'package:flutter_smart_wallet/common/utils/internet_checker.dart';
@@ -7,7 +8,6 @@ import 'package:flutter_smart_wallet/model/wallet_type_model.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_type.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/button_widget/text_button_widget.dart';
-import 'package:flutter_smart_wallet/presentation/widgets/snackbar_widget/snackbar_route.dart';
 import 'package:flutter_smart_wallet/use_case/wallet_list_use_case.dart';
 
 class CreateWalletState extends Equatable {
@@ -39,7 +39,7 @@ class CreateWalletState extends Equatable {
           walletName: walletName ?? this.walletName,
           walletTypeSelecting: walletTypeSelecting ?? this.walletTypeSelecting,
           buttonState: buttonState ?? this.buttonState,
-          walletImage: walletImage ?? walletImage);
+          walletImage: walletImage ?? this.walletImage);
 
   @override
   List<Object?> get props => [
@@ -84,24 +84,34 @@ class CreateWalletCubit extends Cubit<CreateWalletState> {
         buttonState: active ? ButtonState.active : ButtonState.inactive));
   }
 
-  Future<void> onCreateWallet(
-      {required String name, required String balance}) async {
+  Future<void> onCreateWallet(BuildContext context,
+      {required String name,
+      required String balance,
+      required imagePath}) async {
     if (await InternetChecker.hasConnection()) {
       try {
         WalletModel newWallet = WalletModel(
           walletName: name,
           balance: int.parse(
-              balance.substring(0, balance.length - 1).replaceAll(".", "")),
-          walletImage: state.walletImage,
+              balance.substring(0, balance.length - 1).replaceAll(",", "")),
+          walletImage: imagePath,
           walletType: state.walletTypeModel.id,
           createAt: DateTime.now().millisecondsSinceEpoch,
           lastUpdate: DateTime.now().millisecondsSinceEpoch,
         );
-        final result = await walletUseCase.addAndUpdateWalletListFirebase(
-            "customer", newWallet);
+        final result =
+            await walletUseCase.addAndUpdateWalletListFirebase(
+                userId: "customer", walletModel: newWallet);
         if (result) {
           snackbarBloc.showSnackbar(
               translationKey: 'success', type: SnackBarType.success);
+          emit(state.update(
+              walletTypeModel: walletTypeList.first,
+              walletTypeSelecting: walletTypeList.first,
+              balance: 0,
+              walletName: '',
+              buttonState: ButtonState.inactive));
+          Navigator.pop(context, true);
         }
       } catch (e) {
         snackbarBloc.showSnackbar(

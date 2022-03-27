@@ -51,7 +51,7 @@ class BankListScreen extends StatelessWidget {
                             width: BankListScreenConstants.logoImmageWidth,
                           ),
                           onTap: () {
-                            // TODO(hung): handle adding bank info
+                            Navigator.pop(context, bank);
                           },
                         );
                       },

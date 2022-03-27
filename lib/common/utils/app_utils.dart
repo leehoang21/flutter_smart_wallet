@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter_smart_wallet/model/wallet_type_model.dart';
+import 'package:intl/intl.dart';
 
 void logger(String message) {
   log('app_logger: {$message}');
@@ -30,26 +31,12 @@ List<WalletTypeModel> walletTypeList = [
   WalletTypeModel(id: 2, name: "Tài khoản ngân hàng")
 ];
 
-String formatMoney(String money) {
-  String newMoney = '';
-  int isDouble = money.indexOf('.');
-  if (isDouble != -1) {
-    money = money.replaceRange(isDouble, money.length, '');
-  }
-  if (money.length > 3) {
-    int head = money.length % 3;
-    newMoney += money.substring(0, head);
-    if (newMoney.length > 0) {
-      newMoney += '.';
-    }
-    for (int i = head; i < money.length; i = i + 3) {
-      newMoney += money.substring(i, i + 3);
-      if ((i + 3) != money.length) newMoney += '.';
-    }
-    return newMoney+'đ';
-  }
 
-  return money+'đ';
+const _locale = 'en';
+String _formatNumber(String s) => NumberFormat.decimalPattern(_locale).format(int.parse(s));
+String get _currency => NumberFormat.compactSimpleCurrency(locale: 'vi').currencySymbol;
+String formatMoney(String money) {
+  return _formatNumber(money)+_currency;
 }
 
 String formatPhoneNumber(String phoneNumber) {
