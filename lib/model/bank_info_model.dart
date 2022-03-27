@@ -1,11 +1,8 @@
-import 'package:json_annotation/json_annotation.dart';
-
 class BankInfoModel {
   final int? id;
   final String? bin;
   final String? code;
   final int? isTransfer;
-  @JsonKey(name: "short_name")
   final String? shortName;
   final String? logo;
   final int? support;
