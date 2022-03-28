@@ -28,6 +28,7 @@ class AppDimens {
   static double space_40 = 40.sp;
   static double space_44 = 44.sp;
   static double space_60 = 60.sp;
+  static double space_72 = 72.sp;
   static double space_80 = 80.sp;
 
   /// Height
