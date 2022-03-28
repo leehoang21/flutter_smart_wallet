@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_smart_wallet/common/configs/dio_config/dio_api_client.dart';
 import 'package:flutter_smart_wallet/common/configs/firebase_config.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/language_bloc/language_bloc.dart';
@@ -88,10 +89,10 @@ class Injector {
       () => PickImageLocalRepository(),
     );
     getIt.registerFactory(
-      () => UpDownStorageRemoteRepository(),
+      () => UpDownStorageRemoteRepository(getIt.get<FirebaseStorage>()),
     );
     getIt.registerFactory(
-      () => RegisterRepository(),
+      () => RegisterRepository(getIt.get<FirebaseConfig>()),
     );
   }
 
@@ -100,6 +101,9 @@ class Injector {
     getIt.registerLazySingleton<FirebaseConfig>(() => FirebaseConfig());
     getIt.registerLazySingleton<FirebaseAuth>(
       () => FirebaseAuth.instance,
+    );
+    getIt.registerLazySingleton(
+      () => FirebaseStorage.instance,
     );
   }
 }

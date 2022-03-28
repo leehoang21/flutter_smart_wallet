@@ -4,7 +4,8 @@ import 'package:flutter_smart_wallet/common/utils/compress.dart';
 import 'package:flutter_smart_wallet/common/utils/internet_checker.dart';
 
 class UpDownStorageRemoteRepository {
-  final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
+  final FirebaseStorage _firebaseStorage;
+  UpDownStorageRemoteRepository(this._firebaseStorage);
 
   Future<bool> putUnit8List({
     required Uint8List data,

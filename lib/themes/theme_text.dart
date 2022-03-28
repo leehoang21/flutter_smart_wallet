@@ -98,4 +98,15 @@ class ThemeText {
     color: AppColor.textColor,
     fontWeight: FontWeight.bold,
   );
+
+  static TextStyle titleAction = TextStyle(
+    color: AppColor.blue,
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w300,
+  );
+
+  static TextStyle cancelButton = TextStyle(
+    color: AppColor.blue,
+    fontSize: 16.sp,
+  );
 }
