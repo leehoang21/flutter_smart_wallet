@@ -15,7 +15,7 @@ class WalletUseCase {
       final result = await walletRepository.fetchWalletListFirebase(userId);
       if (result != null) {
         result.forEach((key, value) {
-          walletList.add(WalletModel.fromJson(value));
+          walletList.add(WalletModel.fromJson({key:value}));
         });
       }
     } catch (e) {
@@ -25,10 +25,10 @@ class WalletUseCase {
   }
 
   Future<bool> addAndUpdateWalletListFirebase(
-      String userId, WalletModel walletModel) async {
+  {required  String userId,required WalletModel walletModel}) async {
     try {
       final result = await walletRepository.addAndUpdateWalletListFirebase(
-          userId, {"${walletModel.createAt}": walletModel.toJson()});
+          userId: userId,walletModel: walletModel );
       return result;
     } catch (e) {
       return false;

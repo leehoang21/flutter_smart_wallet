@@ -8,6 +8,7 @@ import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_bl
 import 'package:flutter_smart_wallet/presentation/journey/main/bloc/tab_manger_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/register/cubit/register_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/bank_list_screen/bloc/bank_search_cubit.dart';
+import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/create_wallet_screen/bloc/create_wallet_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/wallet_list_screen/bloc/wallet_list_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/pick_image/cubit/pick_image_cubit.dart';
 import 'package:flutter_smart_wallet/repository/local/pick_image_local_repository.dart';
@@ -58,6 +59,11 @@ class Injector {
         registerUseCase: getIt.get<RegisterUseCase>(),
       ),
     );
+    getIt.registerFactory<CreateWalletCubit>(
+      () => CreateWalletCubit(
+          walletUseCase: getIt.get<WalletUseCase>(),
+          snackbarBloc: getIt.get<SnackbarBloc>()),
+    );
   }
 
   static void _configureUseCase() {
@@ -67,8 +73,8 @@ class Injector {
         remoteRepository: getIt.get<UpDownStorageRemoteRepository>(),
       ),
     );
-    getIt.registerFactory(
-      () => VnBankUseCase(getIt.get<VnBankRepository>()),
+    getIt.registerFactory<VnBankUseCase>(
+          () => VnBankUseCase(getIt.get<VnBankRepository>()),
     );
     getIt.registerFactory<WalletUseCase>(
       () => WalletUseCase(getIt.get<WalletRepository>()),

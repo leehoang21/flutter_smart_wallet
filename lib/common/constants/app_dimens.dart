@@ -43,6 +43,7 @@ class AppDimens {
   static double height_32 = 32.h;
   static double height_36 = 36.h;
   static double height_44 = 44.h;
+  static double height_48 = 48.h;
   static double height_50 = 50.h;
   static double height_52 = 52.h;
   static double height_56 = 56.h;

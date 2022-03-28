@@ -27,6 +27,8 @@ class TextFieldWidget extends StatelessWidget {
   final TextCapitalization? textCapitalization;
   final TextInputType? keyboardType;
   final bool? obscureText;
+  final bool? readOnly;
+  final List<TextInputFormatter>? inputFormatters;
   final bool? enabled;
 
   const TextFieldWidget(
@@ -52,12 +54,14 @@ class TextFieldWidget extends StatelessWidget {
       this.textCapitalization,
       this.keyboardType,
       this.obscureText,
-      this.onTap})
+      this.onTap,
+      this.readOnly,  this.inputFormatters})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: readOnly ?? false,
       enabled: enabled,
       controller: controller,
       initialValue: initValue,

@@ -67,9 +67,7 @@ class BankListScreen extends StatelessWidget {
                             width: AppDimens.space_72,
                           ),
                           onTap: () {
-                            /// get selected bank by using bank object
-                            /// e.g bank.id...
-                            // TODO(hung): handle adding bank info
+                            Navigator.pop(context, bank);
                           },
                         );
                       },

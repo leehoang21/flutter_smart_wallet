@@ -5,6 +5,8 @@ import 'package:flutter_smart_wallet/common/configs/default_environment.dart';
 import 'package:flutter_smart_wallet/common/configs/dio_config/base_response.dart';
 import 'package:flutter_smart_wallet/common/configs/dio_config/dio_api_client.dart';
 import 'package:flutter_smart_wallet/common/configs/firebase_config.dart';
+import 'package:flutter_smart_wallet/common/utils/app_utils.dart';
+import 'package:flutter_smart_wallet/model/wallet_model.dart';
 
 
 abstract class WalletRepository{
@@ -16,7 +18,7 @@ abstract class WalletRepository{
   Future<Map> fetchWalletListFirebase(String userId);
 
   Future<bool> addAndUpdateWalletListFirebase(
-      String userId, Map<String,Object?> data);
+      {required String userId,required WalletModel walletModel});
 }
 
 
@@ -26,10 +28,10 @@ class WalletRepositoryImpl extends WalletRepository{
 
   Future<Map> fetchWalletListFirebase(String userId) async {
     final response = await firebaseConfig.userDoc
-        .collection('customer')
-        .doc('profile')
-        .collection('wallet').get();
-    if (response.docs == null) {
+        .collection(DefaultEnvironment.customer)
+        .doc(DefaultEnvironment.profile)
+        .collection(DefaultEnvironment.walletList).get();
+    if (isNullEmpty(response.docs)) {
       log(response.docs.toString());
       return {};
     } else {
@@ -45,26 +47,23 @@ class WalletRepositoryImpl extends WalletRepository{
   }
 
   Future<bool> addAndUpdateWalletListFirebase(
-      String userId, Map<String,Object?> data) async {
+  {required String userId,required WalletModel walletModel}) async {
     try {
-      final result = await FirebaseFirestore.instance
-          .doc(DefaultEnvironment.smartWallet)
-          .collection(DefaultEnvironment.environment)
-          .doc('customer')
-      .collection('profile')
-          .doc('wallet').get();
-      if (result.data() == null) {
-        await FirebaseFirestore.instance
-            .collection(DefaultEnvironment.smartWallet)
-            .doc(DefaultEnvironment.environment)
-            .collection('customer')
-            .doc('wallet').set(data);
+      final result = await firebaseConfig.userDoc
+          .collection(DefaultEnvironment.customer)
+          .doc(DefaultEnvironment.profile)
+          .collection(DefaultEnvironment.walletList).doc(walletModel.id.toString()).get();
+      if (isNullEmpty(result.data())) {
+        await firebaseConfig.userDoc
+            .collection(DefaultEnvironment.customer)
+            .doc(DefaultEnvironment.profile)
+            .collection(DefaultEnvironment.walletList).add(walletModel.toJson());
       } else {
-        await FirebaseFirestore.instance
-            .collection(DefaultEnvironment.smartWallet)
-            .doc(DefaultEnvironment.environment)
-            .collection('customer')
-            .doc('wallet').update(data);
+        await firebaseConfig.userDoc
+            .collection(DefaultEnvironment.customer)
+            .doc(DefaultEnvironment.profile)
+            .collection(DefaultEnvironment.walletList)
+            .doc(walletModel.id.toString()).update(walletModel.toJson());
       }
       return true;
     } catch (e) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_smart_wallet/themes/theme_text.dart';
-
+enum ButtonState {active, inactive}
 class TextButtonWidget extends StatelessWidget {
   final Function()? onPressed;
   final Color? buttonColor;
@@ -10,11 +10,13 @@ class TextButtonWidget extends StatelessWidget {
   final String title;
   final double? width;
   final double? height;
+  final ButtonState? buttonState;
 
   const TextButtonWidget({
     Key? key,
     required this.onPressed,
     required this.title,
+    this.buttonState = ButtonState.active,
     this.buttonColor,
     this.titleColor,
     this.height,
@@ -25,7 +27,7 @@ class TextButtonWidget extends StatelessWidget {
     return TextButton(
       onPressed: onPressed,
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(onPressed != null
+        backgroundColor: MaterialStateProperty.all<Color>(buttonState == ButtonState.active
             ? this.buttonColor ?? AppColor.black
             : AppColor.iron),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
