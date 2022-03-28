@@ -12,38 +12,67 @@ void main() {
   group("WalletUseCase test: ", () {
     test(
         "Return a list of WalletModel when calling fetchWalletListFirebase() succeeded",
-            () async {
-          final mockWalletRepository = MockWalletRepository();
-          final mockWalletUseCase = WalletUseCase(mockWalletRepository);
-          when(mockWalletRepository.fetchWalletListFirebase("123")).thenAnswer(
-                (realInvocation) async => mockData,
-          );
-          expect(
-            await mockWalletUseCase.fetchWalletListFirebase("123"),
-            isA<List<WalletModel>>(),
-          );
-        });
+        () async {
+      final mockWalletRepository = MockWalletRepository();
+      final mockWalletUseCase = WalletUseCase(mockWalletRepository);
+      when(mockWalletRepository.fetchWalletListFirebase("123")).thenAnswer(
+        (realInvocation) async => mockData,
+      );
+      expect(
+        await mockWalletUseCase.fetchWalletListFirebase("123"),
+        isA<List<WalletModel>>(),
+      );
+    });
 
+    test("Return true when calling addAndUpdateWalletListFirebase() succeeded",
+        () async {
+      final mockWalletRepository = MockWalletRepository();
+      final mockWalletUseCase = WalletUseCase(mockWalletRepository);
+      when(
+       await mockWalletRepository.addAndUpdateWalletListFirebase(
+            userId: 'userId',
+            walletModel: WalletModel(
+              walletType: 1,
+              walletImage: '',
+              walletName: 'test123',
+              balance: 1234,
+              createAt: DateTime.now().millisecondsSinceEpoch,
+              lastUpdate: DateTime.now().millisecondsSinceEpoch,
+            )),
+      ).thenReturn(true);
+
+      expect(
+        await mockWalletUseCase.addAndUpdateWalletListFirebase(
+            userId: 'userId',
+            walletModel: WalletModel(
+              walletType: 1,
+              walletImage: '',
+              walletName: 'test123',
+              balance: 1234,
+              createAt: DateTime.now().millisecondsSinceEpoch,
+              lastUpdate: DateTime.now().millisecondsSinceEpoch,
+            )),
+        isA<bool>(),
+      );
+    });
   });
 }
 
 const mockData = {
-  "data1":
-    {
-      'walletImage': "",
-      'walletName': "test",
-      'balance': 1234,
-      'walletType': 1,
-      'createAt': 1,
-      'lastUpdate': 1,
-    },
-  "data2":  {
-      'walletImage': "",
-      'walletName': "test",
-      'balance': 1234,
-      'walletType': 1,
-      'createAt': 1,
-      'lastUpdate': 1,
-    },
-
+  "data1": {
+    'walletImage': "",
+    'walletName': "test",
+    'balance': 1234,
+    'walletType': 1,
+    'createAt': 1,
+    'lastUpdate': 1,
+  },
+  "data2": {
+    'walletImage': "",
+    'walletName': "test",
+    'balance': 1234,
+    'walletType': 1,
+    'createAt': 1,
+    'lastUpdate': 1,
+  },
 };

@@ -7,7 +7,6 @@ import 'dart:async' as _i3;
 import 'package:flutter_smart_wallet/repository/remote/register_repository.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -33,10 +32,9 @@ class MockRegisterRepository extends _i1.Mock
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
   @override
-  _i3.Future<Map<String, dynamic>?> fetchUser(String? userId) =>
-      (super.noSuchMethod(Invocation.method(#fetchUser, [userId]),
-              returnValue: Future<Map<String, dynamic>?>.value())
-          as _i3.Future<Map<String, dynamic>?>);
+  _i3.Future<bool> hasUserFirestore(String? userId) => (super.noSuchMethod(
+      Invocation.method(#fetchUser, [userId]),
+      returnValue: Future<Map<String, dynamic>?>.value()) as _i3.Future<bool>);
   @override
   _i3.Future<bool> hasconnection() =>
       (super.noSuchMethod(Invocation.method(#hasconnection, []),

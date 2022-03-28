@@ -4,20 +4,25 @@ import 'package:flutter_smart_wallet/model/bank_info_model.dart';
 import 'package:flutter_smart_wallet/use_case/vn_bank_use_case.dart';
 
 class BankSearchState extends Equatable {
-  const BankSearchState();
+  final String keyword;
+  const BankSearchState(this.keyword);
 
   @override
   List<Object?> get props => [];
 }
 
-class BankSearchNoResult extends BankSearchState {}
+class BankSearchNoResult extends BankSearchState {
+  const BankSearchNoResult(String keyword) : super(keyword);
+}
 
-class BankSearchLoading extends BankSearchState {}
+class BankSearchLoading extends BankSearchState {
+  const BankSearchLoading(String keyword) : super(keyword);
+}
 
 class BankSearchLoaded extends BankSearchState {
   final List<BankInfoModel> bankList;
 
-  const BankSearchLoaded(this.bankList);
+  const BankSearchLoaded(String keyword, this.bankList) : super(keyword);
 
   @override
   List<Object?> get props => bankList;
@@ -26,7 +31,7 @@ class BankSearchLoaded extends BankSearchState {
 class BankSearchError extends BankSearchState {
   final String error;
 
-  const BankSearchError(this.error);
+  const BankSearchError(String keyword, this.error) : super(keyword);
 
   @override
   List<Object?> get props => [error];
@@ -37,19 +42,19 @@ class BankSearchCubit extends Cubit<BankSearchState> {
 
   final VnBankUseCase _vnBankUseCase;
 
-  BankSearchCubit(this._vnBankUseCase) : super(BankSearchLoading()) {
+  BankSearchCubit(this._vnBankUseCase) : super(BankSearchLoading("")) {
     _vnBankUseCase.getBankInfoList().then((value) {
       _bankList = value;
-      emit(BankSearchLoaded(_bankList));
+      emit(BankSearchLoaded("", _bankList));
     }).onError((VnBankUseCaseError error, stackTrace) {
-      emit(BankSearchError(error.message));
+      emit(BankSearchError("", error.message));
     });
   }
 
   void search(String key) {
     final convertedKey = key.toLowerCase();
     if (key.isEmpty) {
-      emit(BankSearchLoaded(_bankList));
+      emit(BankSearchLoaded(key, _bankList));
     } else {
       final result = _bankList.where((bank) {
         return bank.name!.toLowerCase().contains(convertedKey) ||
@@ -57,9 +62,9 @@ class BankSearchCubit extends Cubit<BankSearchState> {
             bank.code!.toLowerCase().contains(convertedKey);
       }).toList();
       if (result.isEmpty) {
-        emit(BankSearchNoResult());
+        emit(BankSearchNoResult(key));
       } else
-        emit(BankSearchLoaded(result));
+        emit(BankSearchLoaded(key, result));
     }
   }
 }

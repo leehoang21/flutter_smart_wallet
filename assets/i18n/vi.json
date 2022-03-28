@@ -28,6 +28,7 @@
   "confirm": "Xác nhận",
   "create": "Tạo mới",
   "add_wallet": "Thêm ví",
+  "wallet_name": "Tên ví",
   "transaction_bank_list_screen_error_message": "Có lỗi xảy ra. Vui lòng thử lại sau",
   "transaction_category_screen_categories": "Danh mục",
   "transaction_category_screen_expenses": "Chi tiêu",
@@ -93,5 +94,6 @@
   "crop_image": "Cắt ảnh",
   "register": "Đăng ký",
   "email": "Email",
-  "user_name": "Tên tài khoản"
+  "user_name": "Tên tài khoản",
+  "success": "Thành công"
 }

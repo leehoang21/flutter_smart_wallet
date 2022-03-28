@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/pick_image/pick_image_widget_constant.dart';
-import 'package:flutter_smart_wallet/presentation/widgets/pick_image/widget/title_action.dart';
+import 'package:flutter_smart_wallet/themes/theme_text.dart';
 
 class PickImageWidget extends StatelessWidget {
   const PickImageWidget({
@@ -18,21 +18,24 @@ class PickImageWidget extends StatelessWidget {
         onPressed: () {
           Navigator.pop(context, null);
         },
-        child: TitleAction(
-          text: PickImageWidgetConstant.cancel,
+        child: Text(
+          PickImageWidgetConstant.cancel,
+          style: ThemeText.cancelButton,
         ),
       ),
       actions: [
         CupertinoActionSheetAction(
           onPressed: () => gallery(context),
-          child: TitleAction(
-            text: PickImageWidgetConstant.gallery,
+          child: Text(
+            PickImageWidgetConstant.gallery,
+            style: ThemeText.titleAction,
           ),
         ),
         CupertinoActionSheetAction(
           onPressed: () => camera(context),
-          child: TitleAction(
-            text: PickImageWidgetConstant.camera,
+          child: Text(
+            PickImageWidgetConstant.camera,
+            style: ThemeText.titleAction,
           ),
         ),
       ],

@@ -60,6 +60,7 @@ class TextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: readOnly ?? false,
       enabled: enabled,
       controller: controller,
       initialValue: initValue,
@@ -79,7 +80,6 @@ class TextFieldWidget extends StatelessWidget {
       keyboardType: keyboardType,
       scrollPadding: EdgeInsets.symmetric(vertical: 9.h),
       cursorColor: AppColor.hintColor,
-      readOnly: readOnly ?? false,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(
           horizontal: TextFieldConstants.contentPaddingHorizontal,

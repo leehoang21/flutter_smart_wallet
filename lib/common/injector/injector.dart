@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_smart_wallet/common/configs/dio_config/dio_api_client.dart';
 import 'package:flutter_smart_wallet/common/configs/firebase_config.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/language_bloc/language_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_smart_wallet/presentation/journey/register/cubit/registe
 import 'package:flutter_smart_wallet/presentation/journey/transaction/bank_list_screen/bloc/bank_search_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/add_photo/add_photo_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create/create_transaction_bloc.dart';
+import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/create_wallet_screen/bloc/create_wallet_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/wallet_list_screen/bloc/wallet_list_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/pick_image/cubit/pick_image_cubit.dart';
 import 'package:flutter_smart_wallet/repository/remote/transaction/transaction_remote_repository.dart';
@@ -79,6 +81,11 @@ class Injector {
         getIt.get<PickImageUseCase>(),
       ),
     );
+    getIt.registerFactory<CreateWalletCubit>(
+      () => CreateWalletCubit(
+          walletUseCase: getIt.get<WalletUseCase>(),
+          snackbarBloc: getIt.get<SnackbarBloc>()),
+    );
   }
 
   static void _configureUseCase() {
@@ -88,8 +95,8 @@ class Injector {
         remoteRepository: getIt.get<UpDownStorageRemoteRepository>(),
       ),
     );
-    getIt.registerFactory(
-      () => VnBankUseCase(getIt.get<VnBankRepository>()),
+    getIt.registerFactory<VnBankUseCase>(
+          () => VnBankUseCase(getIt.get<VnBankRepository>()),
     );
     getIt.registerFactory<WalletUseCase>(
       () => WalletUseCase(getIt.get<WalletRepository>()),
@@ -128,10 +135,10 @@ class Injector {
       () => PickImageLocalRepository(),
     );
     getIt.registerFactory(
-      () => UpDownStorageRemoteRepository(),
+      () => UpDownStorageRemoteRepository(getIt.get<FirebaseStorage>()),
     );
     getIt.registerFactory(
-      () => RegisterRepository(),
+      () => RegisterRepository(getIt.get<FirebaseConfig>()),
     );
   }
 
@@ -142,6 +149,9 @@ class Injector {
     );
     getIt.registerLazySingleton<FirebaseAuth>(
       () => FirebaseAuth.instance,
+    );
+    getIt.registerLazySingleton(
+      () => FirebaseStorage.instance,
     );
   }
 }

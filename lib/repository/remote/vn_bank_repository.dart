@@ -9,7 +9,8 @@ class VnBankRepository {
   VnBankRepository(this._dioApiClient);
 
   Future<BaseResponse> getVnBankList() async {
-    return DioApiClient()
-        .request(method: NetworkMethod.get, url: '${DefaultEnvironment.bankHost}/v2/banks');
+    return _dioApiClient.request(
+        method: NetworkMethod.get,
+        url: '${DefaultEnvironment.bankHost}/v2/banks');
   }
 }

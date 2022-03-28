@@ -23,8 +23,8 @@
   "transaction.edit_success": "Edit transaction success",
   "error_message": "An error occurred. Please try again later",
   "wallets": "Wallets",
-  "wallet_type": "Type of wallet",
-  "wallet_info": "Information of wallet",
+  "wallet_type": "Wallet's Type",
+  "wallet_info": "Wallet's Information",
   "cash": "Cash",
   "bank_account": "Bank Account",
   "confirm": "Confirm",
@@ -94,5 +94,7 @@
   "crop_image": "Crop Image",
   "register": "Register",
   "email": "Email",
-  "user_name": "User name"
+  "user_name": "User name",
+  "wallet_name": "Wallet's Name",
+  "success": "Success"
 }
