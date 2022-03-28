@@ -14,3 +14,4 @@
 Trong phần mô tả cần chứa các thông tin sau
 - Link của ticket trên Jira
 - Liệt kê các chức năng mà mình đã làm trong MR đó
+Note: Nếu MR không đúng chuẩn, sẽ không được merge vào nhánh develop
