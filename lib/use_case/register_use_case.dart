@@ -19,13 +19,12 @@ class RegisterUseCase {
     }
   }
 
-  Future<bool> hasUserFirebase(String userId) async {
-    final Map<String, dynamic>? result =
-        await registerRepository.fetchUser(userId);
-    if (result == null) {
+  Future<bool> hasUserFirestore(String userId) async {
+    try {
+      final bool result = await registerRepository.hasUserFirestore(userId);
+      return result;
+    } catch (_) {
       return false;
-    } else {
-      return true;
     }
   }
 }
