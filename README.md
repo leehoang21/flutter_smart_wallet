@@ -13,4 +13,6 @@
 # Cách tạo Merge request (MR)
 Trong phần mô tả cần chứa các thông tin sau
 - Link của ticket trên Jira
-- Liệt kê các chức năng mà mình đã làm trong MR đó
+- Liệt kê các chức năng mà mình đã làm trong MR đó.
+- Mô tả cách thức hoạt động, cách giải quyết vấn đề của chức năng đó
+- _Note: Nếu MR không đúng chuẩn, sẽ không được merge vào nhánh develop_
