@@ -34,7 +34,7 @@ class TransactionModel extends Equatable {
         spendTime: json['spendTime'] as int,
         photos:
             (json['photo'] as List<dynamic>?)?.map((e) => e as String).toList(),
-        wallet: WalletModel.fromJson(json['wallet'] as Map<String, dynamic>),
+        wallet: WalletModel.fromJson(json['wallet'] as Map<String, Map<String, dynamic>>),
         createAt: json['createAt'] as int,
         lastUpdate: json['lastUpdate'] as int,
       );

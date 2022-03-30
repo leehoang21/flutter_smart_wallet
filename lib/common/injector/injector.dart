@@ -135,7 +135,7 @@ class Injector {
       () => PickImageLocalRepository(),
     );
     getIt.registerFactory(
-      () => UpDownStorageRemoteRepository(getIt.get<FirebaseStorage>()),
+      () => UpDownStorageRemoteRepository(),
     );
     getIt.registerFactory(
       () => RegisterRepository(getIt.get<FirebaseConfig>()),

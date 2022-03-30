@@ -33,4 +33,5 @@ class CategoryModel {
             ?.map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
             .toList(),
       );
+
 }

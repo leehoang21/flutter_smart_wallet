@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +17,7 @@ import 'package:flutter_smart_wallet/presentation/journey/transaction/create/cre
 import 'package:flutter_smart_wallet/presentation/widgets/app_image_widget.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/text_field_widget/text_field_widget.dart';
 import 'package:flutter_smart_wallet/common/extensions/date_time_extension.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 class CreateTransactionForm extends StatefulWidget {
   final TextEditingController amountCtrl;
@@ -122,14 +125,15 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
   }
 
   Future<void> _chooseCategory(CategoryModel? currentCategory) async {
-    final category = await Navigator.pushNamed(
+    final  category = await Navigator.pushNamed(
       context,
       RouteList.categoryScreen,
       arguments: {ArgumentConstants.category: currentCategory},
     );
     if (category != null) {
       _createTransactionBloc.chooseCategory(category as CategoryModel);
-      widget.categoryCtl.text = category.name!;
+      widget.categoryCtl.text = translate(
+          "transaction_category_screen_${category.name!.toLowerCase()}");
     }
   }
 

@@ -1,9 +1,5 @@
 import 'dart:developer';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_smart_wallet/common/configs/default_environment.dart';
-import 'package:flutter_smart_wallet/common/configs/dio_config/base_response.dart';
-import 'package:flutter_smart_wallet/common/configs/dio_config/dio_api_client.dart';
 import 'package:flutter_smart_wallet/common/configs/firebase_config.dart';
 import 'package:flutter_smart_wallet/common/utils/app_utils.dart';
 import 'package:flutter_smart_wallet/model/wallet_model.dart';
@@ -27,7 +23,7 @@ class WalletRepositoryImpl extends WalletRepository{
 
 
   Future<Map> fetchWalletListFirebase(String userId) async {
-    final response = await firebaseConfig.userDoc
+    final response = await FirebaseConfig.userDoc
         .collection(DefaultEnvironment.customer)
         .doc(DefaultEnvironment.profile)
         .collection(DefaultEnvironment.walletList).get();
@@ -49,17 +45,17 @@ class WalletRepositoryImpl extends WalletRepository{
   Future<bool> addAndUpdateWalletListFirebase(
   {required String userId,required WalletModel walletModel}) async {
     try {
-      final result = await firebaseConfig.userDoc
+      final result = await FirebaseConfig.userDoc
           .collection(DefaultEnvironment.customer)
           .doc(DefaultEnvironment.profile)
           .collection(DefaultEnvironment.walletList).doc(walletModel.id.toString()).get();
       if (isNullEmpty(result.data())) {
-        await firebaseConfig.userDoc
+        await FirebaseConfig.userDoc
             .collection(DefaultEnvironment.customer)
             .doc(DefaultEnvironment.profile)
             .collection(DefaultEnvironment.walletList).add(walletModel.toJson());
       } else {
-        await firebaseConfig.userDoc
+        await FirebaseConfig.userDoc
             .collection(DefaultEnvironment.customer)
             .doc(DefaultEnvironment.profile)
             .collection(DefaultEnvironment.walletList)

@@ -280,7 +280,7 @@ class CreateWalletScreen extends StatelessWidget {
                               right: AppDimens.space_16,
                               bottom: AppDimens.space_16),
                           child: TextButtonWidget(
-                              buttonColor: AppColor.shadow,
+                              buttonColor: AppColor.ebonyClay,
                               title: translate('confirm'),
                               onPressed: () {
                                 context

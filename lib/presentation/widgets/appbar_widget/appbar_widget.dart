@@ -71,21 +71,22 @@ class AppBarWidget extends StatelessWidget implements PreferredSize {
       margin: EdgeInsets.only(top: _top),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           leading ??
               SizedBox(
                 width: AppbarConstants.buttonSize,
                 height: AppbarConstants.buttonSize,
               ),
-          centerWidget ??
-              Text(
-                title ?? '',
-                style: titleStyle ??
-                    ThemeText.subtitle1.copyWith(
-                        fontWeight: FontWeight.bold, color: AppColor.white),
-                textAlign: TextAlign.left,
-              ),
+          Expanded(
+            child: centerWidget ??
+                Text(
+                  title ?? '',
+                  style: titleStyle ??
+                      ThemeText.subtitle1.copyWith(
+                          fontWeight: FontWeight.bold, color: AppColor.black),
+                  textAlign: TextAlign.left,
+                ),
+          ),
           action != null
               ? action!
               : SizedBox(
