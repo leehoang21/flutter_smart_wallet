@@ -18,10 +18,9 @@ class _SplashScreenState extends State<SplashScreen> {
   SplashBloc _splashBloc = SplashBloc();
   @override
   void initState() {
-    // _splashBloc.initiaal();
+    _splashBloc.initiaal();
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushNamedAndRemoveUntil(
-          context, RouteList.mainScreen, (route) => false);
+      Navigator.pushNamed(context, RouteList.mainScreen);
     });
     super.initState();
   }

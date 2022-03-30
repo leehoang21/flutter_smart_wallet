@@ -10,6 +10,8 @@ class LayoutConstants {
   static final double paddingHorizontalSmall = 10.w;
   static final double paddingHorizontalApp = 18.w;
 
+  static final double paddingTop24 = 24.h;
+
   /// Padding Vertical
   static final double paddingVerticalApp = 18.h;
   static final double paddingVertical8 = 8.h;

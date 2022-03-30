@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/text_field_widget/text_field_constants.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
+import 'package:flutter_smart_wallet/themes/theme_text.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final String? labelText;
@@ -28,35 +29,33 @@ class TextFieldWidget extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool? obscureText;
   final bool? readOnly;
-  final List<TextInputFormatter>? inputFormatters;
   final bool? enabled;
 
-  const TextFieldWidget(
-      {Key? key,
-      this.enabled,
-      this.labelText,
-      this.hintText,
-      this.initValue,
-      this.color,
-      this.height,
-      this.textStyle,
-      this.prefixIcon,
-      this.suffixIcon,
-      required this.controller,
-      this.focusNode,
-      this.onChanged,
-      this.validate,
-      this.onSaved,
-      this.onEditingComplete,
-      this.autovalidateMode,
-      this.inputFormatter,
-      this.textAlign,
-      this.textCapitalization,
-      this.keyboardType,
-      this.obscureText,
-      this.onTap,
-      this.readOnly,  this.inputFormatters})
-      : super(key: key);
+  const TextFieldWidget({
+    Key? key,
+    this.enabled,this.labelText,
+    this.hintText,
+    this.initValue,
+    this.color,
+    this.height,
+    this.textStyle,
+    this.prefixIcon,
+    this.suffixIcon,
+    required this.controller,
+    this.focusNode,
+    this.onChanged,
+    this.validate,
+    this.onSaved,
+    this.onEditingComplete,
+    this.onTap,
+    this.autovalidateMode,
+    this.inputFormatter,
+    this.textAlign,
+    this.textCapitalization,
+    this.keyboardType,
+    this.obscureText,
+    this.readOnly,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +70,9 @@ class TextFieldWidget extends StatelessWidget {
       textAlign: textAlign ?? TextAlign.start,
       textCapitalization: textCapitalization ?? TextCapitalization.none,
       obscureText: obscureText ?? false,
-      style: textStyle,
+      style: textStyle ??
+          ThemeText.caption
+              .copyWith(color: AppColor.tuna, fontWeight: FontWeight.w400),
       onSaved: onSaved,
       validator: validate,
       autovalidateMode: autovalidateMode,
@@ -85,9 +86,13 @@ class TextFieldWidget extends StatelessWidget {
           vertical: TextFieldConstants.contentPaddingVertical,
         ),
         labelText: labelText,
-        labelStyle: textStyle,
+        labelStyle: textStyle ??
+            ThemeText.caption
+                .copyWith(color: AppColor.tuna, fontWeight: FontWeight.w400),
         hintText: hintText,
-        hintStyle: textStyle,
+        hintStyle: textStyle ??
+            ThemeText.caption
+                .copyWith(color: AppColor.tuna, fontWeight: FontWeight.w400),
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         fillColor: AppColor.fieldColor,

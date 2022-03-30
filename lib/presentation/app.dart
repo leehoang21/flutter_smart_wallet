@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_wallet/common/constants/language_constants.dart';
+import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/route_list.dart';
 import 'package:flutter_smart_wallet/common/constants/strings/string_constants.dart';
 import 'package:flutter_smart_wallet/common/injector/injector.dart';
@@ -26,7 +27,10 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final localizationDelegate = LocalizedApp.of(context).delegate;
     return ScreenUtilInit(
-      designSize: Size(375, 812),
+      designSize: Size(
+        LayoutConstants.widthDefault,
+        LayoutConstants.heightDefault,
+      ),
       builder: () => MultiBlocProvider(
         providers: [
           BlocProvider(

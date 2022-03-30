@@ -4,7 +4,7 @@ import 'package:flutter_smart_wallet/common/utils/compress.dart';
 import 'package:image_picker/image_picker.dart';
 
 class PickImageLocalRepository {
-  ImagePicker imagePicker = ImagePicker();
+  ImagePicker _imagePicker = ImagePicker();
 
   Future<Uint8List?> pickImageFromGallery() async {
     return pickImage(source: ImageSource.gallery);
@@ -15,7 +15,7 @@ class PickImageLocalRepository {
   }
 
   Future<Uint8List?> pickImage({required ImageSource source}) async {
-    XFile? pickedFile = await imagePicker.pickImage(
+    XFile? pickedFile = await _imagePicker.pickImage(
       source: source,
     );
 
@@ -23,5 +23,15 @@ class PickImageLocalRepository {
       File(pickedFile!.path),
       100,
     );
+  }
+
+  Future<List<Uint8List>> multiImage() async {
+    final List<XFile>? files = await _imagePicker.pickMultiImage();
+    final List<Uint8List> images = [];
+    for (final file in files ?? <XFile>[]) {
+      final image = await Compress.compressWithFile(File(file.path), 100);
+      images.add(image);
+    }
+    return images;
   }
 }

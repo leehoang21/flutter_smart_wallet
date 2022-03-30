@@ -16,7 +16,7 @@ class CategoryTile extends StatelessWidget {
     required this.isSelected,
   }) : super(key: key);
 
-  final void Function(String) onTap;
+  final void Function(CategoryModel) onTap;
   final bool isSubCategory;
   final CategoryModel categoryModel;
   final bool isSelected;
@@ -24,10 +24,10 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imagePath =
-        "${ImageConstants.path}/${categoryModel.name!.toLowerCase()}.png";
+        "${ImageConstants.path}${categoryModel.name!.toLowerCase()}.png";
     return InkWell(
       onTap: () {
-        onTap(categoryModel.name!);
+        onTap(categoryModel);
       },
       child: Container(
         height: AppDimens.height_44,

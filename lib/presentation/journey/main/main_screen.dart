@@ -20,8 +20,11 @@ class MainScreen extends StatelessWidget {
           dimension: MainConstants.floatingActionButtonDimension,
           child: FloatingActionButton(
             backgroundColor: AppColor.black,
-            onPressed: () {
-              Navigator.pushNamed(context,  RouteList.walletListScreen);
+            onPressed: () async {
+              Navigator.pushNamed(
+                context,
+                RouteList.createTransaction,
+              );
             },
             child: Icon(
               Icons.add_rounded,

@@ -59,6 +59,8 @@ dependencies:
   #  Network
   dio: ^4.0.4
   pretty_dio_logger: ^1.1.1
+  mask_text_input_formatter: ^2.1.0
+  flutter_masked_text2: ^0.9.1
 
 dependency_overrides:
   firebase_messaging_platform_interface: 3.1.6
@@ -72,6 +74,7 @@ dev_dependencies:
   mockito: ^5.1.0
   hive_generator: ^1.1.0
   flutter_lints: ^1.0.0
+  build_runner: ^2.1.8
   bloc_test: ^9.0.2
   flutter_test:
     sdk: flutter

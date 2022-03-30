@@ -2,15 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_wallet/common/__mock__/categories_mock.dart';
 import 'package:flutter_smart_wallet/common/constants/app_dimens.dart';
+import 'package:flutter_smart_wallet/model/category_model.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/category_screen/bloc/category_select_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/category_screen/category_screens_constants.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/category_screen/widgets/category_tile.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/appbar_widget/appbar_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
+import 'package:flutter_smart_wallet/themes/theme_text.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
-class CategoryScreen extends StatelessWidget {
-  void select(BuildContext context, String category) {
+class CategoryScreen extends StatefulWidget {
+  final CategoryModel? category;
+
+  const CategoryScreen({Key? key, this.category}) : super(key: key);
+
+  @override
+  State<CategoryScreen> createState() => _CategoryScreenState();
+}
+
+class _CategoryScreenState extends State<CategoryScreen> {
+  @override
+  void initState() {
+    if (widget.category != null) {
+      select(context, widget.category);
+    }
+    super.initState();
+  }
+
+  void select(BuildContext context, CategoryModel? category) {
     context.read<CategorySelectCubit>().changeSelectCategory(category);
   }
 
@@ -21,6 +40,8 @@ class CategoryScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBarWidget(
           title: translate("transaction_category_screen_categories"),
+          titleStyle: ThemeText.subtitle1
+              .copyWith(fontWeight: FontWeight.bold, color: AppColor.black),
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios_new_rounded),
             onPressed: () {
@@ -44,7 +65,7 @@ class CategoryScreen extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: BlocBuilder<CategorySelectCubit, String>(
+              child: BlocBuilder<CategorySelectCubit, CategoryModel?>(
                 builder: (context, state) {
                   return SafeArea(
                     child: TabBarView(
@@ -62,12 +83,13 @@ class CategoryScreen extends StatelessWidget {
                               if (category.subCategories == null ||
                                   category.subCategories!.isEmpty) {
                                 return CategoryTile(
-                                  categoryModel: category,
-                                  isSubCategory: false,
-                                  isSelected: category.name! == state,
-                                  onTap: (category) =>
-                                      select(context, category),
-                                );
+                                    categoryModel: category,
+                                    isSubCategory: false,
+                                    isSelected: category.name == state?.name,
+                                    onTap: (category) {
+                                      select(context, category);
+                                      Navigator.pop(context, category);
+                                    });
                               }
                               final subCategories = category.subCategories!;
                               return Column(
@@ -76,19 +98,23 @@ class CategoryScreen extends StatelessWidget {
                                   CategoryTile(
                                     categoryModel: category,
                                     isSubCategory: false,
-                                    isSelected: category.name! == state,
-                                    onTap: (category) =>
-                                        select(context, category),
+                                    isSelected: category.name! == state?.name,
+                                    onTap: (category) {
+                                      select(context, category);
+                                      Navigator.pop(context, category);
+                                    },
                                   ),
                                   ...subCategories
                                       .map(
                                         (subCategory) => CategoryTile(
                                           categoryModel: subCategory,
                                           isSubCategory: true,
-                                          onTap: (category) =>
-                                              select(context, category),
+                                          onTap: (category) {
+                                            select(context, category);
+                                            Navigator.pop(context, category);
+                                          },
                                           isSelected:
-                                              subCategory.name! == state,
+                                              subCategory.name! == state?.name,
                                         ),
                                       )
                                       .toList(),

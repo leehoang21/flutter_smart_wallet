@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -63,8 +65,8 @@ class WalletListScreen extends StatelessWidget {
                         refreshController.refreshCompleted();
                       },
                       child: ListView.builder(
-                        itemBuilder: (context, index) =>
-                            _buildWalletItem(walletListState.walletList[index]),
+                        itemBuilder: (context, index) => _buildWalletItem(
+                            context, walletListState.walletList[index]),
                         itemCount: walletListState.walletList.length,
                       )));
             }
@@ -93,66 +95,71 @@ class WalletListScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildWalletItem(WalletModel wallet) {
-    return Container(
-      margin: EdgeInsets.only(
-          bottom: AppDimens.space_16,
-          left: AppDimens.space_16,
-          right: AppDimens.space_16),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: AppColor.white,
-        borderRadius: BorderRadius.circular(AppDimens.radius_16),
-        boxShadow: [
-          BoxShadow(
-            color: AppColor.shadow.withOpacity(0.2),
-            blurRadius: 10,
-            offset: Offset(0, 6), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Container(
-            margin: EdgeInsets.only(
-                left: AppDimens.space_16,
-                top: AppDimens.space_4,
-                bottom: AppDimens.space_4,
-                right: AppDimens.space_16),
-            width: AppDimens.height_52,
-            height: AppDimens.height_52,
-            child: !isNullEmptyOrFalse(wallet.walletImage)
-                ? AppImageWidget(
-                    path: wallet.walletImage!,
-                    height: AppDimens.height_52,
-                    width: AppDimens.height_52)
-                : AppImageWidget(
-                    path: ImageConstants.icWallet,
-                    height: AppDimens.height_52,
-                    width: AppDimens.height_52,
-                  ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: AppDimens.space_4),
-            width: 230,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  wallet.walletName ?? "",
-                  style: ThemeText.style14Medium,
-                  softWrap: true,
-                ),
-                Text(
-                  formatMoney(wallet.balance.toString()),
-                  style:
-                      ThemeText.style12Regular.copyWith(color: AppColor.green),
-                ),
-              ],
+  Widget _buildWalletItem(BuildContext context, WalletModel wallet) {
+    return InkWell(
+      onTap: () {
+        Navigator.pop(context, wallet);
+      },
+      child: Container(
+        margin: EdgeInsets.only(
+            bottom: AppDimens.space_16,
+            left: AppDimens.space_16,
+            right: AppDimens.space_16),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: AppColor.white,
+          borderRadius: BorderRadius.circular(AppDimens.radius_16),
+          boxShadow: [
+            BoxShadow(
+              color: AppColor.ebonyClay.withOpacity(0.2),
+              blurRadius: 10,
+              offset: Offset(0, 6), // changes position of shadow
             ),
-          )
-        ],
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              margin: EdgeInsets.only(
+                  left: AppDimens.space_16,
+                  top: AppDimens.space_4,
+                  bottom: AppDimens.space_4,
+                  right: AppDimens.space_16),
+              width: AppDimens.height_52,
+              height: AppDimens.height_52,
+              child: !isNullEmptyOrFalse(wallet.walletImage)
+                  ? AppImageWidget(
+                      path: wallet.walletImage!,
+                      height: AppDimens.height_52,
+                      width: AppDimens.height_52)
+                  : AppImageWidget(
+                      path: ImageConstants.icWallet,
+                      height: AppDimens.height_52,
+                      width: AppDimens.height_52,
+                    ),
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: AppDimens.space_4),
+              width: 230,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    wallet.walletName ?? "",
+                    style: ThemeText.style14Medium,
+                    softWrap: true,
+                  ),
+                  Text(
+                    formatMoney(wallet.balance.toString()),
+                    style: ThemeText.style12Regular
+                        .copyWith(color: AppColor.green),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

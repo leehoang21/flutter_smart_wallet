@@ -7,14 +7,14 @@ class RegisterRepository {
   RegisterRepository(this._firebaseConfig);
 
   Future<void> addUser(String userId, Map<String, Object?> data) async {
-    await _firebaseConfig.userDoc
+    await FirebaseConfig.userDoc
         .collection(userId)
         .doc(DefaultEnvironment.profile)
         .set(data);
   }
 
   Future<bool> hasUserFirestore(String userId) async {
-    final result = await _firebaseConfig.userDoc
+    final result = await FirebaseConfig.userDoc
         .collection(userId)
         .doc(DefaultEnvironment.profile)
         .get();

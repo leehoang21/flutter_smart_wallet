@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class Categori extends StatelessWidget {
-  Categori(
-      {Key? key,
-      required this.pathImage,
-      required this.title,
-      required this.action})
-      : super(key: key);
+  Categori({
+    Key? key,
+    required this.pathImage,
+    required this.title,
+    required this.action,
+  }) : super(key: key);
   String title;
   String pathImage;
-  Function action;
+  Function() action;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +28,7 @@ class Categori extends StatelessWidget {
         Expanded(
           child: TextButton(
             child: Icon(Icons.arrow_forward_ios),
-            onPressed: () {
-              action;
-            },
+            onPressed: action,
           ),
           flex: 1,
         ),
