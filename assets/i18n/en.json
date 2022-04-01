@@ -94,7 +94,9 @@
   "crop_image": "Crop Image",
   "register": "Register",
   "email": "Email",
-  "user_name": "User name",
+  "user_name": "Username",
   "wallet_name": "Wallet's Name",
-  "success": "Success"
+  "success": "Success",
+  "update_success" : "update successful",
+  "update_failure" : "update failed"
 }

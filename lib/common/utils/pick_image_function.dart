@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_wallet/common/injector/injector.dart';
@@ -5,9 +7,9 @@ import 'package:flutter_smart_wallet/presentation/widgets/pick_image/cubit/pick_
 import 'package:flutter_smart_wallet/presentation/widgets/pick_image/pick_image_widget.dart';
 
 class Either {
-  String? url;
+  Uint8List? image;
   String? error;
-  Either({this.url, this.error});
+  Either({this.image, this.error});
 }
 
 Future<Either?> pickImageFuncion({

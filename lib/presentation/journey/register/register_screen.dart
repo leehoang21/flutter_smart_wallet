@@ -24,7 +24,6 @@ class RegisterScreen extends StatelessWidget {
   final TextEditingController _userNameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final String _id = context.read<RegisterCubit>().state.id;
     return BackgroundRegister(
       child: Column(
         children: [
@@ -35,17 +34,19 @@ class RegisterScreen extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () async {
-                      await _pickImage(context, _id);
+                      await _pickImage(context);
                     },
-                    child: ClipOval(
-                      child: AppImageWidget(
-                        width: AppDimens.space_80,
-                        path: context
-                                .watch<RegisterCubit>()
-                                .state
-                                .userModel
-                                .avatar ??
-                            ImageConstants.defaultAvatarImg,
+                    child: SizedBox(
+                      width: AppDimens.space_80,
+                      child: ClipOval(
+                        child:
+                            context.watch<RegisterCubit>().state.avatar != null
+                                ? Image.memory(
+                                    context.read<RegisterCubit>().state.avatar!,
+                                  )
+                                : AppImageWidget(
+                                    path: ImageConstants.defaultAvatarImg,
+                                  ),
                       ),
                     ),
                   ),
@@ -113,18 +114,18 @@ class RegisterScreen extends StatelessWidget {
     }
   }
 
-  Future<void> _pickImage(BuildContext context, String _id) async {
+  Future<void> _pickImage(BuildContext context) async {
     final Either? _result = await pickImageFuncion(
         context: context,
         gallery: (context) async {
           await context.read<PickImageCubit>().pickImageFromGallery();
           await cropImage(context);
-          await resultUrl(context, _id);
+          result(context);
         },
         camera: (context) async {
           await context.read<PickImageCubit>().captureImage();
           await cropImage(context);
-          await resultUrl(context, _id);
+          result(context);
         });
     if (_result != null) {
       String? _error = _result.error;
@@ -134,32 +135,28 @@ class RegisterScreen extends StatelessWidget {
               type: SnackBarType.error,
             );
       }
-      if (_result.url != null) {
-        context.read<RegisterCubit>().addUrl(
-              _result.url,
+      if (_result.image != null) {
+        context.read<RegisterCubit>().addAvatar(
+              _result.image!,
             );
       }
     }
   }
 
-  Future<void> resultUrl(BuildContext context, String id) async {
-    await context.read<PickImageCubit>().upAndDownImage(
-          '$id/avatar.png',
-        );
+  void result(BuildContext context) {
+    Uint8List? _image = context.read<PickImageCubit>().state.image;
     String? _error = context.read<PickImageCubit>().state.error;
+
+    if (_image != null) {
+      Navigator.pop(
+        context,
+        Either(image: _image),
+      );
+    }
     if (_error != null) {
       Navigator.pop(
         context,
-        Either(
-          error: translate(_error),
-        ),
-      );
-    } else {
-      Navigator.pop(
-        context,
-        Either(
-          url: context.read<PickImageCubit>().state.url,
-        ),
+        Either(error: _error),
       );
     }
   }
@@ -167,7 +164,6 @@ class RegisterScreen extends StatelessWidget {
   Future<void> cropImage(BuildContext context) async {
     if (context.read<PickImageCubit>().state is ResultImage) {
       Uint8List? _image = context.read<PickImageCubit>().state.image;
-      String? _error = context.read<PickImageCubit>().state.error;
       if (_image != null) {
         await Navigator.push(
           context,
@@ -182,6 +178,7 @@ class RegisterScreen extends StatelessWidget {
           ),
         );
       }
+      String? _error = context.read<PickImageCubit>().state.error;
       if (_error != null) {
         Navigator.pop(
           context,
