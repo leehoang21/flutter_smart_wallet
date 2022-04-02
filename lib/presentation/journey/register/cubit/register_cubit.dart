@@ -1,10 +1,9 @@
 import 'dart:typed_data';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_smart_wallet/common/configs/default_environment.dart';
 import 'package:flutter_smart_wallet/common/utils/validator.dart';
 import 'package:flutter_smart_wallet/model/user_model.dart';
-import 'package:flutter_smart_wallet/presentation/widgets/pick_image/cubit/pick_image_cubit.dart';
 import 'package:flutter_smart_wallet/use_case/pick_image_use_case.dart';
 import 'package:flutter_smart_wallet/use_case/user_use_case.dart';
 
@@ -52,10 +51,14 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String userName,
   }) async {
     Uint8List? _avatar = state.avatar;
+    final String _storagePath = '$_id/${DefaultEnvironment.avatar}.png';
+
     if (_avatar != null) {
       try {
         String _url = await pickImageUseCase.upAndDownImage(
-            imageToUpload: _avatar, imagePathStorage: _id + '/avatar.png');
+          imageToUpload: _avatar,
+          imagePathStorage: _storagePath,
+        );
         emit(state.copyWith(
             userModel: state.userModel.copyWith(
           avatar: _url,

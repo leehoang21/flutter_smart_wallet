@@ -62,9 +62,7 @@ class UserRemoteRepositoryImpl extends UserRemoteRepository {
     try {
       await FirebaseConfig.userDoc
           .collection(userId)
-          .doc(
-            'profile',
-          )
+          .doc(DefaultEnvironment.profile)
           .update(data);
       return true;
     } catch (e) {
