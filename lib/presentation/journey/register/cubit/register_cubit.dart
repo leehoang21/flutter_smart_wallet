@@ -55,13 +55,13 @@ class RegisterCubit extends Cubit<RegisterState> {
 
     if (_avatar != null) {
       try {
-        String _url = await pickImageUseCase.upAndDownImage(
+        await pickImageUseCase.upImageStorage(
           imageToUpload: _avatar,
           imagePathStorage: _storagePath,
         );
         emit(state.copyWith(
             userModel: state.userModel.copyWith(
-          avatar: _url,
+          avatar: _storagePath,
           email: email,
           userName: userName,
         )));

@@ -39,7 +39,7 @@ class PickImageUseCase {
     }
   }
 
-  Future<String> upAndDownImage({
+  Future<bool> upImageStorage({
     required Uint8List imageToUpload,
     required String imagePathStorage,
   }) async {
@@ -50,14 +50,21 @@ class PickImageUseCase {
         data: imageToUpload,
         pathStorage: imagePathStorage,
       );
+      return isSuccess;
+    } else {
+      throw PickImageException('no_internet');
+    }
+  }
 
-      if (isSuccess) {
-        return remoteRepository.downloadUrl(
-          pathStorage: imagePathStorage,
-        );
-      } else {
-        throw PickImageException('error_to_upload');
-      }
+  Future<String> downUrlImageStorage({
+    required String imagePathStorage,
+  }) async {
+    bool hasConnection = await remoteRepository.hasconnection();
+
+    if (hasConnection) {
+      return remoteRepository.downloadUrl(
+        pathStorage: imagePathStorage,
+      );
     } else {
       throw PickImageException('no_internet');
     }

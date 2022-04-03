@@ -26,7 +26,7 @@ void main() async {
         remoteRepository: mockRemoteRepository,
       );
       test(
-        'pickImageFromGallery return Uint8List',
+        'return Uint8List when calling pickImageFromGallery() succesed',
         () async {
           when(
             mockLocalRepository.pickImageFromGallery(),
@@ -42,24 +42,7 @@ void main() async {
         },
       );
 
-      test(
-        'pickImageFromGallery return throw PickImageException(No image selected)',
-        () async {
-          when(
-            mockLocalRepository.pickImageFromGallery(),
-          ).thenAnswer(
-            (realInvocation) async => null,
-          );
-          expect(
-            () async => await pickImageUseCase.pickImageFromGallery(),
-            throwsA(
-              PickImageException('No image selected'),
-            ),
-          );
-        },
-      );
-
-      test('captureImage return Uint8List', () async {
+      test('return Uint8List when calling captureImage() succesed', () async {
         when(
           mockLocalRepository.captureImage(),
         ).thenAnswer(
@@ -73,22 +56,7 @@ void main() async {
         );
       });
 
-      test(
-        'captureImage return throw PickImageException(No image selected)',
-        () async {
-          when(
-            mockLocalRepository.captureImage(),
-          ).thenAnswer((realInvocation) async => null);
-          expect(
-            () async => await pickImageUseCase.captureImage(),
-            throwsA(
-              PickImageException('No image selected'),
-            ),
-          );
-        },
-      );
-
-      test('upAndDownImage return url', () async {
+      test('return true when calling putUnit8List()', () async {
         when(
           mockRemoteRepository.hasconnection(),
         ).thenAnswer(
@@ -106,49 +74,18 @@ void main() async {
           (_) async => true,
         );
 
-        when(
-          mockRemoteRepository.downloadUrl(
-            pathStorage: '1234',
-          ),
-        ).thenAnswer(
-          (_) async => '1234',
-        );
-
         expect(
-          await pickImageUseCase.upAndDownImage(
+          await pickImageUseCase.upImageStorage(
             imagePathStorage: '1234',
             imageToUpload: Uint8List.fromList(
               [1, 2, 3],
             ),
           ),
-          isA<String>(),
+          isA<bool>(),
         );
       });
 
-      test(
-          'upAndDownImage return throw PickImageException(No internet connection)',
-          () async {
-        when(
-          mockRemoteRepository.hasconnection(),
-        ).thenAnswer(
-          (realInvocation) async => false,
-        );
-
-        expect(
-          () async => await pickImageUseCase.upAndDownImage(
-            imagePathStorage: '1234',
-            imageToUpload: Uint8List.fromList(
-              [1, 2, 3],
-            ),
-          ),
-          throwsA(
-            PickImageException('No internet connection'),
-          ),
-        );
-      });
-
-      test('upAndDownImage return throw PickImageException(Error to upload)',
-          () async {
+      test('return url when calling downloadUrlt()', () async {
         when(
           mockRemoteRepository.hasconnection(),
         ).thenAnswer(
@@ -156,26 +93,16 @@ void main() async {
         );
 
         when(
-          mockRemoteRepository.putUnit8List(
-            data: Uint8List.fromList(
-              [1, 2, 3],
-            ),
-            pathStorage: '1234',
-          ),
+          mockRemoteRepository.downloadUrl(pathStorage: '1234'),
         ).thenAnswer(
-          (_) async => false,
+          (_) async => 'url',
         );
 
         expect(
-          () async => await pickImageUseCase.upAndDownImage(
+          await pickImageUseCase.downUrlImageStorage(
             imagePathStorage: '1234',
-            imageToUpload: Uint8List.fromList(
-              [1, 2, 3],
-            ),
           ),
-          throwsA(
-            PickImageException('Error to upload'),
-          ),
+          isA<String>(),
         );
       });
     },

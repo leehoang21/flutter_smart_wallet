@@ -23,11 +23,10 @@ class UpdateAvatar extends StatelessWidget {
       create: (context) => Injector.getIt.get<UpdateAvatarCubit>(),
       child: BlocBuilder<UpdateAvatarCubit, UpdateAvatarState>(
         builder: (context, state) {
-          final String _id = context.read<UpdateAvatarCubit>().state.id;
-
           return GestureDetector(
             onTap: () async {
-              await _pickImage(context, _id);
+              await _pickImage(context);
+              await updateAvatar(context);
             },
             child: ClipOval(
               child: AppImageWidget(
@@ -42,18 +41,21 @@ class UpdateAvatar extends StatelessWidget {
     );
   }
 
-  Future<void> _pickImage(BuildContext context, String _id) async {
+  Future<void> _pickImage(BuildContext context) async {
+    final String _avatarPath =
+        context.read<UpdateAvatarCubit>().state.avatarPath;
+
     final Either? _result = await pickImageFuncion(
         context: context,
         gallery: (context) async {
           await context.read<PickImageCubit>().pickImageFromGallery();
           await cropImage(context);
-          await result(context, _id);
+          await result(context, _avatarPath);
         },
         camera: (context) async {
           await context.read<PickImageCubit>().captureImage();
           await cropImage(context);
-          await result(context, _id);
+          await result(context, _avatarPath);
         });
     if (_result != null) {
       String? _error = _result.error;
@@ -64,23 +66,11 @@ class UpdateAvatar extends StatelessWidget {
             );
       }
     }
-
-    if (context.read<UpdateAvatarCubit>().state is UpdateAvatarSuccess) {
-      context.read<SnackbarBloc>().showSnackbar(
-            translationKey: translate(UpdateAvatarContant.success),
-            type: SnackBarType.success,
-          );
-    } else {
-      context.read<SnackbarBloc>().showSnackbar(
-            translationKey: translate(UpdateAvatarContant.failure),
-            type: SnackBarType.error,
-          );
-    }
   }
 
-  Future<void> result(BuildContext context, String id) async {
-    await context.read<PickImageCubit>().upAndDownImage(
-          '$id/avatar.png',
+  Future<void> result(BuildContext context, String avatarPath) async {
+    await context.read<PickImageCubit>().upImageStorage(
+          avatarPath,
         );
     String? _error = context.read<PickImageCubit>().state.error;
     if (_error != null) {
@@ -91,6 +81,7 @@ class UpdateAvatar extends StatelessWidget {
         ),
       );
     }
+    Navigator.pop(context);
   }
 
   Future<void> cropImage(BuildContext context) async {
@@ -119,6 +110,21 @@ class UpdateAvatar extends StatelessWidget {
           ),
         );
       }
+    }
+  }
+
+  Future<void> updateAvatar(BuildContext context) async {
+    await context.read<UpdateAvatarCubit>().updateAvatar();
+    if (context.read<UpdateAvatarCubit>().state is UpdateAvatarSuccess) {
+      context.read<SnackbarBloc>().showSnackbar(
+            translationKey: translate(UpdateAvatarContant.success),
+            type: SnackBarType.success,
+          );
+    } else {
+      context.read<SnackbarBloc>().showSnackbar(
+            translationKey: translate(UpdateAvatarContant.failure),
+            type: SnackBarType.error,
+          );
     }
   }
 }

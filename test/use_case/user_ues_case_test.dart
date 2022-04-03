@@ -79,7 +79,7 @@ void main() {
       ).thenAnswer((realInvocation) async => true);
 
       expect(
-        await userUseCase.updateAvatar('userId', 'url'),
+        await userUseCase.updateAvatar('userId'),
         isA<bool>(),
       );
     });

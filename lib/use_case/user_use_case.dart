@@ -32,19 +32,6 @@ class UserUseCase {
     }
   }
 
-  Future<bool> updateAvatar(String userId, String url) async {
-    await hasconnection();
-    try {
-      final bool _result = await _userRemoteRepository.updateUserFirestore(
-        userId,
-        {DefaultEnvironment.avatar: url},
-      );
-      return _result;
-    } catch (_) {
-      return false;
-    }
-  }
-
   Future<void> hasconnection() async {
     bool _hasConnection = await _userRemoteRepository.hasconnection();
     if (!_hasConnection) {
