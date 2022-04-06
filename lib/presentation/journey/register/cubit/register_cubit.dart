@@ -51,7 +51,8 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String userName,
   }) async {
     Uint8List? _avatar = state.avatar;
-    final String _storagePath = '$_id/${DefaultEnvironment.avatar}.png';
+    final String _storagePath =
+        '$_id/${DefaultEnvironment.profile}/${DefaultEnvironment.avatar}.png';
 
     if (_avatar != null) {
       try {

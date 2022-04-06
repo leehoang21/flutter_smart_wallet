@@ -23,11 +23,9 @@ class UpdateAvatar extends StatelessWidget {
       create: (context) => Injector.getIt.get<UpdateAvatarCubit>(),
       child: BlocBuilder<UpdateAvatarCubit, UpdateAvatarState>(
         builder: (context, state) {
-          final String _id = context.read<UpdateAvatarCubit>().state.id;
-
           return GestureDetector(
             onTap: () async {
-              await _pickImage(context, _id);
+              await _pickImage(context);
             },
             child: ClipOval(
               child: AppImageWidget(
@@ -42,18 +40,18 @@ class UpdateAvatar extends StatelessWidget {
     );
   }
 
-  Future<void> _pickImage(BuildContext context, String _id) async {
+  Future<void> _pickImage(BuildContext context) async {
     final Either? _result = await pickImageFuncion(
         context: context,
         gallery: (context) async {
           await context.read<PickImageCubit>().pickImageFromGallery();
           await cropImage(context);
-          await result(context, _id);
+          await result(context);
         },
         camera: (context) async {
           await context.read<PickImageCubit>().captureImage();
           await cropImage(context);
-          await result(context, _id);
+          await result(context);
         });
     if (_result != null) {
       String? _error = _result.error;
@@ -78,9 +76,9 @@ class UpdateAvatar extends StatelessWidget {
     }
   }
 
-  Future<void> result(BuildContext context, String id) async {
+  Future<void> result(BuildContext context) async {
     await context.read<PickImageCubit>().upAndDownImage(
-          '$id/avatar.png',
+          context.read<UpdateAvatarCubit>().state.avatarPath,
         );
     String? _error = context.read<PickImageCubit>().state.error;
     if (_error != null) {
