@@ -6,4 +6,10 @@ abstract class UserRemoteRepository {
   UserRemoteRepository(this.firebaseAuth);
 
   String getUserId();
+  String getPhoneNumber();
+  Future<Map<String, dynamic>?> getUserFirestore(String userId);
+  Future<bool> setUserFirestore(String userId, Map<String, Object?> data);
+  Future<bool> hasUserFirestore(String userId);
+  Future<bool> updateUserFirestore(String userId, Map<String, Object?> data);
+  Future<bool> hasconnection();
 }

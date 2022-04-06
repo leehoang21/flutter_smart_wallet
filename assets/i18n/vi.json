@@ -94,6 +94,8 @@
   "crop_image": "Cắt ảnh",
   "register": "Đăng ký",
   "email": "Email",
-  "user_name": "Tên tài khoản",
-  "success": "Thành công"
+  "user_name": "Tên người dùng",
+  "success": "Thành công",
+  "update_success" : "Cập nhật thành công",
+  "update_failure" : "Cập nhật thất bại"
 }

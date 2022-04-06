@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/common/constants/route_list.dart';
 import 'package:flutter_smart_wallet/presentation/journey/home/home_constants.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/update_avatar.dart/update_avatar_widget.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,14 +10,22 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.pushNamed(
-            context,
-            RouteList.registerScreen,
-          );
-        },
-        child: Text(translate('register')),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                RouteList.registerScreen,
+              );
+            },
+            child: Text(
+              translate('register'),
+            ),
+          ),
+          UpdateAvatar(),
+        ],
       ),
     );
   }

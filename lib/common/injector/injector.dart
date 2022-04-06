@@ -13,19 +13,18 @@ import 'package:flutter_smart_wallet/presentation/journey/transaction/create/blo
 import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/create_wallet_screen/bloc/create_wallet_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/wallet_list_screen/bloc/wallet_list_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/pick_image/cubit/pick_image_cubit.dart';
+import 'package:flutter_smart_wallet/presentation/widgets/update_avatar.dart/cubit/update_avatar_cubit.dart';
 import 'package:flutter_smart_wallet/repository/remote/transaction/transaction_remote_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/transaction/transaction_remote_repository_impl.dart';
 import 'package:flutter_smart_wallet/repository/remote/user/user_remote_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/user/user_remote_repository_impl.dart';
 import 'package:flutter_smart_wallet/repository/local/pick_image_local_repository.dart';
-import 'package:flutter_smart_wallet/repository/remote/register_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/up_and_down_storage_remote_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/vn_bank_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/wallet_repository.dart';
 import 'package:flutter_smart_wallet/use_case/pick_image_use_case.dart';
 import 'package:flutter_smart_wallet/use_case/transaction_use_case.dart';
 import 'package:flutter_smart_wallet/use_case/user_use_case.dart';
-import 'package:flutter_smart_wallet/use_case/register_use_case.dart';
 import 'package:flutter_smart_wallet/use_case/vn_bank_use_case.dart';
 import 'package:flutter_smart_wallet/use_case/wallet_list_use_case.dart';
 import 'package:get_it/get_it.dart';
@@ -73,7 +72,8 @@ class Injector {
     );
     getIt.registerFactory(
       () => RegisterCubit(
-        registerUseCase: getIt.get<RegisterUseCase>(),
+        useCase: getIt.get<UserUseCase>(),
+        pickImageUseCase: getIt.get<PickImageUseCase>(),
       ),
     );
     getIt.registerFactory(
@@ -86,6 +86,11 @@ class Injector {
           walletUseCase: getIt.get<WalletUseCase>(),
           snackbarBloc: getIt.get<SnackbarBloc>()),
     );
+    getIt.registerFactory<UpdateAvatarCubit>(
+      () => UpdateAvatarCubit(
+        userUseCase: getIt.get<UserUseCase>(),
+      ),
+    );
   }
 
   static void _configureUseCase() {
@@ -96,13 +101,10 @@ class Injector {
       ),
     );
     getIt.registerFactory<VnBankUseCase>(
-          () => VnBankUseCase(getIt.get<VnBankRepository>()),
+      () => VnBankUseCase(getIt.get<VnBankRepository>()),
     );
     getIt.registerFactory<WalletUseCase>(
       () => WalletUseCase(getIt.get<WalletRepository>()),
-    );
-    getIt.registerFactory(
-      () => RegisterUseCase(getIt.get<RegisterRepository>()),
     );
     getIt.registerFactory<TransactionUseCase>(
       () => TransactionUseCase(
@@ -136,9 +138,6 @@ class Injector {
     );
     getIt.registerFactory(
       () => UpDownStorageRemoteRepository(),
-    );
-    getIt.registerFactory(
-      () => RegisterRepository(getIt.get<FirebaseConfig>()),
     );
   }
 
