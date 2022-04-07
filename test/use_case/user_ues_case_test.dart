@@ -66,22 +66,5 @@ void main() {
         isA<bool>(),
       );
     });
-
-    test('return true when calling updateUserFirestore() succeeded ', () async {
-      when(mockUserRemoteRepository.hasconnection())
-          .thenAnswer((_) async => true);
-
-      when(
-        mockUserRemoteRepository.updateUserFirestore(
-          'userId',
-          userModel.toJson(),
-        ),
-      ).thenAnswer((realInvocation) async => true);
-
-      expect(
-        await userUseCase.updateAvatar('userId', 'url'),
-        isA<bool>(),
-      );
-    });
   });
 }

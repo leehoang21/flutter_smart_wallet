@@ -33,17 +33,21 @@ class PickImageCubit extends Cubit<PickImageState> {
     emit(ResultImage(image));
   }
 
-  Future<void> upAndDownImage(
+  Future<void> upImageStorage(
     String imagePathStorage,
   ) async {
     Uint8List? _image = state.image;
     if (_image != null) {
       try {
-        String _url = await _pickImageUseCase.upAndDownImage(
+        final bool _isSuccess = await _pickImageUseCase.upImageStorage(
           imagePathStorage: imagePathStorage,
           imageToUpload: _image,
         );
-        emit(DownloadSuccess(url: _url));
+        if (_isSuccess) {
+          emit(DownloadSuccess());
+        } else {
+          emit(DownloadFailure());
+        }
       } on PickImageException catch (e) {
         emit(
           PickImageError(e.message),

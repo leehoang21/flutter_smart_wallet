@@ -89,6 +89,7 @@ class Injector {
     getIt.registerFactory<UpdateAvatarCubit>(
       () => UpdateAvatarCubit(
         userUseCase: getIt.get<UserUseCase>(),
+        pickImageUseCase: getIt.get<PickImageUseCase>(),
       ),
     );
   }
