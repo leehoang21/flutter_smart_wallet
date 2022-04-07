@@ -5,6 +5,7 @@
 import 'dart:async' as _i5;
 
 import 'package:firebase_auth/firebase_auth.dart' as _i3;
+import 'package:flutter_smart_wallet/model/user_model.dart';
 
 import 'package:flutter_smart_wallet/repository/remote/user/user_remote_repository.dart'
     as _i6;
@@ -46,10 +47,10 @@ class MockUserRemoteRepository extends _i1.Mock
         returnValue: '',
       ) as String);
   @override
-  _i5.Future<Map<String, dynamic>?> getUserFirestore(String? userId) =>
-      (super.noSuchMethod(Invocation.method(#getUserFirestore, [userId]),
-              returnValue: Future<Map<String, dynamic>?>.value())
-          as _i5.Future<Map<String, dynamic>?>);
+  _i5.Future<UserModel> getUserFirestore(String? userId) => (super.noSuchMethod(
+        Invocation.method(#getUserFirestore, [userId]),
+        returnValue: Future<UserModel>.value(UserModel(phoneNumber: '')),
+      ) as _i5.Future<UserModel>);
   @override
   _i5.Future<bool> setUserFirestore(
           String? userId, Map<String, Object?>? data) =>

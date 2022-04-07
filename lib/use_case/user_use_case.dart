@@ -1,4 +1,3 @@
-import 'package:flutter_smart_wallet/common/configs/default_environment.dart';
 import 'package:flutter_smart_wallet/model/user_model.dart';
 import 'package:flutter_smart_wallet/repository/remote/user/user_remote_repository.dart';
 
