@@ -119,9 +119,9 @@ class CreateTransactionBloc extends BaseBloc<CreateTransactionState> {
         for (final photo in photos) {
           final String storagePath =
               '$_uid/${DefaultEnvironment.transaction}/$transactionId/${DateTime.now().millisecondsSinceEpoch}.png';
-          // final path = await _pickImageUseCase.upAndDownImage(
-          //     imageToUpload: photo, imagePathStorage: storagePath);
-          //imagePaths.add(path);
+          final path = await _pickImageUseCase.upAndDownImage(
+              imageToUpload: photo, imagePathStorage: storagePath);
+          imagePaths.add(path);
         }
         transaction =
             transaction.copyWith(id: transactionId, photos: imagePaths);
