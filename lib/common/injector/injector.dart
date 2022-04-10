@@ -5,13 +5,13 @@ import 'package:flutter_smart_wallet/common/configs/firebase_config.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/language_bloc/language_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/loading_bloc/loading_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_bloc.dart';
-import 'package:flutter_smart_wallet/presentation/journey/login/cubit/login_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/main/bloc/tab_manger_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/register/cubit/register_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/splash/bloc/splash_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/bank_list_screen/bloc/bank_search_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/add_photo/add_photo_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create/create_transaction_bloc.dart';
+import 'package:flutter_smart_wallet/presentation/journey/verify_otp/cubit/verify_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/create_wallet_screen/bloc/create_wallet_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/wallet_list_screen/bloc/wallet_list_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/pick_image/cubit/pick_image_cubit.dart';
@@ -97,13 +97,10 @@ class Injector {
       ),
     );
     getIt.registerFactory(
-      () => LoginCubit(
-        authenticationUseCase: getIt.get<AuthenticationUseCase>(),
-      ),
+      () => SplashCubit(),
     );
     getIt.registerFactory(
-      () => SplashCubit(
-          authenticationUseCase: getIt.get<AuthenticationUseCase>()),
+      () => VerifyCubit(getIt.get<AuthenticationUseCase>()),
     );
   }
 
@@ -157,8 +154,8 @@ class Injector {
     getIt.registerFactory(
       () => UpDownStorageRemoteRepository(),
     );
-    getIt.registerFactory(
-      () => AuthenticationRepository(auth: getIt.get<FirebaseAuth>()),
+    getIt.registerFactory<AuthenticationRepository>(
+      () => AuthenticationRepositoryImpl(auth: getIt.get<FirebaseAuth>()),
     );
   }
 

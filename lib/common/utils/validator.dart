@@ -2,7 +2,7 @@ import 'package:flutter_smart_wallet/model/category_model.dart';
 import 'package:flutter_smart_wallet/model/wallet_model.dart';
 
 class AppValidator {
-  static String _validatePhone = r'0\d{8,}';
+  static String _validatePhone = r'0\d{12,}';
   static RegExp expPhoneNumber = RegExp(_validatePhone);
   static String _validateEmail =
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";

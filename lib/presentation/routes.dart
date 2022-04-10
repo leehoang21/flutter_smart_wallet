@@ -3,13 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_wallet/common/constants/argument_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/route_list.dart';
 import 'package:flutter_smart_wallet/common/injector/injector.dart';
+import 'package:flutter_smart_wallet/presentation/journey/login/login_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/main/main_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/register/cubit/register_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/register/register_screen.dart';
+import 'package:flutter_smart_wallet/presentation/journey/splash/bloc/splash_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/splash/splash_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/bank_list_screen/bank_list_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/add_photo/add_photo_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create/create_transaction_bloc.dart';
+import 'package:flutter_smart_wallet/presentation/journey/verify_otp/cubit/verify_cubit.dart';
+import 'package:flutter_smart_wallet/presentation/journey/verify_otp/verify_otp_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/create_wallet_screen/create_wallet_screen.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/category_screen/bloc/category_select_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/category_screen/category_screen.dart';
@@ -77,6 +81,25 @@ class Routes {
           builder: (_) => BlocProvider(
             create: (context) => Injector.getIt<CreateWalletCubit>(),
             child: CreateWalletScreen(),
+          ),
+        );
+      case RouteList.loginScreen:
+        return MaterialPageRoute(
+          builder: (context) => LoginScreen(),
+        );
+      case RouteList.verifyOtpScreen:
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => Injector.getIt.get<VerifyCubit>(),
+                  child: VerifyOtpScreen(
+                    phoneNumber: _argument?[ArgumentConstants.phoneNumber],
+                  ),
+                ));
+      case RouteList.splashScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => Injector.getIt.get<SplashCubit>()..initial(),
+            child: SplashScreen(),
           ),
         );
       default:

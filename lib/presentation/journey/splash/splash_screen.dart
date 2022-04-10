@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/common/constants/image_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/route_list.dart';
-import 'package:flutter_smart_wallet/presentation/journey/splash/bloc/splash_bloc.dart';
+import 'package:flutter_smart_wallet/common/injector/injector.dart';
+import 'package:flutter_smart_wallet/presentation/journey/splash/bloc/splash_cubit.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_smart_wallet/themes/theme_text.dart';
 
@@ -15,13 +16,16 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   double? _logoWidth;
-  SplashBloc _splashBloc = SplashBloc();
+  SplashCubit _splashBloc = Injector.getIt.get<SplashCubit>();
+
   @override
   void initState() {
-    _splashBloc.initiaal();
+    _splashBloc.initial();
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushNamed(context, RouteList.mainScreen);
+      Navigator.pushNamedAndRemoveUntil(
+          context, RouteList.loginScreen, (route) => false);
     });
+
     super.initState();
   }
 

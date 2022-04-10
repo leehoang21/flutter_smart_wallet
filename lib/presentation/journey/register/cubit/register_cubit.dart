@@ -51,7 +51,8 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String userName,
   }) async {
     Uint8List? _avatar = state.avatar;
-    final String _storagePath = '$_id/${DefaultEnvironment.avatar}.png';
+    final String _storagePath =
+        '$_id/${DefaultEnvironment.profile}/${DefaultEnvironment.avatar}.png';
 
     if (_avatar != null) {
       try {
@@ -59,12 +60,15 @@ class RegisterCubit extends Cubit<RegisterState> {
           imageToUpload: _avatar,
           imagePathStorage: _storagePath,
         );
-        emit(state.copyWith(
+        emit(
+          state.copyWith(
             userModel: state.userModel.copyWith(
-          avatar: _storagePath,
-          email: email,
-          userName: userName,
-        )));
+              avatar: _storagePath,
+              email: email,
+              userName: userName,
+            ),
+          ),
+        );
       } on PickImageException catch (e) {
         emit(
           state.copyWith(errorMessage: e.message),

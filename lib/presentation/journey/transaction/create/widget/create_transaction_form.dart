@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -125,7 +123,7 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
   }
 
   Future<void> _chooseCategory(CategoryModel? currentCategory) async {
-    final  category = await Navigator.pushNamed(
+    final category = await Navigator.pushNamed(
       context,
       RouteList.categoryScreen,
       arguments: {ArgumentConstants.category: currentCategory},

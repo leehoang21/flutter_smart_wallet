@@ -16,4 +16,9 @@ class IconConstants {
   static const String icWallet = '$_path/icon_wallet.png';
   static const String icWalletName = '$_path/icon_wallet_name.png';
   static const String icCheck = "$_path/check.svg";
+  static const List<String> listIconsLogin = [
+    '$_path/ic_google.svg',
+    '$_path/ic_apple.svg',
+    '$_path/ic_facebook.svg'
+  ];
 }

@@ -23,6 +23,7 @@ class UserRemoteRepositoryImpl extends UserRemoteRepository {
         .collection(userId)
         .doc(DefaultEnvironment.profile)
         .get();
+
     return result.exists;
   }
 
@@ -43,15 +44,6 @@ class UserRemoteRepositoryImpl extends UserRemoteRepository {
     } catch (_) {
       return false;
     }
-  }
-
-  @override
-  Future<Map<String, dynamic>?> getUserFirestore(String userId) async {
-    final result = await FirebaseConfig.userDoc
-        .collection(userId)
-        .doc(DefaultEnvironment.profile)
-        .get();
-    return result.data();
   }
 
   @override

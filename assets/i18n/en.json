@@ -98,5 +98,22 @@
   "wallet_name": "Wallet's Name",
   "success": "Success",
   "update_success" : "update successful",
-  "update_failure" : "update failed"
+  "update_failure" : "update failed",
+  "login": "Login",
+  "your_phone_number":"Your phone number",
+  "sign_in":"Sign In",
+  "or":"Or",
+  "otp_screen_didn_t_receive_the_code":"Didn't receive the code?",
+  "otp_screen_resend":" Resend",
+  "otp_screen_confirm":"Confirm",
+  "verify_account_screen_title": "Verify Account",
+  "verify_account_screen_description": "We have sent you a verification code\non your mobile number",
+  "login_screen_phone_number_empty":"Phone number is not empty",
+  "invalid_phone":"Invalid phone number",
+  "missing_phone":"Missing phone number",
+  "quota-exceeded":"SMS limit for the day exceeded. Please try again in 24 hours",
+  "user-disabled":"This user has been disabled. Please contact support for help",
+  "invalid_otp":"Invalid OTP",
+  "missing-verification-id":"Missing verification Id",
+  "captcha_check_failed":"reCAPTCHA is invalid, has expired, or if the method is called from an unlisted domain."
 }

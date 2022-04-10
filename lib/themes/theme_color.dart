@@ -22,4 +22,7 @@ class AppColor {
   static const Color iron = Color(0xffE5E5E7);
   static const Color secondaryColor = Color(0xff767680);
   static const Color ebonyClay = Color(0xff2B2E40);
+  static const Color shadow = Color(0xff2B2E40);
+  static const Color taupeGray = Color(0xff86868A);
+  static const Color platinum = Color(0xffE7E7E5);
 }

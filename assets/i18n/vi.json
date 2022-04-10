@@ -97,5 +97,22 @@
   "user_name": "Tên người dùng",
   "success": "Thành công",
   "update_success" : "Cập nhật thành công",
-  "update_failure" : "Cập nhật thất bại"
+  "update_failure" : "Cập nhật thất bại",
+  "login": "Đăng nhập",
+  "your_phone_number":"Số điện thoại của bạn",
+  "sign_in":"Đăng nhập",
+  "or":"Hoặc",
+  "otp_screen_didn_t_receive_the_code":"Bạn không nhận được mã OTP?",
+  "otp_screen_resend":" Gửi lại",
+  "otp_screen_confirm":"Xác nhận",
+  "login_screen_phone_number_empty":"Số điện thoại không được rỗng",
+  "verify_account_screen_title": "Verify Account",
+  "verify_account_screen_description": "Chúng tôi đã gửi cho bạn một mã xác minh \ntrên số điện thoại di động của bạn",
+  "invalid_phone":"Số điện thoại không hợp lệ",
+  "missing_phone":"Thiếu số điện thoại",
+  "quota-exceeded":"Đã vượt quá giới hạn SMS trong ngày. Vui lòng thử lại sau 24 giờ",
+  "user-disabled":"Người dùng này đã bị vô hiệu hóa. Vui lòng liên hệ bộ phận hỗ trợ để được giúp đỡ",
+  "invalid_otp":"Mã OTP không hợp lệ",
+  "missing-verification_id":"Thiếu Id xác minh",
+  "captcha_check_failed":"reCAPTCHA không hợp lệ, đã hết hạn hoặc nếu phương thức được gọi từ miền không có trong danh sách cho phép."
 }

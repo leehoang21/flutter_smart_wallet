@@ -45,11 +45,7 @@ class MockUserRemoteRepository extends _i1.Mock
         Invocation.method(#getPhoneNumber, []),
         returnValue: '',
       ) as String);
-  @override
-  _i5.Future<Map<String, dynamic>?> getUserFirestore(String? userId) =>
-      (super.noSuchMethod(Invocation.method(#getUserFirestore, [userId]),
-              returnValue: Future<Map<String, dynamic>?>.value())
-          as _i5.Future<Map<String, dynamic>?>);
+
   @override
   _i5.Future<bool> setUserFirestore(
           String? userId, Map<String, Object?>? data) =>
