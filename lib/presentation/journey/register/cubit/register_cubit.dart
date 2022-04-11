@@ -106,7 +106,6 @@ class RegisterCubit extends Cubit<RegisterState> {
 
     try {
       await useCase.setUserFirestore(
-        _id,
         state.userModel,
       );
     } catch (e) {

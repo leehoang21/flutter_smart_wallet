@@ -19,8 +19,8 @@ class PinCodeFieldWidget extends StatelessWidget {
       pinTheme: PinTheme(
         shape: PinCodeFieldShape.box,
         borderRadius: BorderRadius.circular(6),
-        fieldHeight: VerifyAccountConstants.widthFieldInput,
-        fieldWidth: VerifyAccountConstants.widthFieldInput,
+        fieldHeight: VerifyOtpConstants.widthFieldInput,
+        fieldWidth: VerifyOtpConstants.widthFieldInput,
         borderWidth: 2,
         activeColor: AppColor.taupeGray,
         inactiveColor: AppColor.platinum,

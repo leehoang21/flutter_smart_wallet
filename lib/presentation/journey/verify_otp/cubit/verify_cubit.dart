@@ -1,21 +1,24 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_smart_wallet/common/utils/app_utils.dart';
 import 'package:flutter_smart_wallet/use_case/authentication_use_case.dart';
+import 'package:flutter_smart_wallet/use_case/user_use_case.dart';
 
 part 'verify_state.dart';
 
 class VerifyCubit extends Cubit<VerifyState> {
-  VerifyCubit(this.authenticationUseCase) : super(VerifyInitial());
+  VerifyCubit(this.authenticationUseCase, this.userUseCase)
+      : super(VerifyInitial());
   final AuthenticationUseCase authenticationUseCase;
-  late String _verificationId;
+  final UserUseCase userUseCase;
+  String? _verificationId;
   int? _reSenToken;
   String? _phoneNumber;
-  late StreamSubscription _streamSubscription;
+
+  StreamSubscription? _streamSubscription;
   final Duration _time = Duration(seconds: 1);
-  static final Duration _timeMax = Duration(seconds: 5 * 60);
+  static final Duration _timeMax = Duration(seconds: 300);
 
   void addPhoneNumber(String? phoneNumber) {
     _phoneNumber = phoneNumber;
@@ -34,7 +37,6 @@ class VerifyCubit extends Cubit<VerifyState> {
     await authenticationUseCase.verifyPhoneNumber(
       phoneNumber: _phoneNumber!,
       verificationFailed: (e) {
-        print(e.code);
         emit(
           VerifyFailure(
             error: _handleExceptionVerificationFailed(e.code),
@@ -56,17 +58,15 @@ class VerifyCubit extends Cubit<VerifyState> {
 
   void verifyOtp(String smsCode) async {
     try {
-      PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: _verificationId,
-        smsCode: smsCode,
-      );
-      await authenticationUseCase.userCredential(credential);
-      if (authenticationUseCase.checkUserIsExist()) {
-        emit(VerifySuccess(state.timeResend));
-      }
-    } catch (_) {
+      await authenticationUseCase.userCredential(_verificationId!, smsCode);
+
+      bool _isUserFirestore = await userUseCase.hasUserFirestore();
+
+      emit(VerifySuccess(state.timeResend, _isUserFirestore));
+      _streamSubscription?.cancel();
+    } catch (e) {
       emit(VerifyFailure(
-        error: 'invalid_otp',
+        error: e.toString(),
         timeResend: state.timeResend,
       ));
     }
@@ -74,6 +74,8 @@ class VerifyCubit extends Cubit<VerifyState> {
 
   String _handleExceptionVerificationFailed(String code) {
     switch (code) {
+      case 'network-request-failed':
+        return 'network_request_failed';
       case 'invalid-phone-number':
         return 'invalid_phone';
       case 'missing-phone-number':
@@ -90,13 +92,16 @@ class VerifyCubit extends Cubit<VerifyState> {
   }
 
   void startTimer() {
-    _streamSubscription = changeTime().listen((event) {
-      emit(
-        Verifyloaded(stringTimeFormat(event)),
-      );
+    emit(Verifyloaded(stringTimeFormat(_timeMax)));
+    _streamSubscription?.cancel();
 
-      if (timeOut()) {
-        _streamSubscription.cancel();
+    _streamSubscription = changeTime().listen((event) {
+      if (event == const Duration()) {
+        _streamSubscription?.cancel();
+      } else {
+        emit(
+          Verifyloaded(stringTimeFormat(event)),
+        );
       }
     });
   }
@@ -113,5 +118,9 @@ class VerifyCubit extends Cubit<VerifyState> {
   bool timeOut() => state.timeResend == '0:00:00';
 
   String stringTimeFormat(Duration time) =>
-      timeOut() ? '0:00:00' : time.toString().split(".").first;
+      timeOut() ? '0:00:00' : time.toString().split(".").first.substring(2);
+
+  bool isStarted() {
+    return state.timeResend != '0:05:00';
+  }
 }

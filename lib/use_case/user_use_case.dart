@@ -5,14 +5,15 @@ class UserUseCase {
   final UserRemoteRepository _userRemoteRepository;
 
   UserUseCase(this._userRemoteRepository);
+
   String getUid() => _userRemoteRepository.getUserId();
+
   String getPhoneNumber() => _userRemoteRepository.getPhoneNumber();
 
-  Future<bool> setUserFirestore(String userId, UserModel data) async {
+  Future<bool> setUserFirestore(UserModel data) async {
     await hasconnection();
     try {
       final bool _result = await _userRemoteRepository.setUserFirestore(
-        userId,
         data.toJson(),
       );
       return _result;
@@ -21,10 +22,10 @@ class UserUseCase {
     }
   }
 
-  Future<bool> hasUserFirestore(String userId) async {
+  Future<bool> hasUserFirestore() async {
     await hasconnection();
     try {
-      final bool result = await _userRemoteRepository.hasUserFirestore(userId);
+      final bool result = await _userRemoteRepository.hasUserFirestore();
       return result;
     } catch (_) {
       return false;

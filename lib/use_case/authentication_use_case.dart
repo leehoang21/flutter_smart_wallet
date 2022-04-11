@@ -20,15 +20,14 @@ class AuthenticationUseCase {
     );
   }
 
-  Future<UserCredential> userCredential(PhoneAuthCredential credential) {
-    return authenticationRepository.userCredential(credential);
-  }
-
-  bool checkUserIsExist() {
+  Future<UserCredential> userCredential(
+      String verificationId, String smsCode) async {
     try {
-      return authenticationRepository.checkUserIsExist();
+      UserCredential _userCredential = await authenticationRepository
+          .userCredential(verificationId, smsCode);
+      return _userCredential;
     } catch (_) {
-      return false;
+      throw 'invalid_otp';
     }
   }
 }

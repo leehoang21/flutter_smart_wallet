@@ -114,6 +114,6 @@
   "quota-exceeded":"SMS limit for the day exceeded. Please try again in 24 hours",
   "user-disabled":"This user has been disabled. Please contact support for help",
   "invalid_otp":"Invalid OTP",
-  "missing-verification-id":"Missing verification Id",
-  "captcha_check_failed":"reCAPTCHA is invalid, has expired, or if the method is called from an unlisted domain."
+  "captcha_check_failed":"reCAPTCHA is invalid, has expired, or if the method is called from an unlisted domain.",
+  "network_request_failed":"Network request failed"
 }

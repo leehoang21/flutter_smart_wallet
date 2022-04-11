@@ -7,8 +7,8 @@ abstract class UserRemoteRepository {
 
   String getUserId();
   String getPhoneNumber();
-  Future<bool> setUserFirestore(String userId, Map<String, Object?> data);
-  Future<bool> hasUserFirestore(String userId);
-  Future<bool> updateUserFirestore(String userId, Map<String, Object?> data);
+  Future<bool> setUserFirestore(Map<String, Object?> data);
+  Future<bool> hasUserFirestore();
+  Future<bool> updateUserFirestore(Map<String, Object?> data);
   Future<bool> hasconnection();
 }

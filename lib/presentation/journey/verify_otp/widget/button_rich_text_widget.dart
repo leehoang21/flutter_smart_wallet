@@ -16,12 +16,12 @@ class ButtonRichTextWidget extends StatelessWidget {
           style: TextStyle(color: Colors.black, fontSize: 36),
           children: <TextSpan>[
             TextSpan(
-              text: VerifyAccountConstants.notReceivecode,
+              text: VerifyOtpConstants.notReceivecode,
               style:
                   ThemeText.style14Medium.copyWith(color: AppColor.taupeGray),
             ),
             TextSpan(
-              text: VerifyAccountConstants.resend,
+              text: VerifyOtpConstants.resend,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   if (context.read<VerifyCubit>().timeOut()) {

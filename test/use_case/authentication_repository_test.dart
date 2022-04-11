@@ -19,25 +19,12 @@ void main() {
       authenticationRepository: mockAuthenticationRepository,
     );
 
-    PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(
-      verificationId: 'verificationId',
-      smsCode: 'smsCode',
-    );
-
     test('return UserCredential when calling userCredential()', () async {
-      when(mockAuthenticationRepository.userCredential(phoneAuthCredential))
+      when(mockAuthenticationRepository.userCredential('id', 'code'))
           .thenAnswer((_) async => mockUserCredential);
 
-      expect(await authenticationUseCase.userCredential(phoneAuthCredential),
+      expect(await authenticationUseCase.userCredential('id', 'code'),
           isA<UserCredential>());
-    });
-
-    test('return true when calling checkUserIsExist()', () {
-      when(mockAuthenticationRepository.checkUserIsExist()).thenAnswer(
-        (realInvocation) => true,
-      );
-
-      expect(authenticationUseCase.checkUserIsExist(), isTrue);
     });
   });
 }

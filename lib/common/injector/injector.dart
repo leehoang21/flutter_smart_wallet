@@ -100,7 +100,10 @@ class Injector {
       () => SplashCubit(),
     );
     getIt.registerFactory(
-      () => VerifyCubit(getIt.get<AuthenticationUseCase>()),
+      () => VerifyCubit(
+        getIt.get<AuthenticationUseCase>(),
+        getIt.get<UserUseCase>(),
+      ),
     );
   }
 

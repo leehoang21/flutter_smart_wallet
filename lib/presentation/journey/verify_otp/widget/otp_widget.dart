@@ -9,13 +9,9 @@ import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_smart_wallet/themes/theme_text.dart';
 
 class OtpWidget extends StatelessWidget {
-  const OtpWidget({
-    Key? key,
-    required TextEditingController pinCodeController,
-  })  : _pinCodeController = pinCodeController,
-        super(key: key);
+  OtpWidget({Key? key}) : super(key: key);
 
-  final TextEditingController _pinCodeController;
+  final TextEditingController _pinCodeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +19,17 @@ class OtpWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          VerifyAccountConstants.verifyAccount,
+          VerifyOtpConstants.verifyAccount,
           style: ThemeText.style18Bold,
           textAlign: TextAlign.left,
         ),
         Text(
-          VerifyAccountConstants.description,
+          VerifyOtpConstants.description,
           style: ThemeText.caption
               .copyWith(fontWeight: FontWeight.w500, color: AppColor.grey),
         ),
         SizedBox(
-          height: VerifyAccountConstants.distanceTextToFieldInput,
+          height: VerifyOtpConstants.distanceTextToFieldInput,
         ),
         PinCodeFieldWidget(
           controller: _pinCodeController,
@@ -47,14 +43,14 @@ class OtpWidget extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.symmetric(
-              vertical: VerifyAccountConstants.distanceTextToFieldInput),
+              vertical: VerifyOtpConstants.distanceTextToFieldInput),
           child: ButtonRichTextWidget(),
         ),
         TextButtonWidget(
           onPressed: () {
             context.read<VerifyCubit>().verifyOtp(_pinCodeController.text);
           },
-          title: VerifyAccountConstants.confirm,
+          title: VerifyOtpConstants.confirm,
         ),
       ],
     );

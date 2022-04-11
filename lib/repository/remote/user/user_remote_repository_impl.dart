@@ -18,9 +18,9 @@ class UserRemoteRepositoryImpl extends UserRemoteRepository {
   }
 
   @override
-  Future<bool> hasUserFirestore(String userId) async {
+  Future<bool> hasUserFirestore() async {
     final result = await FirebaseConfig.userDoc
-        .collection(userId)
+        .collection(getUserId())
         .doc(DefaultEnvironment.profile)
         .get();
 
@@ -33,11 +33,10 @@ class UserRemoteRepositoryImpl extends UserRemoteRepository {
   }
 
   @override
-  Future<bool> setUserFirestore(
-      String userId, Map<String, Object?> data) async {
+  Future<bool> setUserFirestore(Map<String, Object?> data) async {
     try {
       await FirebaseConfig.userDoc
-          .collection(userId)
+          .collection(getUserId())
           .doc(DefaultEnvironment.profile)
           .set(data);
       return true;
@@ -48,12 +47,11 @@ class UserRemoteRepositoryImpl extends UserRemoteRepository {
 
   @override
   Future<bool> updateUserFirestore(
-    String userId,
     Map<String, Object?> data,
   ) async {
     try {
       await FirebaseConfig.userDoc
-          .collection(userId)
+          .collection(getUserId())
           .doc(DefaultEnvironment.profile)
           .update(data);
       return true;

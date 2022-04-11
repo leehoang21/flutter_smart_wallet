@@ -1,7 +1,7 @@
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class VerifyAccountConstants {
+class VerifyOtpConstants {
   static String verifyAccount = translate('verify_account_screen_title');
   static String description = translate('verify_account_screen_description');
   static String notReceivecode =
@@ -14,5 +14,5 @@ class VerifyAccountConstants {
   static double sizeLogo = 100.w;
   static double horizontalScreen = 16.88.w;
   static double topColumn = 71.h;
-  static String errorMessage = 'error_message';
+  static String invalidOtp = 'invalid_otp';
 }

@@ -44,11 +44,11 @@ void main() {
           .thenAnswer((_) async => true);
 
       when(
-        mockUserRemoteRepository.setUserFirestore(' ', userModel.toJson()),
+        mockUserRemoteRepository.setUserFirestore(userModel.toJson()),
       ).thenAnswer((realInvocation) async => true);
 
       expect(
-        await userUseCase.setUserFirestore('userId', userModel),
+        await userUseCase.setUserFirestore(userModel),
         isA<bool>(),
       );
     });
@@ -58,11 +58,11 @@ void main() {
           .thenAnswer((_) async => true);
 
       when(
-        mockUserRemoteRepository.hasUserFirestore('userId'),
+        mockUserRemoteRepository.hasUserFirestore(),
       ).thenAnswer((_) async => true);
 
       expect(
-        await userUseCase.hasUserFirestore('userId'),
+        await userUseCase.hasUserFirestore(),
         isA<bool>(),
       );
     });

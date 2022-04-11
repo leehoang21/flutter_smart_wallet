@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_smart_wallet/common/utils/app_utils.dart';
 
 abstract class AuthenticationRepository {
   final FirebaseAuth auth;
@@ -12,9 +11,7 @@ abstract class AuthenticationRepository {
     int? reSendToken,
   });
 
-  Future<UserCredential> userCredential(PhoneAuthCredential credential);
-
-  bool checkUserIsExist();
+  Future<UserCredential> userCredential(String verificationId, String smsCode);
 }
 
 class AuthenticationRepositoryImpl extends AuthenticationRepository {
@@ -39,11 +36,14 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   }
 
   @override
-  Future<UserCredential> userCredential(PhoneAuthCredential credential) {
-    return auth.signInWithCredential(credential);
-  }
-
-  bool checkUserIsExist() {
-    return isNullEmpty(auth.currentUser);
+  Future<UserCredential> userCredential(
+      String verificationId, String smsCode) async {
+    UserCredential _userCredential = await auth.signInWithCredential(
+      PhoneAuthProvider.credential(
+        verificationId: verificationId,
+        smsCode: smsCode,
+      ),
+    );
+    return _userCredential;
   }
 }

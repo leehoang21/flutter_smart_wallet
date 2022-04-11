@@ -19,7 +19,6 @@ class VerifyOtpScreen extends StatefulWidget {
 }
 
 class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
-  final TextEditingController _pinCodeController = TextEditingController();
   final String? phoneNumber;
 
   _VerifyOtpScreenState(this.phoneNumber);
@@ -29,17 +28,15 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
     return BlocListener<VerifyCubit, VerifyState>(
       listener: (context, state) {
         if (state is VerifySuccess) {
-          Navigator.pushNamedAndRemoveUntil(
-              context, RouteList.registerScreen, (route) => false);
-        } else if (state is VerifyFailure) {
-          if (state.error == VerifyAccountConstants.errorMessage) {
-            context.read<SnackbarBloc>().showSnackbar(
-                  translationKey: translate(state.error),
-                  type: SnackBarType.error,
-                );
+          if (state.isUserFirestore) {
+            Navigator.pushNamedAndRemoveUntil(
+                context, RouteList.mainScreen, (route) => false);
           } else {
-            Navigator.pop(context, state.error);
+            Navigator.pushNamedAndRemoveUntil(
+                context, RouteList.registerScreen, (route) => false);
           }
+        } else if (state is VerifyFailure) {
+          verifyFailure(state, context);
         }
       },
       child: Scaffold(
@@ -60,20 +57,22 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(
-                        top: VerifyAccountConstants.topHeightLogo),
+                    padding:
+                        EdgeInsets.only(top: VerifyOtpConstants.topHeightLogo),
                     child: Image.asset(
                       ImageConstants.logoSplashImg,
-                      height: VerifyAccountConstants.sizeLogo,
-                      width: VerifyAccountConstants.sizeLogo,
+                      height: VerifyOtpConstants.sizeLogo,
+                      width: VerifyOtpConstants.sizeLogo,
                     ),
                   ),
                   Padding(
-                      padding: EdgeInsets.symmetric(
-                              horizontal:
-                                  VerifyAccountConstants.horizontalScreen)
-                          .copyWith(top: VerifyAccountConstants.topColumn),
-                      child: OtpWidget(pinCodeController: _pinCodeController)),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: VerifyOtpConstants.horizontalScreen,
+                    ).copyWith(
+                      top: VerifyOtpConstants.topColumn,
+                    ),
+                    child: OtpWidget(),
+                  ),
                 ],
               ),
             );
@@ -81,6 +80,17 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
         ),
       ),
     );
+  }
+
+  void verifyFailure(VerifyFailure state, BuildContext context) {
+    if (state.error == VerifyOtpConstants.invalidOtp) {
+      context.read<SnackbarBloc>().showSnackbar(
+            translationKey: translate(state.error),
+            type: SnackBarType.error,
+          );
+    } else {
+      Navigator.pop(context, state.error);
+    }
   }
 
   @override

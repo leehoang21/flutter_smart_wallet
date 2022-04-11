@@ -22,7 +22,9 @@ class Verifyloaded extends VerifyState {
 }
 
 class VerifySuccess extends VerifyState {
-  VerifySuccess(String timeResend) : super(timeResend);
+  VerifySuccess(String timeResend, this.isUserFirestore) : super(timeResend);
+
+  final bool isUserFirestore;
 }
 
 class VerifyFailure extends VerifyState {

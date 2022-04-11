@@ -113,6 +113,6 @@
   "quota-exceeded":"Đã vượt quá giới hạn SMS trong ngày. Vui lòng thử lại sau 24 giờ",
   "user-disabled":"Người dùng này đã bị vô hiệu hóa. Vui lòng liên hệ bộ phận hỗ trợ để được giúp đỡ",
   "invalid_otp":"Mã OTP không hợp lệ",
-  "missing-verification_id":"Thiếu Id xác minh",
-  "captcha_check_failed":"reCAPTCHA không hợp lệ, đã hết hạn hoặc nếu phương thức được gọi từ miền không có trong danh sách cho phép."
+  "captcha_check_failed":"reCAPTCHA không hợp lệ, đã hết hạn hoặc nếu phương thức được gọi từ miền không có trong danh sách cho phép.",
+  "network_request_failed":"Yêu cầu mạng không thành công"
 }

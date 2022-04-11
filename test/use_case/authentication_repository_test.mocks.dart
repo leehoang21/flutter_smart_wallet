@@ -63,13 +63,10 @@ class MockAuthenticationRepository extends _i1.Mock
           returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
   @override
   _i4.Future<_i2.UserCredential> userCredential(
-          _i5.PhoneAuthCredential? credential) =>
-      (super.noSuchMethod(Invocation.method(#userCredential, [credential]),
+          String? verificationId, String? smsCode) =>
+      (super.noSuchMethod(
+              Invocation.method(#userCredential, [verificationId, smsCode], {}),
               returnValue:
                   Future<_i2.UserCredential>.value(_FakeUserCredential_1()))
           as _i4.Future<_i2.UserCredential>);
-  @override
-  bool checkUserIsExist() =>
-      (super.noSuchMethod(Invocation.method(#checkUserIsExist, []),
-          returnValue: false) as bool);
 }

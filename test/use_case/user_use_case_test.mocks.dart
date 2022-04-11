@@ -47,19 +47,16 @@ class MockUserRemoteRepository extends _i1.Mock
       ) as String);
 
   @override
-  _i5.Future<bool> setUserFirestore(
-          String? userId, Map<String, Object?>? data) =>
-      (super.noSuchMethod(Invocation.method(#setUserFirestore, [userId, data]),
+  _i5.Future<bool> setUserFirestore(Map<String, Object?>? data) =>
+      (super.noSuchMethod(Invocation.method(#setUserFirestore, [data]),
           returnValue: Future<bool>.value(false)) as _i5.Future<bool>);
   @override
-  _i5.Future<bool> hasUserFirestore(String? userId) =>
-      (super.noSuchMethod(Invocation.method(#hasUserFirestore, [userId]),
+  _i5.Future<bool> hasUserFirestore() =>
+      (super.noSuchMethod(Invocation.method(#hasUserFirestore, []),
           returnValue: Future<bool>.value(false)) as _i5.Future<bool>);
   @override
-  _i5.Future<bool> updateUserFirestore(
-          String? userId, Map<String, Object?>? data) =>
-      (super.noSuchMethod(
-          Invocation.method(#updateUserFirestore, [userId, data]),
+  _i5.Future<bool> updateUserFirestore(Map<String, Object?>? data) =>
+      (super.noSuchMethod(Invocation.method(#updateUserFirestore, [data]),
           returnValue: Future<bool>.value(false)) as _i5.Future<bool>);
   @override
   _i5.Future<bool> hasconnection() =>
