@@ -13,7 +13,7 @@ import 'package:flutter_smart_wallet/presentation/widgets/button_widget/text_but
 import 'package:flutter_smart_wallet/presentation/widgets/scaffold_wdiget/scaffold_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_smart_wallet/common/extensions/date_time_extension.dart';
-import 'package:flutter_smart_wallet/common/extensions/num_extension.dart  ';
+import 'package:flutter_smart_wallet/common/extensions/num_extension.dart';
 
 class CreateTransactionScreen extends StatefulWidget {
   final TransactionModel? transaction;

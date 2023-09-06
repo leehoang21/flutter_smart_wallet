@@ -51,12 +51,12 @@ class _KeyboardAvoiderState extends State<KeyboardAvoider>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     _animationKey.currentState?.animation
         .removeStatusListener(_animationListener!);
     super.dispose();
@@ -67,7 +67,7 @@ class _KeyboardAvoiderState extends State<KeyboardAvoider>
     // Add a status listener to the animation after the initial build.
     // Wait a frame so that _animationKey.currentState is not null.
     if (_animationListener == null) {
-      WidgetsBinding.instance?.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         _animationListener = _animationStatusChanged;
         _animationKey.currentState?.animation
             .addStatusListener(_animationListener!);
@@ -110,7 +110,7 @@ class _KeyboardAvoiderState extends State<KeyboardAvoider>
   @override
   void didChangeMetrics() {
     //Need to wait a frame to get the new size
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _resize();
     });
   }
@@ -174,7 +174,7 @@ class _KeyboardAvoiderState extends State<KeyboardAvoider>
       return;
     }
     // Need to wait a frame to get the new size
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _scrollToFocusedObject();
     });
   }
@@ -208,17 +208,15 @@ class _KeyboardAvoiderState extends State<KeyboardAvoider>
     // Calculate the offset needed to show the object in the [ScrollView]
     // so that its bottom touches the top of the keyboard.
     final viewport = RenderAbstractViewport.of(object);
-    if (viewport != null) {
-      final offset =
-          viewport.getOffsetToReveal(object, 1.0).offset + widget.focusPadding;
-      final pixels = _scrollController?.position.pixels ?? 0;
-      if (offset > pixels) {
-        _scrollController?.position.moveTo(
-          offset,
-          duration: widget.duration,
-          curve: widget.curve,
-        );
-      }
+    final offset =
+        viewport.getOffsetToReveal(object, 1.0).offset + widget.focusPadding;
+    final pixels = _scrollController?.position.pixels ?? 0;
+    if (offset > pixels) {
+      _scrollController?.position.moveTo(
+        offset,
+        duration: widget.duration,
+        curve: widget.curve,
+      );
     }
 
     // If the object is covered by the keyboard, scroll to reveal it,

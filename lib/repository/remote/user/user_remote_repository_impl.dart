@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_smart_wallet/common/configs/default_environment.dart';
 import 'package:flutter_smart_wallet/common/configs/firebase_config.dart';
 import 'package:flutter_smart_wallet/common/utils/internet_checker.dart';
+import 'package:flutter_smart_wallet/model/user_model.dart';
 import 'package:flutter_smart_wallet/repository/remote/user/user_remote_repository.dart';
 
 class UserRemoteRepositoryImpl extends UserRemoteRepository {
@@ -43,6 +44,15 @@ class UserRemoteRepositoryImpl extends UserRemoteRepository {
     } catch (_) {
       return false;
     }
+  }
+
+  @override
+  Future<UserModel> getUserFirestore() async {
+    final result = await FirebaseConfig.userDoc
+        .collection(getUserId())
+        .doc(DefaultEnvironment.profile)
+        .get();
+    return UserModel.fromDocument(result);
   }
 
   @override

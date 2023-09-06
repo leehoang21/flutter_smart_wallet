@@ -31,7 +31,7 @@ class App extends StatelessWidget {
         LayoutConstants.widthDefault,
         LayoutConstants.heightDefault,
       ),
-      builder: () => MultiBlocProvider(
+      builder: (_, child) => MultiBlocProvider(
         providers: [
           BlocProvider(
             create: (_) => Injector.getIt.get<LanguageBloc>(),

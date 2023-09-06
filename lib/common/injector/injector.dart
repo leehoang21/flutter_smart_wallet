@@ -7,7 +7,6 @@ import 'package:flutter_smart_wallet/presentation/bloc/loading_bloc/loading_bloc
 import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/journey/main/bloc/tab_manger_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/register/cubit/register_cubit.dart';
-import 'package:flutter_smart_wallet/presentation/journey/splash/bloc/splash_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/bank_list_screen/bloc/bank_search_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/add_photo/add_photo_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/create/bloc/create/create_transaction_bloc.dart';
@@ -16,7 +15,6 @@ import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/create_
 import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/wallet_list_screen/bloc/wallet_list_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/pick_image/cubit/pick_image_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/update_avatar.dart/cubit/update_avatar_cubit.dart';
-import 'package:flutter_smart_wallet/repository/remote/authentication_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/transaction/transaction_remote_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/transaction/transaction_remote_repository_impl.dart';
 import 'package:flutter_smart_wallet/repository/remote/user/user_remote_repository.dart';
@@ -25,13 +23,16 @@ import 'package:flutter_smart_wallet/repository/local/pick_image_local_repositor
 import 'package:flutter_smart_wallet/repository/remote/up_and_down_storage_remote_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/vn_bank_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/wallet_repository.dart';
-import 'package:flutter_smart_wallet/use_case/authentication_use_case.dart';
 import 'package:flutter_smart_wallet/use_case/pick_image_use_case.dart';
 import 'package:flutter_smart_wallet/use_case/transaction_use_case.dart';
 import 'package:flutter_smart_wallet/use_case/user_use_case.dart';
 import 'package:flutter_smart_wallet/use_case/vn_bank_use_case.dart';
 import 'package:flutter_smart_wallet/use_case/wallet_list_use_case.dart';
 import 'package:get_it/get_it.dart';
+
+import '../../presentation/journey/splash/bloc/splash_cubit.dart';
+import '../../repository/remote/authentication_repository.dart';
+import '../../use_case/authentication_use_case.dart';
 
 class Injector {
   static final GetIt getIt = GetIt.instance;
@@ -129,10 +130,6 @@ class Injector {
       () => UserUseCase(
         getIt.get<UserRemoteRepository>(),
       ),
-    );
-    getIt.registerFactory(
-      () => AuthenticationUseCase(
-          authenticationRepository: getIt.get<AuthenticationRepository>()),
     );
   }
 
