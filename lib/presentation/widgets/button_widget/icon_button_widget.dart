@@ -27,21 +27,23 @@ class IconButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TouchableWidget(
-        onPressed: onPressed,
-        child: Container(
-          width: size ?? ButtonConstants.iconButtonSize,
-          height: size ?? ButtonConstants.iconButtonSize,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                  color: borderColor ?? buttonColor ?? AppColor.buttonColor),
-              color: buttonColor ?? AppColor.buttonColor),
-          child: SvgPicture.asset(
-            iconSource,
-            height: iconHeight ?? ButtonConstants.iconSize,
-            color: iconColor,
-          ),
-        ),);
+      onPressed: onPressed,
+      child: Container(
+        width: size ?? ButtonConstants.iconButtonSize,
+        height: size ?? ButtonConstants.iconButtonSize,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+                color: borderColor ?? buttonColor ?? AppColor.buttonColor),
+            color: buttonColor ?? AppColor.buttonColor),
+        child: SvgPicture.asset(
+          iconSource,
+          height: iconHeight ?? ButtonConstants.iconSize,
+          // ignore: deprecated_member_use
+          color: iconColor,
+        ),
+      ),
+    );
   }
 }

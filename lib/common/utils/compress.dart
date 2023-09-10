@@ -25,13 +25,13 @@ class Compress {
     final String splitted = filePath.substring(0, lastIndex);
     final String targetPath = '${splitted}_out${filePath.substring(lastIndex)}';
 
-    final File? result = await FlutterImageCompress.compressAndGetFile(
+    final XFile? result = await FlutterImageCompress.compressAndGetFile(
       file.absolute.path,
       targetPath,
       quality: quality,
     );
     if (result != null) {
-      return result;
+      return File(result.path);
     } else {
       throw Exception('compression failed');
     }

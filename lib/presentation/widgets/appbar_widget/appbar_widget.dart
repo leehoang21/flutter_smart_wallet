@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/appbar_widget/appbar_constants.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
@@ -52,15 +54,15 @@ class AppBarWidget extends StatelessWidget implements PreferredSize {
   final TextStyle? titleStyle;
   final Color? color;
 
-  const AppBarWidget({
-    Key? key,
-    this.leading,
-    this.title,
-    this.action,
-    this.centerWidget,
-    this.titleStyle,
-    this.color
-  }) : super(key: key);
+  const AppBarWidget(
+      {Key? key,
+      this.leading,
+      this.title,
+      this.action,
+      this.centerWidget,
+      this.titleStyle,
+      this.color})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

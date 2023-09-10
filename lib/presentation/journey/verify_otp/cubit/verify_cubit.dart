@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_smart_wallet/common/utils/app_utils.dart';
 import 'package:flutter_smart_wallet/use_case/authentication_use_case.dart';
 import 'package:flutter_smart_wallet/use_case/user_use_case.dart';
@@ -15,6 +16,7 @@ class VerifyCubit extends Cubit<VerifyState> {
   String? _verificationId;
   int? _reSenToken;
   String? _phoneNumber;
+  final TextEditingController pinCodeController = TextEditingController();
 
   StreamSubscription? _streamSubscription;
   final Duration _time = Duration(seconds: 1);
@@ -56,8 +58,9 @@ class VerifyCubit extends Cubit<VerifyState> {
     );
   }
 
-  void verifyOtp(String smsCode) async {
+  void verifyOtp() async {
     try {
+      String smsCode = pinCodeController.text;
       await authenticationUseCase.userCredential(_verificationId!, smsCode);
 
       bool _isUserFirestore = await userUseCase.hasUserFirestore();

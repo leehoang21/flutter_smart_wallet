@@ -18,7 +18,6 @@ ThemeData appTheme() {
     iconTheme: ThemeIcon.getDefaultIconTheme(),
     appBarTheme:
         const AppBarTheme(color: AppColor.backgroundColor, elevation: 0.0),
-    toggleableActiveColor: AppColor.primaryColor,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
       selectedIconTheme: IconThemeData(color: AppColor.ebonyClay),
@@ -40,6 +39,52 @@ ThemeData appTheme() {
     ),
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: AppColor.primaryColor,
+    ),
+    switchTheme: SwitchThemeData(
+      thumbColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) {
+        if (states.contains(MaterialState.disabled)) {
+          return null;
+        }
+        if (states.contains(MaterialState.selected)) {
+          return AppColor.primaryColor;
+        }
+        return null;
+      }),
+      trackColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) {
+        if (states.contains(MaterialState.disabled)) {
+          return null;
+        }
+        if (states.contains(MaterialState.selected)) {
+          return AppColor.primaryColor;
+        }
+        return null;
+      }),
+    ),
+    radioTheme: RadioThemeData(
+      fillColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) {
+        if (states.contains(MaterialState.disabled)) {
+          return null;
+        }
+        if (states.contains(MaterialState.selected)) {
+          return AppColor.primaryColor;
+        }
+        return null;
+      }),
+    ),
+    checkboxTheme: CheckboxThemeData(
+      fillColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) {
+        if (states.contains(MaterialState.disabled)) {
+          return null;
+        }
+        if (states.contains(MaterialState.selected)) {
+          return AppColor.primaryColor;
+        }
+        return null;
+      }),
     ),
   );
 }

@@ -9,12 +9,15 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'base_response.dart';
 
 class DioApiClient {
-
   static const contentType = 'Content-Type';
   static const contentTypeJson = 'application/json; charset=utf-8';
-
-  static final BaseOptions defaultOptions =
-      BaseOptions(connectTimeout: 90000, sendTimeout: 90000, receiveTimeout: 90000, responseType: ResponseType.json);
+  static const Duration _defaultTimeout = Duration(seconds: 60);
+  static final BaseOptions defaultOptions = BaseOptions(
+    connectTimeout: _defaultTimeout,
+    sendTimeout: _defaultTimeout,
+    receiveTimeout: _defaultTimeout,
+    responseType: ResponseType.json,
+  );
 
   Dio _dio = Dio();
 
@@ -63,11 +66,13 @@ class DioApiClient {
     try {
       var strMethod = _getMethod(method);
       response = await _dio.request(url ?? '',
-          data: formData != null ? FormData.fromMap(formData) : data ?? jsonEncode({}),
+          data: formData != null
+              ? FormData.fromMap(formData)
+              : data ?? jsonEncode({}),
           options: Options(
               method: strMethod,
-              sendTimeout: 10000,
-              receiveTimeout: 10000,
+              sendTimeout: _defaultTimeout,
+              receiveTimeout: _defaultTimeout,
               headers: headerMap,
               contentType: formData != null ? 'multipart/form-data' : null),
           queryParameters: queryParameters);
@@ -80,7 +85,7 @@ class DioApiClient {
           code: 1000,
         );
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         dynamic dataResultError = e.response!.data;
         String errorMessage = dataResultError != null &&

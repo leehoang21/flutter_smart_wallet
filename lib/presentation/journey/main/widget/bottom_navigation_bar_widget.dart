@@ -27,6 +27,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
             child: SvgPicture.asset(
               entry.value["iconPath"],
               width: BottomNavigationBarConstants.iconWidth,
+              // ignore: deprecated_member_use
               color: entry.key == currentIndex
                   ? AppColor.ebonyClay
                   : AppColor.grey,

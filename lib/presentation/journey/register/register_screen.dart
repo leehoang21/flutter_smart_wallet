@@ -17,11 +17,25 @@ import 'package:flutter_smart_wallet/presentation/widgets/pick_image/widget/crop
 import 'package:flutter_smart_wallet/presentation/widgets/text_field_widget/text_field_widget.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   RegisterScreen({Key? key}) : super(key: key);
 
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _userNameController = TextEditingController();
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  late final TextEditingController _emailController;
+
+  late final TextEditingController _userNameController;
+
+  @override
+  void initState() {
+    _emailController = TextEditingController();
+    _userNameController = TextEditingController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BackgroundRegister(

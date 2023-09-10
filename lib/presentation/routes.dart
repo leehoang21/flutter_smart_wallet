@@ -34,10 +34,7 @@ class Routes {
             child: RegisterScreen(),
           ),
         );
-      case RouteList.splashScreen:
-        return MaterialPageRoute(
-          builder: (_) => SplashScreen(),
-        );
+
       case RouteList.createTransaction:
         return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(
@@ -89,12 +86,14 @@ class Routes {
         );
       case RouteList.verifyOtpScreen:
         return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (context) => Injector.getIt.get<VerifyCubit>(),
-                  child: VerifyOtpScreen(
-                    phoneNumber: _argument?[ArgumentConstants.phoneNumber],
-                  ),
-                ));
+          builder: (_) => BlocProvider(
+            create: (context) => Injector.getIt.get<VerifyCubit>(),
+            child: VerifyOtpScreen(
+              phoneNumber: _argument?[ArgumentConstants.phoneNumber],
+            ),
+          ),
+        );
+
       case RouteList.splashScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(

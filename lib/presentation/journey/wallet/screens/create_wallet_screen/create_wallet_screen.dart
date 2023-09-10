@@ -16,6 +16,7 @@ import 'package:flutter_smart_wallet/themes/theme_text.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class CreateWalletScreen extends StatelessWidget {
   CreateWalletScreen({Key? key}) : super(key: key);
 

@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
@@ -6,7 +8,8 @@ import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 
-class   AppImageWidget extends StatelessWidget {
+// ignore: must_be_immutable
+class AppImageWidget extends StatelessWidget {
   final String path;
   bool isAsset = false;
   Widget? placeholder;

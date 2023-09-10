@@ -3,15 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/journey/verify_otp/cubit/verify_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/verify_otp/verify_otp_constants.dart';
 import 'package:flutter_smart_wallet/presentation/journey/verify_otp/widget/button_rich_text_widget.dart';
-import 'package:flutter_smart_wallet/presentation/journey/verify_otp/widget/pin_code_field_widget.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/button_widget/text_button_widget.dart';
 import 'package:flutter_smart_wallet/themes/theme_color.dart';
 import 'package:flutter_smart_wallet/themes/theme_text.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpWidget extends StatelessWidget {
   OtpWidget({Key? key}) : super(key: key);
-
-  final TextEditingController _pinCodeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +29,22 @@ class OtpWidget extends StatelessWidget {
         SizedBox(
           height: VerifyOtpConstants.distanceTextToFieldInput,
         ),
-        PinCodeFieldWidget(
-          controller: _pinCodeController,
+        PinCodeTextField(
+          keyboardType: TextInputType.number,
+          cursorColor: AppColor.taupeGray,
+          appContext: context,
+          length: 6,
+          controller: context.read<VerifyCubit>().pinCodeController,
+          pinTheme: PinTheme(
+            shape: PinCodeFieldShape.box,
+            borderRadius: BorderRadius.circular(6),
+            fieldHeight: VerifyOtpConstants.widthFieldInput,
+            fieldWidth: VerifyOtpConstants.widthFieldInput,
+            borderWidth: 2,
+            activeColor: AppColor.taupeGray,
+            inactiveColor: AppColor.platinum,
+            selectedColor: AppColor.taupeGray,
+          ),
         ),
         Align(
           child: Text(
@@ -48,7 +60,7 @@ class OtpWidget extends StatelessWidget {
         ),
         TextButtonWidget(
           onPressed: () {
-            context.read<VerifyCubit>().verifyOtp(_pinCodeController.text);
+            context.read<VerifyCubit>().verifyOtp();
           },
           title: VerifyOtpConstants.confirm,
         ),

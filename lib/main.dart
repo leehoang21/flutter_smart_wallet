@@ -6,11 +6,14 @@ import 'package:flutter_smart_wallet/presentation/app.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 import 'common/configs/firebase_config.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   Injector.configDependency();
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await FirebaseConfig.init();
   final delegate = await LocalizationDelegate.create(
     fallbackLocale: LanguageConstants.en,

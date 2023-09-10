@@ -133,9 +133,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // TODO: add custom category
-          },
+          onPressed: () {},
           child: const Icon(Icons.add),
         ),
       ),
