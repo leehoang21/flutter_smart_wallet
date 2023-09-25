@@ -66,6 +66,7 @@ class VerifyCubit extends Cubit<VerifyState> {
       bool _isUserFirestore = await userUseCase.hasUserFirestore();
 
       emit(VerifySuccess(state.timeResend, _isUserFirestore));
+
       _streamSubscription?.cancel();
     } catch (e) {
       emit(VerifyFailure(
@@ -73,6 +74,12 @@ class VerifyCubit extends Cubit<VerifyState> {
         timeResend: state.timeResend,
       ));
     }
+  }
+
+  void saveUser() async {
+    await userUseCase.setUserFirestore(
+      await userUseCase.getUser(),
+    );
   }
 
   String _handleExceptionVerificationFailed(String code) {

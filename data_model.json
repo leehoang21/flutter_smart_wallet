@@ -8,7 +8,7 @@
 					{
 						"name": "EXPENSE",
 						"create_at": 123456789000,
-						"last_update": 123456789000,
+						"last_update": 123456789000
 					}
 				],
 				"category_list": [
@@ -56,7 +56,7 @@
 						"create_at": 123456789000,
 						"last_update": 123456789000,
 						"name": "DAILY"
-					},
+					}
 				],
 				"recurring": [
 					{
@@ -73,10 +73,9 @@
 							"start_time": 123456789,
 							"type": "DAILY"
 						}
-					}	
-				],
+					}
+				]
 			}
-			
 		}
 	}
 }

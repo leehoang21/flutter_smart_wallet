@@ -3,14 +3,26 @@ import 'package:flutter_smart_wallet/common/utils/internet_checker.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/base_bloc/base_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/journey/splash/bloc/splash_state.dart';
 
+import '../../../../use_case/user_use_case.dart';
+
 class SplashCubit extends BaseBloc<SplashState> {
-  SplashCubit() : super(SplashState.initial());
+  SplashCubit(this._userUseCase) : super(SplashState.initial());
+  final UserUseCase _userUseCase;
+
+  void checkLogin() async {
+    if (await _userUseCase.hasUserFirestore()) {
+      emit(MainState());
+    } else {
+      emit(LoginState());
+    }
+  }
 
   @override
   void onConnected() {
     InternetChecker.listenConnection((connection) {
       log('Connection change: $connection');
     });
+    checkLogin();
   }
 
   Future<void> initial() async {

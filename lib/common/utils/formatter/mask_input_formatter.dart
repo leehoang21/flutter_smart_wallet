@@ -50,7 +50,8 @@ class MaskedInputFormatter extends TextInputFormatter {
     var addOffset = newFormattedValue._numLeadingSymbols;
 
     /// without this condition there might be a range exception
-    if (oldValue.selection.end <= oldFormattedValue.text.length) {
+    if (oldValue.selection.end != -1 &&
+        oldValue.selection.end <= oldFormattedValue.text.length) {
       numSeparatorsInOld = _countSeparators(
         oldFormattedValue.text.substring(
           0,

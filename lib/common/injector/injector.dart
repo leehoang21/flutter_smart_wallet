@@ -5,6 +5,7 @@ import 'package:flutter_smart_wallet/common/configs/firebase_config.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/language_bloc/language_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/loading_bloc/loading_bloc.dart';
 import 'package:flutter_smart_wallet/presentation/bloc/snackbar_bloc/snackbar_bloc.dart';
+import 'package:flutter_smart_wallet/presentation/journey/account/cubit/account_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/main/bloc/tab_manger_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/register/cubit/register_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/journey/transaction/bank_list_screen/bloc/bank_search_cubit.dart';
@@ -15,6 +16,7 @@ import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/create_
 import 'package:flutter_smart_wallet/presentation/journey/wallet/screens/wallet_list_screen/bloc/wallet_list_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/pick_image/cubit/pick_image_cubit.dart';
 import 'package:flutter_smart_wallet/presentation/widgets/update_avatar.dart/cubit/update_avatar_cubit.dart';
+import 'package:flutter_smart_wallet/repository/local/user_local_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/transaction/transaction_remote_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/transaction/transaction_remote_repository_impl.dart';
 import 'package:flutter_smart_wallet/repository/remote/user/user_remote_repository.dart';
@@ -97,12 +99,20 @@ class Injector {
       ),
     );
     getIt.registerFactory(
-      () => SplashCubit(),
+      () => SplashCubit(
+        getIt.get(),
+      ),
     );
     getIt.registerFactory(
       () => VerifyCubit(
         getIt.get<AuthenticationUseCase>(),
         getIt.get<UserUseCase>(),
+      ),
+    );
+    getIt.registerFactory(
+      () => AccountCubit(
+        getIt.get(),
+        getIt.get(),
       ),
     );
   }
@@ -126,12 +136,11 @@ class Injector {
       ),
     );
     getIt.registerFactory<UserUseCase>(
-      () => UserUseCase(
-        getIt.get<UserRemoteRepository>(),
-      ),
+      () => UserUseCase(getIt.get<UserRemoteRepository>(), getIt.get()),
     );
     getIt.registerFactory<AuthenticationUseCase>(
       () => AuthenticationUseCase(
+        getIt.get(),
         authenticationRepository: getIt.get(),
       ),
     );
@@ -152,11 +161,14 @@ class Injector {
         getIt.get<FirebaseAuth>(),
       ),
     );
+    getIt.registerFactory<UserLocalRepository>(
+      () => UserLocalRepository(),
+    );
     getIt.registerFactory(
       () => PickImageLocalRepository(),
     );
     getIt.registerFactory(
-      () => UpDownStorageRemoteRepository(),
+      () => UpDownStorageRemoteRepository(getIt.get()),
     );
     getIt.registerFactory<AuthenticationRepository>(
       () => AuthenticationRepositoryImpl(auth: getIt.get<FirebaseAuth>()),

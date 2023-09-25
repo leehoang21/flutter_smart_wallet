@@ -14,26 +14,16 @@ class Categori extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: ListTile(
-            title: Text(
-              title,
-              style: TextStyle(fontSize: 20),
-            ),
-            leading: Expanded(child: Image.asset(pathImage)),
-          ),
-          flex: 3,
-        ),
-        Expanded(
-          child: TextButton(
-            child: Icon(Icons.arrow_forward_ios),
-            onPressed: action,
-          ),
-          flex: 1,
-        ),
-      ],
+    return ListTile(
+      title: Text(
+        title,
+        style: TextStyle(fontSize: 20),
+      ),
+      leading: Image.asset(pathImage),
+      trailing: TextButton(
+        child: Icon(Icons.arrow_forward_ios),
+        onPressed: action,
+      ),
     );
   }
 }

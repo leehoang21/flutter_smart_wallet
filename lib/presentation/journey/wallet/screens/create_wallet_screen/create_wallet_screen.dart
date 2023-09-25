@@ -17,17 +17,37 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
-class CreateWalletScreen extends StatelessWidget {
+class CreateWalletScreen extends StatefulWidget {
   CreateWalletScreen({Key? key}) : super(key: key);
 
-  final walletTypeController = TextEditingController();
-  final balanceController = TextEditingController();
-  final walletNameController = TextEditingController();
   static const _locale = 'en';
+
+  @override
+  State<CreateWalletScreen> createState() => _CreateWalletScreenState();
+}
+
+class _CreateWalletScreenState extends State<CreateWalletScreen> {
+  late final TextEditingController walletTypeController;
+
+  late final TextEditingController balanceController;
+
+  late final TextEditingController walletNameController;
+
+  @override
+  void initState() {
+    walletTypeController = TextEditingController();
+    balanceController = TextEditingController();
+    walletNameController = TextEditingController();
+    super.initState();
+  }
+
   String _formatNumber(String s) =>
-      NumberFormat.decimalPattern(_locale).format(int.parse(s));
+      NumberFormat.decimalPattern(CreateWalletScreen._locale)
+          .format(int.parse(s));
+
   String get _currency =>
       NumberFormat.compactSimpleCurrency(locale: 'vi').currencySymbol;
+
   String imagePath = '';
 
   @override

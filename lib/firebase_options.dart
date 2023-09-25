@@ -23,10 +23,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -50,19 +47,30 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDZztTVCtv3uJhY4jYLQC3ZkIq2GnqktoQ',
-    appId: '1:273753477633:web:3b88556d18bf97b92b6600',
-    messagingSenderId: '273753477633',
-    projectId: 'flutter-smart-wallet',
-    authDomain: 'flutter-smart-wallet.firebaseapp.com',
-    storageBucket: 'flutter-smart-wallet.appspot.com',
+    apiKey: 'AIzaSyA9niQ96SFJeY4UC0CbvntwWFqZQ5g9vq4',
+    appId: '1:1090821933223:web:9e286a283b430367007382',
+    messagingSenderId: '1090821933223',
+    projectId: 'smart-wallet-d598c',
+    authDomain: 'smart-wallet-d598c.firebaseapp.com',
+    storageBucket: 'smart-wallet-d598c.appspot.com',
+    measurementId: 'G-4M1XF3V2KJ',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBZqgee8rLa9tgPf6WMKT2p1D6Xpldzcts',
-    appId: '1:273753477633:android:29ceefa173f577be2b6600',
-    messagingSenderId: '273753477633',
-    projectId: 'flutter-smart-wallet',
-    storageBucket: 'flutter-smart-wallet.appspot.com',
+    apiKey: 'AIzaSyB_s4DNjZuncznK6E3SumozC6iw_AhEDDU',
+    appId: '1:1090821933223:android:d7224e1b69b812e6007382',
+    messagingSenderId: '1090821933223',
+    projectId: 'smart-wallet-d598c',
+    storageBucket: 'smart-wallet-d598c.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyChDbJU_y5Vf90WHD_06ck_gVr9IgMt9M8',
+    appId: '1:1090821933223:ios:2d9dd4c9d7ae4371007382',
+    messagingSenderId: '1090821933223',
+    projectId: 'smart-wallet-d598c',
+    storageBucket: 'smart-wallet-d598c.appspot.com',
+    androidClientId: '1090821933223-7u1ut75gh7ordda9o6i8dulc6sfff3pj.apps.googleusercontent.com',
+    iosBundleId: 'vn.com.kma.hatuan314.espend',
   );
 }

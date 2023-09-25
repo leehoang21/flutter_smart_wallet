@@ -12,6 +12,7 @@ abstract class AuthenticationRepository {
   });
 
   Future<UserCredential> userCredential(String verificationId, String smsCode);
+  Future<void> signOut();
 }
 
 class AuthenticationRepositoryImpl extends AuthenticationRepository {
@@ -45,5 +46,10 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
       ),
     );
     return _userCredential;
+  }
+
+  @override
+  Future<void> signOut() async {
+    await auth.signOut();
   }
 }

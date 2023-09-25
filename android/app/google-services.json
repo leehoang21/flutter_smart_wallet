@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "273753477633",
-    "project_id": "flutter-smart-wallet",
-    "storage_bucket": "flutter-smart-wallet.appspot.com"
+    "project_number": "1090821933223",
+    "project_id": "smart-wallet-d598c",
+    "storage_bucket": "smart-wallet-d598c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:273753477633:android:29ceefa173f577be2b6600",
+        "mobilesdk_app_id": "1:1090821933223:android:2ae6c41612508641007382",
         "android_client_info": {
-          "package_name": "com.hoanglee21.flutter_smart_wallet"
+          "package_name": "com.example.flutter_smart_wallet"
         }
       },
       "oauth_client": [
         {
-          "client_id": "273753477633-pq0rlvrshbu5cmrbt5mhkqkcu1aud4q5.apps.googleusercontent.com",
+          "client_id": "1090821933223-sncg2f3ip5s3fa0me0uq37rn4sq7ce4a.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBZqgee8rLa9tgPf6WMKT2p1D6Xpldzcts"
+          "current_key": "AIzaSyB_s4DNjZuncznK6E3SumozC6iw_AhEDDU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "273753477633-pq0rlvrshbu5cmrbt5mhkqkcu1aud4q5.apps.googleusercontent.com",
+              "client_id": "1090821933223-sncg2f3ip5s3fa0me0uq37rn4sq7ce4a.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1090821933223-mptfvsem06n834m3lhac6gotkej5a4km.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vn.kma.hatuan314.eSpend"
+              }
             }
           ]
         }
@@ -36,36 +43,59 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:273753477633:android:cc302d6c5a0b1c452b6600",
+        "mobilesdk_app_id": "1:1090821933223:android:d7224e1b69b812e6007382",
         "android_client_info": {
           "package_name": "vn.com.kma.hatuan314.flutter_smart_wallet"
         }
       },
       "oauth_client": [
         {
-          "client_id": "273753477633-8snglv93a6vde1gauj55c2ubt2b47fdr.apps.googleusercontent.com",
+          "client_id": "1090821933223-7u1ut75gh7ordda9o6i8dulc6sfff3pj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "vn.com.kma.hatuan314.flutter_smart_wallet",
-            "certificate_hash": "7469ca665cb6806463dacdee979c14f70668bac2"
+            "certificate_hash": "c5d59a392225359fc88888e1f645b95d9403ca51"
           }
         },
         {
-          "client_id": "273753477633-pq0rlvrshbu5cmrbt5mhkqkcu1aud4q5.apps.googleusercontent.com",
+          "client_id": "1090821933223-l9fmv6td5rroqt2fo371gmc7er2mtalf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vn.com.kma.hatuan314.flutter_smart_wallet",
+            "certificate_hash": "3e0ac4f7a611955a989935a9d8ed4252d0715e20"
+          }
+        },
+        {
+          "client_id": "1090821933223-lkbi5d8j38hji4j4k1p1evtuqv0qqlnm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vn.com.kma.hatuan314.flutter_smart_wallet",
+            "certificate_hash": "853270159dd1ff8ba6dd0875d9165aba85417222"
+          }
+        },
+        {
+          "client_id": "1090821933223-sncg2f3ip5s3fa0me0uq37rn4sq7ce4a.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBZqgee8rLa9tgPf6WMKT2p1D6Xpldzcts"
+          "current_key": "AIzaSyB_s4DNjZuncznK6E3SumozC6iw_AhEDDU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "273753477633-pq0rlvrshbu5cmrbt5mhkqkcu1aud4q5.apps.googleusercontent.com",
+              "client_id": "1090821933223-sncg2f3ip5s3fa0me0uq37rn4sq7ce4a.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1090821933223-mptfvsem06n834m3lhac6gotkej5a4km.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vn.kma.hatuan314.eSpend"
+              }
             }
           ]
         }

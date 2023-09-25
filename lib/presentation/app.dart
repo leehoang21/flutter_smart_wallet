@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_smart_wallet/common/constants/language_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/layout_constants.dart';
 import 'package:flutter_smart_wallet/common/constants/route_list.dart';
 import 'package:flutter_smart_wallet/common/constants/strings/string_constants.dart';
@@ -61,11 +60,11 @@ class App extends StatelessWidget {
             ],
             title: StringConstants.appTitle,
             initialRoute: RouteList.splashScreen,
-            locale: localizationDelegate.currentLocale,
-            supportedLocales: const [
-              Locale(LanguageConstants.en),
-              Locale(LanguageConstants.vi)
-            ],
+            locale: Locale('en', 'US'),
+            // supportedLocales: const [
+            //   Locale(LanguageConstants.en),
+            //   Locale(LanguageConstants.vi)
+            // ],
             onGenerateRoute: Routes.generateRoute,
             theme: appTheme(),
             builder: (context, widget) {

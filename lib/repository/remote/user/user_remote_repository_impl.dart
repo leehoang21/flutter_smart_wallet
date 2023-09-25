@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_smart_wallet/common/configs/default_environment.dart';
 import 'package:flutter_smart_wallet/common/configs/firebase_config.dart';
+import 'package:flutter_smart_wallet/common/utils/app_utils.dart';
 import 'package:flutter_smart_wallet/common/utils/internet_checker.dart';
 import 'package:flutter_smart_wallet/model/user_model.dart';
 import 'package:flutter_smart_wallet/repository/remote/user/user_remote_repository.dart';
@@ -20,10 +21,13 @@ class UserRemoteRepositoryImpl extends UserRemoteRepository {
 
   @override
   Future<bool> hasUserFirestore() async {
+    if (firebaseAuth.currentUser == null) return false;
     final result = await FirebaseConfig.userDoc
         .collection(getUserId())
         .doc(DefaultEnvironment.profile)
         .get();
+
+    logger(result.metadata.toString());
 
     return result.exists;
   }
@@ -35,6 +39,7 @@ class UserRemoteRepositoryImpl extends UserRemoteRepository {
 
   @override
   Future<bool> setUserFirestore(Map<String, Object?> data) async {
+    if (firebaseAuth.currentUser == null) return false;
     try {
       await FirebaseConfig.userDoc
           .collection(getUserId())
@@ -48,6 +53,8 @@ class UserRemoteRepositoryImpl extends UserRemoteRepository {
 
   @override
   Future<UserModel> getUserFirestore() async {
+    if (firebaseAuth.currentUser == null)
+      return UserModel(phoneNumber: '', uId: null);
     final result = await FirebaseConfig.userDoc
         .collection(getUserId())
         .doc(DefaultEnvironment.profile)
@@ -59,6 +66,7 @@ class UserRemoteRepositoryImpl extends UserRemoteRepository {
   Future<bool> updateUserFirestore(
     Map<String, Object?> data,
   ) async {
+    if (firebaseAuth.currentUser == null) return false;
     try {
       await FirebaseConfig.userDoc
           .collection(getUserId())

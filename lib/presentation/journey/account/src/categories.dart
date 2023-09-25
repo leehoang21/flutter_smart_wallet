@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_smart_wallet/presentation/journey/account/cubit/account_cubit.dart';
 
+import '../../../../common/constants/route_list.dart';
 import 'category.dart';
 
 class Categories extends StatelessWidget {
@@ -26,9 +29,13 @@ class Categories extends StatelessWidget {
             title: 'About me',
             action: () {}),
         Categori(
-            pathImage: 'assets/icons/logout.png',
-            title: 'Logout',
-            action: () {}),
+          pathImage: 'assets/icons/logout.png',
+          title: 'Logout',
+          action: () {
+            context.read<AccountCubit>().signOut();
+            Navigator.pushNamed(context, RouteList.loginScreen);
+          },
+        ),
       ],
     );
   }

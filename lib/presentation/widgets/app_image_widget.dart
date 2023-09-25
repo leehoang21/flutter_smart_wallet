@@ -130,7 +130,7 @@ class AppImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    isAsset = checkAsset();
+    isAsset = checkAsset() != ImageType2.network;
     switch (imageType) {
       case ImageType.lottie:
         return _buildLottieImageWidget();
@@ -153,12 +153,23 @@ class AppImageWidget extends StatelessWidget {
     }
   }
 
-  bool checkAsset() {
+  ImageType2 checkAsset() {
     if (path.contains('http://') || path.contains('https://')) {
-      return false;
+      return ImageType2.network;
+    } else if (path.contains('assets/')) {
+      return ImageType2.asset;
     }
-    return true;
+    return ImageType2.file;
+  }
+
+  ImageProvider get im {
+    if (isAsset) {
+      return AssetImage(path);
+    }
+    return CachedNetworkImageProvider(path);
   }
 }
 
 enum ImageType { svg, image, lottie }
+
+enum ImageType2 { asset, network, file }

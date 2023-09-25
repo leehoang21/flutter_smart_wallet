@@ -29,6 +29,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
       listener: (context, state) {
         if (state is VerifySuccess) {
           if (state.isUserFirestore) {
+            context.read<VerifyCubit>().saveUser();
             Navigator.pushNamedAndRemoveUntil(
                 context, RouteList.mainScreen, (route) => false);
           } else {

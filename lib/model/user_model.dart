@@ -2,26 +2,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_smart_wallet/common/configs/hive_config/hive_type_id.dart';
 import 'package:hive/hive.dart';
 
-
 @HiveType(typeId: HiveTypeId.userType)
 class UserModel {
-  @HiveField(0)
   final String userName;
-  // email người dùng nếu có
-  @HiveField(1)
   final String? email;
-  // url avatar nếu có
-  @HiveField(2)
   final String? avatar;
-  //số điện thoại người dùng
-  @HiveField(3)
   final String phoneNumber;
+  final String? uId;
 
   const UserModel({
     required this.phoneNumber,
     this.userName = '',
     this.email,
     this.avatar,
+    required this.uId,
   });
 
   UserModel copyWith({
@@ -34,6 +28,7 @@ class UserModel {
       userName: userName ?? this.userName,
       email: email ?? this.email,
       avatar: avatar ?? this.avatar,
+      uId: uId,
     );
   }
 
@@ -48,6 +43,7 @@ class UserModel {
       email: data['email'] as String?,
       avatar: data['avatar'] as String?,
       phoneNumber: data['phoneNumber'] as String,
+      uId: data['userId'] as String?,
     );
   }
 
@@ -57,6 +53,17 @@ class UserModel {
       'userName': userName,
       'avatar': avatar,
       'email': email,
+      'userId': uId,
     };
+  }
+
+  static UserModel fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      phoneNumber: json['phoneNumber'] as String,
+      userName: json['userName'] as String,
+      avatar: json['avatar'] as String?,
+      email: json['email'] as String?,
+      uId: json['userId'] as String?,
+    );
   }
 }
