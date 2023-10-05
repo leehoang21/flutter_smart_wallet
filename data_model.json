@@ -1,0 +1,81 @@
+{
+	"store": {},
+	"develop": {
+		"VoFfyo9s1tOQm2qR8sCPpWuO0k12": {},
+		"jSU8QiuNlnDmdSU6YhaTpWuO0k12": {
+			"category": {
+				"categoty_type": [
+					{
+						"name": "EXPENSE",
+						"create_at": 123456789000,
+						"last_update": 123456789000
+					}
+				],
+				"category_list": [
+					{
+						"name": "EATING",
+						"type": "EXPENSE",
+						"create_at": 123456789000,
+						"last_update": 123456789000,
+						"sub_categories": [
+							"COFFEE"
+						]
+					}
+				]
+			},
+			"profile": {
+				"account_name": "Test name",
+				"avatar": "https://www.service4money.com/pics/2021/04/08/i-will-draw-an-anime-avatar-for-your-social-media-276275.png",
+				"create_at": 123456789000,
+				"email": "mtest@gmail.com",
+				"last_update": 123456789000,
+				"phone": "0123456789"
+			},
+			"transaction": {
+				"daily": [
+					{
+						"amount": 1234,
+						"bill_img": [
+							"https://palada.vn/wp-content/uploads/2020/10/bill-la-gi-2.jpg",
+							"https://mybillbook.in/blog/wp-content/uploads/2021/04/sample-thermal-printer-bill-format.png"
+						],
+						"category": {
+							"name": "EATING",
+							"sub_category": "COFFEE"
+						},
+						"create_at": 123456789000,
+						"locale": "vi",
+						"event": "Test Event",
+						"last_update": 123456789000,
+						"note": "Test note",
+						"timestamp": 123456789000
+					}
+				],
+				"repeat_type": [
+					{
+						"create_at": 123456789000,
+						"last_update": 123456789000,
+						"name": "DAILY"
+					}
+				],
+				"recurring": [
+					{
+						"category": {
+							"name": "EATING",
+							"sub_category": "COFFEE"
+						},
+						"create_at": 123456789000,
+						"default_amount": 10000,
+						"last_update": 123456789000,
+						"note": "Test note",
+						"repeat": {
+							"length": 1,
+							"start_time": 123456789,
+							"type": "DAILY"
+						}
+					}
+				]
+			}
+		}
+	}
+}
