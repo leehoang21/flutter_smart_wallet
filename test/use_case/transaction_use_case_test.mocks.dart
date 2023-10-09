@@ -2,6 +2,8 @@
 // in flutter_smart_wallet/test/use_case/transaction_use_case_test.dart.
 // Do not manually edit this file.
 
+// ignore_for_file: unused_import
+
 import 'dart:async' as _i4;
 
 import 'package:flutter_smart_wallet/common/configs/firebase_config.dart'

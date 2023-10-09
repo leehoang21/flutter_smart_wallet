@@ -15,11 +15,11 @@ void main() {
         () async {
       final mockWalletRepository = MockWalletRepository();
       final mockWalletUseCase = WalletUseCase(mockWalletRepository);
-      when(mockWalletRepository.fetchWalletListFirebase("123")).thenAnswer(
+      when(mockWalletRepository.fetchWalletListFirebase()).thenAnswer(
         (realInvocation) async => mockData,
       );
       expect(
-        await mockWalletUseCase.fetchWalletListFirebase("123"),
+        await mockWalletUseCase.fetchWalletListFirebase(),
         isA<List<WalletModel>>(),
       );
     });
@@ -29,29 +29,27 @@ void main() {
       final mockWalletRepository = MockWalletRepository();
       final mockWalletUseCase = WalletUseCase(mockWalletRepository);
       when(
-       await mockWalletRepository.addAndUpdateWalletListFirebase(
-            userId: 'userId',
+        await mockWalletRepository.addAndUpdateWalletListFirebase(
             walletModel: WalletModel(
-              walletType: 1,
-              walletImage: '',
-              walletName: 'test123',
-              balance: 1234,
-              createAt: DateTime.now().millisecondsSinceEpoch,
-              lastUpdate: DateTime.now().millisecondsSinceEpoch,
-            )),
+          walletType: 1,
+          walletImage: '',
+          walletName: 'test123',
+          balance: 1234,
+          createAt: DateTime.now().millisecondsSinceEpoch,
+          lastUpdate: DateTime.now().millisecondsSinceEpoch,
+        )),
       ).thenReturn(true);
 
       expect(
         await mockWalletUseCase.addAndUpdateWalletListFirebase(
-            userId: 'userId',
             walletModel: WalletModel(
-              walletType: 1,
-              walletImage: '',
-              walletName: 'test123',
-              balance: 1234,
-              createAt: DateTime.now().millisecondsSinceEpoch,
-              lastUpdate: DateTime.now().millisecondsSinceEpoch,
-            )),
+          walletType: 1,
+          walletImage: '',
+          walletName: 'test123',
+          balance: 1234,
+          createAt: DateTime.now().millisecondsSinceEpoch,
+          lastUpdate: DateTime.now().millisecondsSinceEpoch,
+        )),
         isA<bool>(),
       );
     });

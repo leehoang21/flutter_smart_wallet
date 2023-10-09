@@ -9,20 +9,23 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'transaction_use_case_test.mocks.dart';
+import 'wallet_list_use_case_test.mocks.dart';
 
 @GenerateMocks([TransactionRemoteRepository])
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   group(
     'create transaction test',
-        () {
+    () {
       final TransactionRemoteRepository _transactionRemoteRepository =
+          MockTransactionRemoteRepository();
+      final mockWalletRepository = MockWalletRepository();
       MockTransactionRemoteRepository();
-      final TransactionUseCase _transactionUseCase =
-      TransactionUseCase(_transactionRemoteRepository);
+      final TransactionUseCase _transactionUseCase = TransactionUseCase(
+          _transactionRemoteRepository, mockWalletRepository);
       test(
         'create success',
-            () async {
+        () async {
           when(
             _transactionRemoteRepository.createTransaction(
               'uid',

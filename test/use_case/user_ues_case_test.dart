@@ -1,19 +1,26 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_smart_wallet/model/user_model.dart';
+import 'package:flutter_smart_wallet/repository/local/user_local_repository.dart';
 import 'package:flutter_smart_wallet/repository/remote/user/user_remote_repository.dart';
 import 'package:flutter_smart_wallet/use_case/user_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'user_use_case_test.mocks.dart';
+import 'user_ues_case_test.mocks.dart';
 
-@GenerateMocks([FirebaseAuth, UserRemoteRepository])
+@GenerateMocks([FirebaseAuth, UserRemoteRepository, UserLocalRepository])
 void main() {
   group('test user use case', () {
     final MockUserRemoteRepository mockUserRemoteRepository =
         MockUserRemoteRepository();
-    final UserUseCase userUseCase = UserUseCase(mockUserRemoteRepository);
-    final UserModel userModel = UserModel(phoneNumber: '');
+    final MockUserLocalRepository mockUserLocalRepository =
+        MockUserLocalRepository();
+    final UserUseCase userUseCase =
+        UserUseCase(mockUserRemoteRepository, mockUserLocalRepository);
+    final UserModel userModel = UserModel(
+      phoneNumber: '',
+      uId: 'userId',
+    );
 
     test('return string when calling getuserID()', () async {
       when(
@@ -44,11 +51,11 @@ void main() {
           .thenAnswer((_) async => true);
 
       when(
-        mockUserRemoteRepository.setUserFirestore(' ', userModel.toJson()),
+        mockUserRemoteRepository.setUserFirestore(userModel.toJson()),
       ).thenAnswer((realInvocation) async => true);
 
       expect(
-        await userUseCase.setUserFirestore('userId', userModel),
+        await userUseCase.setUserFirestore(userModel),
         isA<bool>(),
       );
     });
@@ -58,11 +65,11 @@ void main() {
           .thenAnswer((_) async => true);
 
       when(
-        mockUserRemoteRepository.hasUserFirestore('userId'),
+        mockUserRemoteRepository.hasUserFirestore(),
       ).thenAnswer((_) async => true);
 
       expect(
-        await userUseCase.hasUserFirestore('userId'),
+        await userUseCase.hasUserFirestore(),
         isA<bool>(),
       );
     });
