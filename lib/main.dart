@@ -14,6 +14,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+    name: 'e-spend',
   );
   await FirebaseConfig.init();
   final delegate = await LocalizationDelegate.create(

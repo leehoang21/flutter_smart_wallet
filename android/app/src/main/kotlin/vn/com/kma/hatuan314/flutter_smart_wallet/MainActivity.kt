@@ -1,4 +1,4 @@
-package vn.com.kma.hatuan314.flutter_smart_wallet
+package vn.hoanglee.flutter_smart_wallet
 
 import io.flutter.embedding.android.FlutterActivity
 
